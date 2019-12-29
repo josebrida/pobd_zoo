@@ -361,6 +361,108 @@ void myconnectorclassDB::ApplyGodfather(CString user_ID, CString user_name, CStr
 	//stored in the result object.
 }
 
+std::vector<CString> myconnectorclassDB::CheckPendingGodfathers()
+{
+	vector<CString> value; // Create the object to receive the answer to the query
+	CString value_int;
+	CString query = _T("SELECT user_ID FROM godfather WHERE status = 'Pending'");
+	//Create a query by combining CStrings
+	Query(query); // Pass the query. The result will be
+	//stored in the result object.
+	while ((row = mysql_fetch_row(result)) != NULL)
+		// Method to fetch rows from result
+	{
+		value_int = CPtoUnicode(row[0], 1251);
+		value.push_back(value_int);
+	}
+	return value;
+}
+
+CString myconnectorclassDB::CheckUserName(CString user_ID)
+{
+	CString value; // Create the object to receive the answer to the query
+	CString query = _T("SELECT user_name FROM user WHERE user_ID = '") + user_ID + _T("'");
+	//Create a query by combining CStrings
+	Query(query); // Pass the query. The result will be
+	//stored in the result object.
+	while ((row = mysql_fetch_row(result)) != NULL)
+		// Method to fetch rows from result
+	{
+		value = CPtoUnicode(row[0], 1251);
+	}
+	return value;
+}
+
+CString myconnectorclassDB::CheckPendingAnimal(CString user_ID)
+{
+	CString value; // Create the object to receive the answer to the query
+	CString query = _T("SELECT animal_ID FROM godfather WHERE user_ID = '") + user_ID + _T("'");
+	//Create a query by combining CStrings
+	Query(query); // Pass the query. The result will be
+	//stored in the result object.
+	while ((row = mysql_fetch_row(result)) != NULL)
+		// Method to fetch rows from result
+	{
+		value = CPtoUnicode(row[0], 1251);
+	}
+	return value;
+}
+
+CString myconnectorclassDB::CheckPendingFee(CString user_ID)
+{
+	CString value; // Create the object to receive the answer to the query
+	CString query = _T("SELECT fee FROM godfather WHERE user_ID = '") + user_ID + _T("'");
+	//Create a query by combining CStrings
+	Query(query); // Pass the query. The result will be
+	//stored in the result object.
+	while ((row = mysql_fetch_row(result)) != NULL)
+		// Method to fetch rows from result
+	{
+		value = CPtoUnicode(row[0], 1251);
+	}
+	return value;
+}
+
+void myconnectorclassDB::ChangeStatus(CString user_ID, CString status)
+{
+	CString query = _T("UPDATE godfather SET status = '") + status + ("' WHERE user_ID = '") + user_ID + _T("'");
+	//Create a query by combining CStrings
+	Query(query); // Pass the query. The result will be
+	//stored in the result object.
+	//while ((row = mysql_fetch_row(result)) != NULL)
+		// Method to fetch rows from result
+	//{
+	//	value = CPtoUnicode(row[0], 1251);
+	//}
+}
+
+void myconnectorclassDB::ChangeStatus123(CString status)
+{
+	CString query = _T("UPDATE godfather SET status = '") + status + ("'WHERE user_ID = '1017'");
+	//Create a query by combining CStrings
+	Query(query); // Pass the query. The result will be
+	//stored in the result object.
+	//while ((row = mysql_fetch_row(result)) != NULL)
+		// Method to fetch rows from result
+	//{
+	//	value = CPtoUnicode(row[0], 1251);
+	//}
+}
+
+CString myconnectorclassDB::CheckUserID(CString user_name)
+{
+	CString value;
+	CString query = _T("SELECT user_ID FROM user WHERE user_name = '") + user_name + ("'");
+	//Create a query by combining CStrings
+	Query(query); // Pass the query. The result will be
+	//stored in the result object.
+	while ((row = mysql_fetch_row(result)) != NULL)
+		// Method to fetch rows from result
+	{
+		value = CPtoUnicode(row[0], 1251);
+	}
+	return value;
+}
 
 void myconnectorclassDB::Query(CString query)
 {
@@ -375,7 +477,6 @@ void myconnectorclassDB::Query(CString query)
 	result = mysql_store_result(connection); // Store the
 	//result
 }
-
 
 CString myconnectorclassDB::CPtoUnicode(const char* CPString, UINT
 	CodePage)

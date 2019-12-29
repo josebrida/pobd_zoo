@@ -9,6 +9,10 @@
 #define IDR_MAINFRAME                   128
 #define IDD_KeeperDialog                130
 #define IDD_FormApplyGodfather          132
+#define IDD_ManagerDialog               134
+#define IDD_ManageGodfathersDialog      136
+#define IDD_DIALOG1                     138
+#define IDD_ManageAnimalsDialog         138
 #define IDC_Username                    1000
 #define IDC_Password                    1001
 #define IDC_BUTTONLogin                 1002
@@ -32,14 +36,21 @@
 #define IDC_EditPassword                1019
 #define IDC_COMBO1                      1020
 #define IDC_ComboAnimal                 1020
+#define IDC_COMBOPENDING                1020
+#define IDC_ManageGodfathers            1021
+#define IDC_LISTPENDING                 1022
+#define IDC_RADIOACCEPT                 1023
+#define IDC_RADIODECLINE                1024
+#define IDC_BUTTONCONFIRM               1025
+#define IDC_BUTTONMANAGEANIMALS         1028
 
 // Next default values for new objects
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
-#define _APS_NEXT_RESOURCE_VALUE        134
+#define _APS_NEXT_RESOURCE_VALUE        140
 #define _APS_NEXT_COMMAND_VALUE         32771
-#define _APS_NEXT_CONTROL_VALUE         1021
+#define _APS_NEXT_CONTROL_VALUE         1029
 #define _APS_NEXT_SYMED_VALUE           101
 #endif
 #endif

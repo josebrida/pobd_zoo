@@ -9,6 +9,7 @@
 #include "myconnectorclassDB.h"
 #include "MyDlg2.h"
 #include "MyDlg3.h"
+#include "MyDlg4.h"
 #include <vector>
 #include <list>
 #include <string.h>
@@ -183,7 +184,11 @@ void CZooManagementSystemDlg::OnBnClickedButtonlogin()
 		vector<CString> visitor_IDs = MyConnection.CheckVisitorIDs();
 		if (std::find(keeper_IDs.begin(), keeper_IDs.end(), username) != keeper_IDs.end()) {
 			MyDlg2 dlg;
-			dlg.DoModal();			
+			dlg.DoModal();	
+		}
+		else if (std::find(manager_IDs.begin(), manager_IDs.end(), username) != manager_IDs.end()) {
+			MyDlg4 dlg;
+			dlg.DoModal();
 		}
 	}
 	else {

@@ -46,6 +46,13 @@ public:
 	CString CheckBirth(CString animal_ID);
 	void ApplyGodfather(CString user_ID, CString user_name, CString user_email, CString user_birth, CString user_password, CString animal_ID, CString request_date, CString fee);
 	CString LastUser();
+	std::vector<CString> CheckPendingGodfathers();
+	CString CheckUserName(CString user_ID);
+	CString CheckPendingAnimal(CString user_ID);
+	CString CheckPendingFee(CString user_ID);
+	void ChangeStatus(CString user_ID, CString status);
+	void ChangeStatus123(CString status);
+	CString CheckUserID(CString user_name);
 	myconnectorclassDB(void);
 	virtual ~myconnectorclassDB(void);
 };
