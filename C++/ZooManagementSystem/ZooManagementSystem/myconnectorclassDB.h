@@ -26,6 +26,8 @@ public:
 	CString CPtoUnicode(const char* CPString, UINT CodePage);
 	// Converts data from MySQL format to MFC's CString.
 	// My Queries
+	CString ReturnCurrentDate();
+	CString CalculateDateDiff(CString date1, CString date2);
 	CString CheckPassword(CString username);
 	CString CheckAnimalInformation(CString animal_ID);
 	CString CheckAnimalName(CString animal_ID);
@@ -51,8 +53,11 @@ public:
 	CString CheckPendingAnimal(CString user_ID);
 	CString CheckPendingFee(CString user_ID);
 	void ChangeStatus(CString user_ID, CString status);
-	void ChangeStatus123(CString status);
 	CString CheckUserID(CString user_name);
+	CString CheckSpeciesFee(CString species_ID);
+	void SelectGodfatherDate(CString user_ID, CString start_date, CString end_date);
+	CString AddYear(CString start_date);
+	std::vector<CString> CheckAcceptedGodfathersIDs();
 	myconnectorclassDB(void);
 	virtual ~myconnectorclassDB(void);
 };

@@ -123,12 +123,17 @@ void MyDlg5::OnBnClickedButtonconfirm()
 		myconnectorclassDB MyConnection;
 		MyConnection.connect();
 		MyConnection.ChangeStatus(MyConnection.CheckUserID(v_combopending), _T("Approved"));
+		CString today_date = MyConnection.ReturnCurrentDate();
+		CString end_date = MyConnection.AddYear(today_date);
+		MyConnection.SelectGodfatherDate(MyConnection.CheckUserID(v_combopending), today_date, end_date);
 	}
 	else if (v_decision_godfather == -1) {
 		myconnectorclassDB MyConnection;
 		MyConnection.connect();
 		MyConnection.ChangeStatus(MyConnection.CheckUserID(v_combopending), _T("Denied"));
 	}
+	m_combopending.ResetContent();
+	UpdateData(FALSE);
 	CString str;
 	myconnectorclassDB MyConnection;
 	MyConnection.connect();

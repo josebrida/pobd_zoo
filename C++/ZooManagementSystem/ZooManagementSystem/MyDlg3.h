@@ -28,10 +28,12 @@ public:
 	CString animal_list;
 	CString apply_name;
 	CString apply_email;
-	CString apply_birth;
+	CString apply_birth_y;
 	CString apply_password;
 	CComboBox m_comboAnimal;
 	CString combo_animal;
 	afx_msg void OnCbnSelchangeComboanimal();
 	afx_msg void OnBnClickedApplynow();
+	CString apply_birth_m;
+	CString apply_birth_d;
 };

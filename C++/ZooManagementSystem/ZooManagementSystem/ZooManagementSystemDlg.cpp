@@ -10,6 +10,7 @@
 #include "MyDlg2.h"
 #include "MyDlg3.h"
 #include "MyDlg4.h"
+#include "MyDlg7.h"
 #include <vector>
 #include <list>
 #include <string.h>
@@ -113,7 +114,6 @@ BOOL CZooManagementSystemDlg::OnInitDialog()
 	SetIcon(m_hIcon, FALSE);		// Set small icon
 
 	// TODO: Add extra initialization here
-	
 
 	return TRUE;  // return TRUE  unless you set the focus to a control
 }
@@ -175,13 +175,14 @@ void CZooManagementSystemDlg::OnBnClickedButtonlogin()
 	MyConnection.connect();
 	UpdateData(TRUE);
 	CString password_DB = MyConnection.CheckPassword(username);
-	if (password_DB == password) {
+	if (password_DB == password && !username.IsEmpty()) {
 		welcome_msg.Format(_T("Welcome!"));
 		AfxMessageBox(welcome_msg);
 		vector<CString> keeper_IDs = MyConnection.CheckKeeperIDs();
 		vector<CString> manager_IDs = MyConnection.CheckManagerIDs();
 		vector<CString> veterinarian_IDs = MyConnection.CheckVeterinarianIDs();
 		vector<CString> visitor_IDs = MyConnection.CheckVisitorIDs();
+		vector<CString> accepted_godfather_IDs = MyConnection.CheckAcceptedGodfathersIDs();
 		if (std::find(keeper_IDs.begin(), keeper_IDs.end(), username) != keeper_IDs.end()) {
 			MyDlg2 dlg;
 			dlg.DoModal();	
@@ -189,6 +190,17 @@ void CZooManagementSystemDlg::OnBnClickedButtonlogin()
 		else if (std::find(manager_IDs.begin(), manager_IDs.end(), username) != manager_IDs.end()) {
 			MyDlg4 dlg;
 			dlg.DoModal();
+		}
+		else if (std::find(visitor_IDs.begin(), visitor_IDs.end(), username) != visitor_IDs.end()) {
+			if (std::find(accepted_godfather_IDs.begin(), accepted_godfather_IDs.end(), username) != accepted_godfather_IDs.end()) {
+				MyDlg7 dlg;
+				dlg.DoModal();
+			}
+			else {
+				CString pending_msg;
+				pending_msg.Format(_T("Your request is pending!"));
+				AfxMessageBox(pending_msg);
+			}
 		}
 	}
 	else {

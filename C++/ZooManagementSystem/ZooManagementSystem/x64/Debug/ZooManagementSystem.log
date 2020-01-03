@@ -2,6 +2,9 @@
   myconnectorclassDB.cpp
   MyDlg2.cpp
   MyDlg3.cpp
+  MyDlg4.cpp
+  MyDlg5.cpp
+  MyDlg6.cpp
   ZooManagementSystem.cpp
   ZooManagementSystemDlg.cpp
   Generating Code...
