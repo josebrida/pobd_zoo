@@ -30,5 +30,4 @@ void MyDlg7::DoDataExchange(CDataExchange* pDX)
 BEGIN_MESSAGE_MAP(MyDlg7, CDialogEx)
 END_MESSAGE_MAP()
 
-
 // MyDlg7 message handlers

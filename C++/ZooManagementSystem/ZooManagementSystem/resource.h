@@ -12,7 +12,6 @@
 #define IDD_ManagerDialog               134
 #define IDD_ManageGodfathersDialog      136
 #define IDD_ManageAnimalsDialog         138
-#define IDD_DIALOG1                     140
 #define IDD_GodfatherDialog             140
 #define IDC_Username                    1000
 #define IDC_Password                    1001
@@ -47,6 +46,7 @@
 #define IDC_BUTTONMANAGEANIMALS         1028
 #define IDC_EditBirthDay                1029
 #define IDC_EditBirthMonth              1030
+#define IDC_GodAnimalImage              1031
 
 // Next default values for new objects
 // 
@@ -54,7 +54,7 @@
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_NEXT_RESOURCE_VALUE        142
 #define _APS_NEXT_COMMAND_VALUE         32771
-#define _APS_NEXT_CONTROL_VALUE         1031
+#define _APS_NEXT_CONTROL_VALUE         1032
 #define _APS_NEXT_SYMED_VALUE           101
 #endif
 #endif

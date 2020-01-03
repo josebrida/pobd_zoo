@@ -10,6 +10,10 @@ class MyDlg7 : public CDialogEx
 public:
 	MyDlg7(CWnd* pParent = nullptr);   // standard constructor
 	virtual ~MyDlg7();
+	CStatic*  m_picture;    // pointer to a picture control
+	CFileFind finder;       // for file loading
+	BOOL      bLastFile;
+	int       iFileAccount;
 
 // Dialog Data
 #ifdef AFX_DESIGN_TIME
