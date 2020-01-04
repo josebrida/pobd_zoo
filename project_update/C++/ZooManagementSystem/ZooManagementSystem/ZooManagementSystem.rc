@@ -1,0 +1,473 @@
+// Microsoft Visual C++ generated resource script.
+//
+#pragma code_page(65001)
+
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#ifndef APSTUDIO_INVOKED
+#include "targetver.h"
+#endif
+#include "afxres.h"
+#include "verrsrc.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (United States) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_ABOUTBOX DIALOGEX 0, 0, 170, 62
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "About ZooManagementSystem"
+FONT 8, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    ICON            IDR_MAINFRAME,IDC_STATIC,14,14,21,20
+    LTEXT           "ZooManagementSystem, Version 1.0",IDC_STATIC,42,14,114,8,SS_NOPREFIX
+    LTEXT           "Copyright (C) 2019",IDC_STATIC,42,26,114,8
+    DEFPUSHBUTTON   "OK",IDOK,113,41,50,14,WS_GROUP
+END
+
+IDD_ZOOMANAGEMENTSYSTEM_DIALOG DIALOGEX 0, 0, 251, 90
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_MINIMIZEBOX | WS_MAXIMIZEBOX | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU | WS_THICKFRAME
+EXSTYLE WS_EX_APPWINDOW
+FONT 8, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    EDITTEXT        IDC_Username,62,18,109,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_Password,62,38,109,14,ES_AUTOHSCROLL
+    LTEXT           "Username:",IDC_STATIC,19,21,37,8
+    LTEXT           "Password:",IDC_STATIC,19,41,35,8
+    PUSHBUTTON      "Login",IDC_BUTTONLogin,183,27,50,14
+    PUSHBUTTON      "Apply!!!",IDC_ApplyGodfather,183,60,50,14
+    LTEXT           "Apply for godfather ->",IDC_STATIC,105,63,74,8
+END
+
+IDD_ManageEmployeesDialog DIALOGEX 0, 0, 517, 226
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION " "
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    CONTROL         "Add Employee",IDC_AddEmployee,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,31,24,61,10
+    CONTROL         "Eliminate Employee",IDC_EliminateEmployee,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,364,25,77,10
+    GROUPBOX        "Add",IDC_Adicionar,14,43,249,156
+    GROUPBOX        "  Eliminate",1033,297,47,195,156
+    LTEXT           "Name",1034,17,78,19,8
+    LTEXT           "Password",1001,19,95,32,8
+    LTEXT           "Birth Date",1035,19,111,33,8
+    LTEXT           "Email",1036,19,125,17,8
+    EDITTEXT        IDC_newemployeename,71,76,92,12,ES_AUTOHSCROLL | WS_DISABLED
+    EDITTEXT        IDC_newemployeepassword,71,93,92,12,ES_AUTOHSCROLL | WS_DISABLED
+    EDITTEXT        IDC_newemployeebirthdate,71,108,92,12,ES_AUTOHSCROLL | WS_DISABLED
+    EDITTEXT        IDC_newemployeeemail,71,124,92,12,ES_AUTOHSCROLL | WS_DISABLED
+    PUSHBUTTON      "ADD",IDC_ADDEmployeeButton,197,151,50,14,WS_DISABLED
+    LTEXT           "List of Employees:",-1,303,60,59,8
+    EDITTEXT        IDC_EmployeesList,302,73,91,117,ES_MULTILINE | ES_AUTOHSCROLL | ES_READONLY | WS_DISABLED | WS_VSCROLL
+    PUSHBUTTON      "Eliminate",IDC_EliminateEmployeeButton,420,153,50,14,WS_DISABLED
+    COMBOBOX        IDC_COMBOEmployees,405,115,80,30,CBS_DROPDOWN | CBS_SORT | WS_DISABLED | WS_VSCROLL | WS_TABSTOP
+    CONTROL         "Manager",IDC_ManagerRadio,"Button",BS_AUTORADIOBUTTON | WS_DISABLED,419,68,44,10
+    CONTROL         "Keeper",IDC_KeeperRadio,"Button",BS_AUTORADIOBUTTON | WS_DISABLED,419,82,39,10
+    CONTROL         "Veterinarian",IDC_VeterinarianRadio,"Button",BS_AUTORADIOBUTTON | WS_DISABLED,419,94,55,10
+    GROUPBOX        "Select Employee Type",-1,406,57,78,53
+    GROUPBOX        "Select Employee Type",-1,168,66,91,67
+    LTEXT           "Begin Contract",1039,18,141,48,8
+    LTEXT           "End Contract",1045,17,156,43,8
+    EDITTEXT        IDC_newemployeebegincontract,72,139,92,12,ES_AUTOHSCROLL | WS_DISABLED
+    EDITTEXT        IDC_newemployeeendcontract,72,154,92,12,ES_AUTOHSCROLL | WS_DISABLED
+    CONTROL         "Manager",IDC_NewManagerType,"Button",BS_AUTORADIOBUTTON | WS_DISABLED,189,78,60,10
+    CONTROL         "Keeper",IDC_NewKeeperType,"Button",BS_AUTORADIOBUTTON | WS_DISABLED,189,95,60,10
+    CONTROL         "Veterinarian",IDC_NewVeterinarianType,"Button",BS_AUTORADIOBUTTON | WS_DISABLED,189,110,60,10
+    EDITTEXT        IDC_newemployeephone,72,170,92,12,ES_AUTOHSCROLL | WS_DISABLED
+    LTEXT           "Phone",1049,15,172,21,8
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,0,0,1
+ PRODUCTVERSION 1,0,0,1
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x40004L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040904B0"
+        BEGIN
+            VALUE "CompanyName", "TODO: <Company name>"
+            VALUE "FileDescription", "ZooManagementSystem"
+            VALUE "FileVersion", "1.0.0.1"
+            VALUE "InternalName", "ZooManagementSystem.exe"
+            VALUE "LegalCopyright", "TODO: (c) <Company name>.  All rights reserved."
+            VALUE "OriginalFilename", "ZooManagementSystem.exe"
+            VALUE "ProductName", "TODO: <Product name>"
+            VALUE "ProductVersion", "1.0.0.1"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x409, 1200
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO
+BEGIN
+    IDD_ABOUTBOX, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 163
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 55
+    END
+
+    IDD_ZOOMANAGEMENTSYSTEM_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 244
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 83
+    END
+
+    IDD_ManageEmployeesDialog, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// AFX_DIALOG_LAYOUT
+//
+
+IDD_ZOOMANAGEMENTSYSTEM_DIALOG AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
+IDD_ManageEmployeesDialog AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE
+BEGIN
+    IDS_ABOUTBOX            "&About ZooManagementSystem..."
+END
+
+#endif    // English (United States) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// Portuguese (Portugal) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_PTG)
+LANGUAGE LANG_PORTUGUESE, SUBLANG_PORTUGUESE
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_KeeperDialog DIALOGEX 0, 0, 598, 154
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Dialog"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    LTEXT           "Animal ID:",IDC_STATIC,21,19,35,8
+    LTEXT           "Results:",IDC_STATIC,20,36,27,8
+    EDITTEXT        IDC_EDIT1,62,16,129,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_AnimalName,48,49,144,15,ES_AUTOHSCROLL | ES_READONLY | ES_WANTRETURN
+    PUSHBUTTON      "Search",IDC_Search1,206,16,50,14
+    LTEXT           "Name:",IDC_STATIC,20,52,23,8
+    LTEXT           "Gender:",IDC_STATIC,20,72,27,8
+    EDITTEXT        IDC_AnimalGender,48,70,53,14,ES_AUTOHSCROLL | ES_READONLY
+    LTEXT           "Birth date:",IDC_STATIC,20,91,35,8
+    EDITTEXT        IDC_AnimalBirth,58,88,78,14,ES_AUTOHSCROLL | ES_READONLY
+    LTEXT           "Origin:",IDC_STATIC,20,110,23,8
+    EDITTEXT        IDC_AnimalOrigin,45,108,79,14,ES_AUTOHSCROLL | ES_READONLY
+    LTEXT           "Wild date:",IDC_STATIC,20,128,35,8
+    EDITTEXT        IDC_AnimalWild,58,125,80,14,ES_AUTOHSCROLL | ES_READONLY
+    EDITTEXT        IDC_ZoneSearch,378,16,79,14,ES_AUTOHSCROLL
+    LTEXT           "Zone ID:",IDC_STATIC,345,19,29,8
+    PUSHBUTTON      "Search",IDC_Search2,466,16,50,14
+    LTEXT           "Results:",IDC_STATIC,345,36,27,8
+    EDITTEXT        IDC_ResultsZone,345,45,213,102,ES_MULTILINE | ES_AUTOHSCROLL | ES_READONLY
+END
+
+IDD_FormApplyGodfather DIALOGEX 0, 0, 311, 203
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Dialog"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    LTEXT           "Name:",IDC_STATIC,9,16,23,8
+    LTEXT           "E-mail:",IDC_STATIC,9,30,24,8
+    LTEXT           "Password:",IDC_STATIC,9,83,35,8
+    LTEXT           "Animal list:",IDC_STATIC,7,98,38,8
+    EDITTEXT        IDC_AnimalList,7,107,202,89,ES_MULTILINE | ES_AUTOHSCROLL | ES_READONLY | WS_VSCROLL
+    PUSHBUTTON      "Apply now!",IDC_ApplyNow,254,182,50,14
+    EDITTEXT        IDC_EditName,35,14,255,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EditEmail,35,28,255,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EditBirthYear,9,63,36,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EditPassword,46,81,109,14,ES_AUTOHSCROLL
+    COMBOBOX        IDC_ComboAnimal,214,72,75,30,CBS_DROPDOWN | CBS_AUTOHSCROLL | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Animal name:",IDC_STATIC,166,74,47,8
+    LTEXT           "Year:",IDC_STATIC,9,54,19,8
+    LTEXT           "Month:",IDC_STATIC,53,54,24,8
+    LTEXT           "Day:",IDC_STATIC,84,54,16,8
+    EDITTEXT        IDC_EditBirthMonth,53,63,23,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EditBirthDay,84,63,22,14,ES_AUTOHSCROLL
+    CTEXT           "-",IDC_STATIC,45,67,8,8
+    CTEXT           "-",IDC_STATIC,76,67,8,8
+    GROUPBOX        "Birth date:",IDC_STATIC,7,45,102,34
+END
+
+IDD_ManagerDialog DIALOGEX 0, 0, 143, 130
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Dialog"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    PUSHBUTTON      "Manage godfathers",IDC_ManageGodfathers,21,100,101,14
+    PUSHBUTTON      "Manage animals",IDC_BUTTONMANAGEANIMALS,39,14,64,14
+    PUSHBUTTON      "Manage Employees",IDC_ManageEmployees,34,54,76,14
+END
+
+IDD_ManageGodfathersDialog DIALOGEX 0, 0, 181, 203
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Dialog"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    LTEXT           "List of pending godfathers:",IDC_STATIC,15,15,88,8
+    EDITTEXT        IDC_LISTPENDING,15,25,142,82,ES_MULTILINE | ES_AUTOHSCROLL | ES_READONLY | WS_VSCROLL
+    COMBOBOX        IDC_COMBOPENDING,79,118,79,30,CBS_DROPDOWN | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Select user name:",IDC_STATIC,15,120,61,8
+    CONTROL         "Accept",IDC_RADIOACCEPT,"Button",BS_AUTORADIOBUTTON,39,147,38,10
+    CONTROL         "Decline",IDC_RADIODECLINE,"Button",BS_AUTORADIOBUTTON,39,165,39,10
+    PUSHBUTTON      "Confirm",IDC_BUTTONCONFIRM,108,151,50,14
+    GROUPBOX        "",IDC_STATIC,21,136,69,49
+END
+
+IDD_ManageAnimalsDialog DIALOGEX 0, 0, 531, 226
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Dialog"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+END
+
+IDD_GodfatherDialog DIALOGEX 0, 0, 310, 177
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Dialog"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO
+BEGIN
+    IDD_KeeperDialog, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 591
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 147
+    END
+
+    IDD_FormApplyGodfather, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 304
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 196
+    END
+
+    IDD_ManagerDialog, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 136
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 123
+    END
+
+    IDD_ManageGodfathersDialog, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 174
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 196
+    END
+
+    IDD_ManageAnimalsDialog, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 524
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 219
+    END
+
+    IDD_GodfatherDialog, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 303
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 170
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// AFX_DIALOG_LAYOUT
+//
+
+IDD_KeeperDialog AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
+IDD_FormApplyGodfather AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
+IDD_ManagerDialog AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
+IDD_ManageGodfathersDialog AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
+IDD_ManageAnimalsDialog AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
+IDD_GodfatherDialog AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#ifndef APSTUDIO_INVOKED\r\n"
+    "#include ""targetver.h""\r\n"
+    "#endif\r\n"
+    "#include ""afxres.h""\r\n"
+    "#include ""verrsrc.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)\r\n"
+    "LANGUAGE 9, 1\r\n"
+    "#include ""res\\ZooManagementSystem.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
+    "#include ""afxres.rc""      // Standard components\r\n"
+    "#if !defined(_AFXDLL)\r\n"
+    "#include ""afxribbon.rc""   // MFC ribbon and control bar resources\r\n"
+    "#endif\r\n"
+    "#endif\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDR_MAINFRAME           ICON                    "res\\ZooManagementSystem.ico"
+
+#endif    // Portuguese (Portugal) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+LANGUAGE 9, 1
+#include "res\ZooManagementSystem.rc2"  // non-Microsoft Visual C++ edited resources
+#include "afxres.rc"      // Standard components
+#if !defined(_AFXDLL)
+#include "afxribbon.rc"   // MFC ribbon and control bar resources
+#endif
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+
