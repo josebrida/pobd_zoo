@@ -36,9 +36,6 @@ public:
 	protected:
 	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
 
-// Implementation
-protected:
-	DECLARE_MESSAGE_MAP()
 };
 
 CAboutDlg::CAboutDlg() : CDialogEx(IDD_ABOUTBOX)
@@ -50,8 +47,6 @@ void CAboutDlg::DoDataExchange(CDataExchange* pDX)
 	CDialogEx::DoDataExchange(pDX);
 }
 
-BEGIN_MESSAGE_MAP(CAboutDlg, CDialogEx)
-END_MESSAGE_MAP()
 
 
 // CZooManagementSystemDlg dialog
@@ -194,6 +189,7 @@ void CZooManagementSystemDlg::OnBnClickedButtonlogin()
 		else if (std::find(visitor_IDs.begin(), visitor_IDs.end(), username) != visitor_IDs.end()) {
 			if (std::find(accepted_godfather_IDs.begin(), accepted_godfather_IDs.end(), username) != accepted_godfather_IDs.end()) {
 				MyDlg7 dlg;
+				dlg.username = username;
 				dlg.DoModal();
 			}
 			else {
@@ -216,3 +212,4 @@ void CZooManagementSystemDlg::OnBnClickedApplygodfather()
 	MyDlg3 dlg;
 	dlg.DoModal();
 }
+

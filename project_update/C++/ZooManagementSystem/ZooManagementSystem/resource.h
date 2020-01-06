@@ -41,6 +41,7 @@
 #define IDC_EditEmail                   1017
 #define IDC_EditBirth                   1018
 #define IDC_EditBirthYear               1018
+#define IDC_Age                         1018
 #define IDC_EditPassword                1019
 #define IDC_COMBO1                      1020
 #define IDC_ComboAnimal                 1020
@@ -57,18 +58,35 @@
 #define IDC_AddEmployee                 1030
 #define IDC_GodAnimalImage              1031
 #define IDC_EliminateEmployee           1031
+#define IDC_ComboGodanimal              1031
 #define IDC_ManageEmployees             1032
 #define IDC_Adicionar                   1032
+#define IDC_Name                        1034
+#define IDC_Gender                      1035
 #define IDC_newemployeename             1037
+#define IDC_Origin                      1037
 #define IDC_ADDEmployeeButton           1038
+#define IDC_CommonName                  1038
+#define IDC_Phylum                      1039
 #define IDC_EmployeesList               1040
+#define IDC_Class                       1040
 #define IDC_EliminateEmployeeButton     1041
+#define IDC_Order                       1041
 #define IDC_ManagerRadio                1042
+#define IDC_Suborder                    1042
 #define IDC_KeeperRadio                 1043
+#define IDC_Family                      1043
 #define IDC_VeterinarianRadio           1044
+#define IDC_Subfamily                   1044
+#define IDC_ScientificName              1045
 #define IDC_NewManagerType              1046
+#define IDC_Conservation                1046
 #define IDC_NewKeeperType               1047
+#define IDC_Animal_Photo                1047
 #define IDC_NewVeterinarianType         1048
+#define IDC_StartDate                   1048
+#define IDC_EndDate                     1049
+#define IDC_Fee                         1050
 
 // Next default values for new objects
 // 
@@ -76,7 +94,7 @@
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_NEXT_RESOURCE_VALUE        146
 #define _APS_NEXT_COMMAND_VALUE         32771
-#define _APS_NEXT_CONTROL_VALUE         1034
+#define _APS_NEXT_CONTROL_VALUE         1051
 #define _APS_NEXT_SYMED_VALUE           101
 #endif
 #endif

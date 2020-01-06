@@ -427,7 +427,7 @@ CString myconnectorclassDB::CheckUserName(CString user_ID)
 CString myconnectorclassDB::CheckPendingAnimal(CString user_ID)
 {
 	CString value; // Create the object to receive the answer to the query
-	CString query = _T("SELECT animal_ID FROM godfather WHERE user_ID = '") + user_ID + _T("'");
+	CString query = _T("SELECT animal_ID FROM godfather WHERE user_ID = '") + user_ID + _T("' AND status = 'Pending'");
 	//Create a query by combining CStrings
 	Query(query); // Pass the query. The result will be
 	//stored in the result object.
@@ -442,7 +442,7 @@ CString myconnectorclassDB::CheckPendingAnimal(CString user_ID)
 CString myconnectorclassDB::CheckPendingFee(CString user_ID)
 {
 	CString value; // Create the object to receive the answer to the query
-	CString query = _T("SELECT fee FROM godfather WHERE user_ID = '") + user_ID + _T("'");
+	CString query = _T("SELECT fee FROM godfather WHERE user_ID = '") + user_ID + _T("' AND status = 'Pending'");
 	//Create a query by combining CStrings
 	Query(query); // Pass the query. The result will be
 	//stored in the result object.
@@ -454,9 +454,9 @@ CString myconnectorclassDB::CheckPendingFee(CString user_ID)
 	return value;
 }
 
-void myconnectorclassDB::ChangeStatus(CString user_ID, CString status)
+void myconnectorclassDB::ChangeStatus(CString user_ID, CString animal_ID, CString status)
 {
-	CString query = _T("UPDATE godfather SET status = '") + status + _T("' WHERE user_ID = '") + user_ID + _T("'");
+	CString query = _T("UPDATE godfather SET status = '") + status + _T("' WHERE user_ID = '") + user_ID + _T("' AND animal_ID = '") + animal_ID + _T("'");
 	//Create a query by combining CStrings
 	Query(query); // Pass the query. The result will be
 	//stored in the result object.
@@ -497,9 +497,9 @@ CString myconnectorclassDB::CheckSpeciesFee(CString species_ID)
 	return value;
 }
 
-void myconnectorclassDB::SelectGodfatherDate(CString user_ID, CString start_date, CString end_date)
+void myconnectorclassDB::SelectGodfatherDate(CString user_ID, CString animal_ID, CString start_date, CString end_date)
 {
-	CString query1 = _T("UPDATE godfather SET start_date  = '") + start_date + _T("' WHERE user_ID = '") + user_ID + _T("'");
+	CString query1 = _T("UPDATE godfather SET start_date  = '") + start_date + _T("' WHERE user_ID = '") + user_ID + _T("' AND animal_ID = '") + animal_ID + _T("'");
 	//Create a query by combining CStrings
 	Query(query1); // Pass the query. The result will be
 	//stored in the result object.
@@ -509,7 +509,7 @@ void myconnectorclassDB::SelectGodfatherDate(CString user_ID, CString start_date
 		value = CPtoUnicode(row[0], 1251);
 	}
 	return value;*/
-	CString query2 = _T("UPDATE godfather SET end_date  = '") + end_date + _T("' WHERE user_ID = '") + user_ID + _T("'");
+	CString query2 = _T("UPDATE godfather SET ending_date  = '") + end_date + _T("' WHERE user_ID = '") + user_ID + _T("' AND animal_ID = '") + animal_ID + _T("'");
 	//Create a query by combining CStrings
 	Query(query2);
 }
@@ -534,6 +534,23 @@ std::vector<CString> myconnectorclassDB::CheckAcceptedGodfathersIDs()
 	vector<CString> value; // Create the object to receive the answer to the query
 	CString value_int;
 	CString query = _T("SELECT user_ID FROM godfather WHERE status = 'Approved'");
+	//Create a query by combining CStrings
+	Query(query); // Pass the query. The result will be
+	//stored in the result object.
+	while ((row = mysql_fetch_row(result)) != NULL)
+		// Method to fetch rows from result
+	{
+		value_int = CPtoUnicode(row[0], 1251);
+		value.push_back(value_int);
+	}
+	return value;
+}
+
+std::vector<CString> myconnectorclassDB::AcceptedGodanimalsIDs(CString user_ID)
+{
+	vector<CString> value; // Create the object to receive the answer to the query
+	CString value_int;
+	CString query = _T("SELECT animal_ID FROM godfather WHERE user_ID = '") + user_ID + _T("' and status = 'Approved'");
 	//Create a query by combining CStrings
 	Query(query); // Pass the query. The result will be
 	//stored in the result object.
@@ -710,3 +727,32 @@ CString myconnectorclassDB::CPtoUnicode(const char* CPString, UINT
 	return retValue;
 }
 
+CString myconnectorclassDB::SimpleQuery(CString select, CString from, CString where, CString wanted)
+{
+	CString value; // Create the object to receive the answer to the query
+	CString query = _T("SELECT ") + select + _T(" FROM ") + from + _T(" WHERE ") + where + _T(" = '") + wanted + _T("'");
+	//Create a query by combining CStrings
+	Query(query); // Pass the query. The result will be
+	//stored in the result object.
+	while ((row = mysql_fetch_row(result)) != NULL)
+		// Method to fetch rows from result
+	{
+		value = CPtoUnicode(row[0], 1251);
+	}
+	return value;
+}
+
+CString myconnectorclassDB::DoubleQuery(CString select, CString from, CString where1, CString wanted1, CString where2, CString wanted2)
+{
+	CString value; // Create the object to receive the answer to the query
+	CString query = _T("SELECT ") + select + _T(" FROM ") + from + _T(" WHERE ") + where1 + _T(" = '") + wanted1 + _T("' AND ") + where2 + _T(" = '") + wanted2 + _T("'");
+	//Create a query by combining CStrings
+	Query(query); // Pass the query. The result will be
+	//stored in the result object.
+	while ((row = mysql_fetch_row(result)) != NULL)
+		// Method to fetch rows from result
+	{
+		value = CPtoUnicode(row[0], 1251);
+	}
+	return value;
+}

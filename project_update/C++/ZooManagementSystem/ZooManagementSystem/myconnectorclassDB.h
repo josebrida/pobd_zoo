@@ -52,12 +52,13 @@ public:
 	CString CheckUserName(CString user_ID);
 	CString CheckPendingAnimal(CString user_ID);
 	CString CheckPendingFee(CString user_ID);
-	void ChangeStatus(CString user_ID, CString status);
+	void ChangeStatus(CString user_ID, CString animal_ID, CString status);
 	CString CheckUserID(CString user_name);
 	CString CheckSpeciesFee(CString species_ID);
-	void SelectGodfatherDate(CString user_ID, CString start_date, CString end_date);
+	void SelectGodfatherDate(CString user_ID, CString animal_ID, CString start_date, CString end_date);
 	CString AddYear(CString start_date);
 	std::vector<CString> CheckAcceptedGodfathersIDs();
+	std::vector<CString> AcceptedGodanimalsIDs(CString user_ID);
 	void NewManager(CString user_ID, CString user_name, CString user_email, CString user_birth, CString user_password, CString begin_contract, CString end_contract, CString phone);
 	void NewKeeper(CString user_ID, CString user_name, CString user_email, CString user_birth, CString user_password, CString begin_contract, CString end_contract, CString phone);
 	void NewVeterinarian(CString user_ID, CString user_name, CString user_email, CString user_birth, CString user_password, CString begin_contract, CString end_contract, CString phone);
@@ -65,6 +66,8 @@ public:
 	void EliminateKeeper(CString user_ID);
 	void EliminateVeterinarian(CString user_ID);
 	std::vector<CString> CheckEmployeeID();
+	CString SimpleQuery(CString select, CString from, CString where, CString wanted);
+	CString DoubleQuery(CString select, CString from, CString where1, CString wanted1, CString where2, CString wanted2);
 	myconnectorclassDB(void);
 	virtual ~myconnectorclassDB(void);
 };

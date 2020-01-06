@@ -21,7 +21,33 @@ public:
 #endif
 
 protected:
+	HICON m_hIcon;
+
+	// Generated message map functions
+	virtual BOOL OnInitDialog();
 	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
 
 	DECLARE_MESSAGE_MAP()
+public:
+	CString username;
+	CString a_name;
+	CString a_gender;
+	CString a_age;
+	CString a_origin;
+	CString a_specie;
+	CString a_phylum;
+	CString a_class;
+	CString a_order;
+	CString a_suborder;
+	CString a_family;
+	CString a_subfamily;
+	CString a_scientificname;
+	CString a_status;
+	CComboBox c_combo_godanimal;
+	CString v_combo_godanimal;
+	afx_msg void OnCbnSelchangeCombogodanimal();
+	CStatic m_AnimalPicture;
+	CString a_startdate;
+	CString a_enddate;
+	CString a_fee;
 };
