@@ -68,6 +68,9 @@ public:
 	std::vector<CString> CheckEmployeeID();
 	CString SimpleQuery(CString select, CString from, CString where, CString wanted);
 	CString DoubleQuery(CString select, CString from, CString where1, CString wanted1, CString where2, CString wanted2);
+	CString DateDiff(CString date1, CString date2);
+	std::vector<CString> VectorQuery(CString select, CString from, CString where);
+	void UpdateDouble(CString from, CString what, CString to, CString where1, CString wanted1, CString where2, CString wanted2);
 	myconnectorclassDB(void);
 	virtual ~myconnectorclassDB(void);
 };

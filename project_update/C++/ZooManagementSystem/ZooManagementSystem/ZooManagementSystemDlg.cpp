@@ -11,6 +11,7 @@
 #include "MyDlg3.h"
 #include "MyDlg4.h"
 #include "MyDlg7.h"
+#include "DlgVeterinarian.h"
 #include <vector>
 #include <list>
 #include <string.h>
@@ -178,6 +179,8 @@ void CZooManagementSystemDlg::OnBnClickedButtonlogin()
 		vector<CString> veterinarian_IDs = MyConnection.CheckVeterinarianIDs();
 		vector<CString> visitor_IDs = MyConnection.CheckVisitorIDs();
 		vector<CString> accepted_godfather_IDs = MyConnection.CheckAcceptedGodfathersIDs();
+		vector<CString> not_expired_godfather_IDs = MyConnection.VectorQuery(_T("user_ID"), _T("godfather"), _T("(SELECT DATEDIFF(ending_date, CURDATE()) >= 0)"));
+		CString today = MyConnection.ReturnCurrentDate();
 		if (std::find(keeper_IDs.begin(), keeper_IDs.end(), username) != keeper_IDs.end()) {
 			MyDlg2 dlg;
 			dlg.DoModal();	
@@ -187,16 +190,29 @@ void CZooManagementSystemDlg::OnBnClickedButtonlogin()
 			dlg.DoModal();
 		}
 		else if (std::find(visitor_IDs.begin(), visitor_IDs.end(), username) != visitor_IDs.end()) {
+			// Filter for accepted godfathers
 			if (std::find(accepted_godfather_IDs.begin(), accepted_godfather_IDs.end(), username) != accepted_godfather_IDs.end()) {
-				MyDlg7 dlg;
-				dlg.username = username;
-				dlg.DoModal();
+				// Filter for non expired godfathers
+				if (std::find(not_expired_godfather_IDs.begin(), not_expired_godfather_IDs.end(), username) != not_expired_godfather_IDs.end()) {
+					MyDlg7 dlg;
+					dlg.username = username;
+					dlg.DoModal();
+				}
+				else {
+					CString exceeded_msg;
+					exceeded_msg.Format(_T("Expired!"));
+					AfxMessageBox(exceeded_msg);
+				}
 			}
 			else {
 				CString pending_msg;
 				pending_msg.Format(_T("Your request is pending!"));
 				AfxMessageBox(pending_msg);
 			}
+		}
+		else if (std::find(veterinarian_IDs.begin(), veterinarian_IDs.end(), username) != veterinarian_IDs.end()) {
+			DlgVeterinarian dlg;
+			dlg.DoModal();
 		}
 	}
 	else {

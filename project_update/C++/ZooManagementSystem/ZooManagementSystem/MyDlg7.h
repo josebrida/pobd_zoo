@@ -50,4 +50,5 @@ public:
 	CString a_startdate;
 	CString a_enddate;
 	CString a_fee;
+	afx_msg void OnBnClickedButtonExtend();
 };

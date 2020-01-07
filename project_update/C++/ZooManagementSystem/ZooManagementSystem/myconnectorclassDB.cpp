@@ -550,7 +550,7 @@ std::vector<CString> myconnectorclassDB::AcceptedGodanimalsIDs(CString user_ID)
 {
 	vector<CString> value; // Create the object to receive the answer to the query
 	CString value_int;
-	CString query = _T("SELECT animal_ID FROM godfather WHERE user_ID = '") + user_ID + _T("' and status = 'Approved'");
+	CString query = _T("SELECT animal_ID FROM godfather WHERE user_ID = '") + user_ID + _T("' and status = 'Approved' and (SELECT DATEDIFF(ending_date, CURDATE()) >= 0)");
 	//Create a query by combining CStrings
 	Query(query); // Pass the query. The result will be
 	//stored in the result object.
@@ -755,4 +755,50 @@ CString myconnectorclassDB::DoubleQuery(CString select, CString from, CString wh
 		value = CPtoUnicode(row[0], 1251);
 	}
 	return value;
+}
+
+CString myconnectorclassDB::DateDiff(CString date1, CString date2)
+{
+	CString value; // Create the object to receive the answer to the query
+	CString query = _T("SELECT DATEDIFF('") + date1 + _T("', '") + date2 + _T("')");
+	//Create a query by combining CStrings
+	Query(query); // Pass the query. The result will be
+	//stored in the result object.
+	while ((row = mysql_fetch_row(result)) != NULL)
+		// Method to fetch rows from result
+	{
+		value = CPtoUnicode(row[0], 1251);
+	}
+	return value;
+}
+
+std::vector<CString> myconnectorclassDB::VectorQuery(CString select, CString from, CString where)
+{
+	vector<CString> value; // Create the object to receive the answer to the query
+	CString value_int;
+	CString query = _T("SELECT ") + select + _T(" FROM ") + from + _T(" WHERE ") + where;
+	//Create a query by combining CStrings
+	Query(query); // Pass the query. The result will be
+	//stored in the result object.
+	while ((row = mysql_fetch_row(result)) != NULL)
+		// Method to fetch rows from result
+	{
+		value_int = CPtoUnicode(row[0], 1251);
+		value.push_back(value_int);
+	}
+	return value;
+}
+
+
+void myconnectorclassDB::UpdateDouble(CString from, CString what, CString to, CString where1, CString wanted1, CString where2, CString wanted2)
+{
+	CString query = _T("UPDATE ") + from + _T(" SET ") + what + _T(" = '") + to + _T("' WHERE ") + where1 + _T(" = '") + wanted1 + _T("' AND ") + where2 + _T(" = '") + wanted2 + _T("'");
+	//Create a query by combining CStrings
+	Query(query); // Pass the query. The result will be
+	//stored in the result object.
+	//while ((row = mysql_fetch_row(result)) != NULL)
+		// Method to fetch rows from result
+	//{
+	//	value = CPtoUnicode(row[0], 1251);
+	//}
 }

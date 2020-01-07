@@ -7,6 +7,7 @@
 #include "afxdialogex.h"
 #include "ZooManagementSystemDlg.h"
 #include "myconnectorclassDB.h"
+#include "DlgConfirmExtend.h"
 
 
 // MyDlg7 dialog
@@ -50,6 +51,7 @@ BOOL MyDlg7::OnInitDialog()
 		CString godanimals_name = MyConnection.CheckAnimalName(godanimals[i]);
 		c_combo_godanimal.AddString(godanimals_name);
 	}
+	
 	UpdateData(FALSE);
 
 	return TRUE;  // return TRUE  unless you set the focus to a control
@@ -109,6 +111,7 @@ void MyDlg7::DoDataExchange(CDataExchange* pDX)
 
 BEGIN_MESSAGE_MAP(MyDlg7, CDialogEx)
 	ON_CBN_SELCHANGE(IDC_ComboGodanimal, &MyDlg7::OnCbnSelchangeCombogodanimal)
+	ON_BN_CLICKED(IDC_BUTTON_Extend, &MyDlg7::OnBnClickedButtonExtend)
 END_MESSAGE_MAP()
 
 // MyDlg7 message handlers
@@ -141,6 +144,15 @@ void MyDlg7::OnCbnSelchangeCombogodanimal()
 	a_startdate = MyConnection.DoubleQuery(_T("start_date"), _T("godfather"), _T("user_ID"), username, _T("animal_ID"), godanimal_ID);
 	a_enddate = MyConnection.DoubleQuery(_T("ending_date"), _T("godfather"), _T("user_ID"), username, _T("animal_ID"), godanimal_ID);
 	a_fee = MyConnection.DoubleQuery(_T("fee"), _T("godfather"), _T("user_ID"), username, _T("animal_ID"), godanimal_ID);
+
+	int diff = _ttoi(MyConnection.DateDiff(a_enddate, today));
+	if (diff < 31) {
+		GetDlgItem(IDC_BUTTON_Extend)->EnableWindow(true);
+	}
+	else {
+		GetDlgItem(IDC_BUTTON_Extend)->EnableWindow(false);
+	}
+
 	UpdateData(FALSE);
 
 	// Show image.... (https://stackoverflow.com/questions/33366461/display-image-from-browse-button)
@@ -174,4 +186,21 @@ void MyDlg7::OnCbnSelchangeCombogodanimal()
 
 	m_AnimalPicture.SetBitmap((HBITMAP)bmp.Detach());
 	ReleaseDC(pScreenDC);
+}
+
+
+void MyDlg7::OnBnClickedButtonExtend()
+{
+	// TODO: Add your control notification handler code here
+	if (!v_combo_godanimal.IsEmpty()) {
+		DlgConfirmExtend dlg;
+		dlg.user_ID = username;
+		myconnectorclassDB MyConnection;
+		MyConnection.connect();
+		dlg.animal_ID = MyConnection.CheckAnimalID(v_combo_godanimal);
+		dlg.DoModal();
+		a_enddate = MyConnection.DoubleQuery(_T("ending_date"), _T("godfather"), _T("user_ID"), username, _T("animal_ID"), MyConnection.CheckAnimalID(v_combo_godanimal));
+		a_fee = MyConnection.DoubleQuery(_T("fee"), _T("godfather"), _T("user_ID"), username, _T("animal_ID"), MyConnection.CheckAnimalID(v_combo_godanimal));
+		UpdateData(FALSE);
+	}
 }

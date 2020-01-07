@@ -14,6 +14,8 @@
 #define IDD_ManageAnimalsDialog         138
 #define IDD_GodfatherDialog             140
 #define IDD_ManageEmployeesDialog       144
+#define IDD_ConfirmExtend               146
+#define IDD_VeterinarianDialog          148
 #define IDC_Username                    1000
 #define IDC_Password                    1001
 #define IDC_BUTTONLogin                 1002
@@ -87,14 +89,19 @@
 #define IDC_StartDate                   1048
 #define IDC_EndDate                     1049
 #define IDC_Fee                         1050
+#define IDC_BUTTON_Extend               1052
+#define IDC_BUTTON_Yes                  1054
+#define IDC_BUTTON_Cancel               1055
+#define IDC_NewEnd                      1057
+#define IDC_HistoryRecords              1058
 
 // Next default values for new objects
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
-#define _APS_NEXT_RESOURCE_VALUE        146
+#define _APS_NEXT_RESOURCE_VALUE        150
 #define _APS_NEXT_COMMAND_VALUE         32771
-#define _APS_NEXT_CONTROL_VALUE         1051
+#define _APS_NEXT_CONTROL_VALUE         1059
 #define _APS_NEXT_SYMED_VALUE           101
 #endif
 #endif
