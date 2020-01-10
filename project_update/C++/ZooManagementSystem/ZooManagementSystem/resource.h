@@ -16,6 +16,8 @@
 #define IDD_ManageEmployeesDialog       144
 #define IDD_ConfirmExtend               146
 #define IDD_VeterinarianDialog          148
+#define IDD_FoodDialog                  150
+#define IDD_MedicineDialog              152
 #define IDC_Username                    1000
 #define IDC_Password                    1001
 #define IDC_BUTTONLogin                 1002
@@ -25,8 +27,10 @@
 #define IDC_EditName                    1004
 #define IDC_Search1                     1005
 #define IDC_newemployeepassword         1005
+#define IDC_Order_Quantity              1005
 #define IDC_AnimalGender                1006
 #define IDC_newemployeebirthdate        1006
+#define IDC_Stock_Description2          1006
 #define IDC_AnimalBirth                 1007
 #define IDC_newemployeeemail            1007
 #define IDC_AnimalOrigin                1008
@@ -44,11 +48,14 @@
 #define IDC_EditBirth                   1018
 #define IDC_EditBirthYear               1018
 #define IDC_Age                         1018
+#define IDC_medicine_history_list       1018
+#define IDC_food_history_list           1018
 #define IDC_EditPassword                1019
 #define IDC_COMBO1                      1020
 #define IDC_ComboAnimal                 1020
 #define IDC_COMBOPENDING                1020
 #define IDC_COMBOEmployees              1020
+#define IDC_stock_description_combo     1020
 #define IDC_ManageGodfathers            1021
 #define IDC_LISTPENDING                 1022
 #define IDC_RADIOACCEPT                 1023
@@ -74,6 +81,7 @@
 #define IDC_Class                       1040
 #define IDC_EliminateEmployeeButton     1041
 #define IDC_Order                       1041
+#define IDC_OrderFoodButton             1041
 #define IDC_ManagerRadio                1042
 #define IDC_Suborder                    1042
 #define IDC_KeeperRadio                 1043
@@ -85,23 +93,27 @@
 #define IDC_Conservation                1046
 #define IDC_NewKeeperType               1047
 #define IDC_Animal_Photo                1047
+#define IDC_new_stock_unitvalue         1047
 #define IDC_NewVeterinarianType         1048
 #define IDC_StartDate                   1048
 #define IDC_EndDate                     1049
+#define IDC_New_item_order_button       1049
 #define IDC_Fee                         1050
 #define IDC_BUTTON_Extend               1052
 #define IDC_BUTTON_Yes                  1054
 #define IDC_BUTTON_Cancel               1055
 #define IDC_NewEnd                      1057
 #define IDC_HistoryRecords              1058
+#define IDC_OrderButton                 1059
+#define IDC_LIST1                       1060
 
 // Next default values for new objects
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
-#define _APS_NEXT_RESOURCE_VALUE        150
+#define _APS_NEXT_RESOURCE_VALUE        154
 #define _APS_NEXT_COMMAND_VALUE         32771
-#define _APS_NEXT_CONTROL_VALUE         1059
+#define _APS_NEXT_CONTROL_VALUE         1061
 #define _APS_NEXT_SYMED_VALUE           101
 #endif
 #endif

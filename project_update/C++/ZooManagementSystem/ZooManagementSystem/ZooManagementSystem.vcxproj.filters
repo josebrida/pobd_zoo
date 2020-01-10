@@ -60,6 +60,12 @@
     <ClInclude Include="DlgVeterinarian.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="MyDlg10.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MyDlg11.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ZooManagementSystem.cpp">
@@ -99,6 +105,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="DlgVeterinarian.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MyDlg10.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MyDlg11.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

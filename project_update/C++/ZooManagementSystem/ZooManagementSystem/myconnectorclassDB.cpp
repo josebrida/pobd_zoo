@@ -802,3 +802,415 @@ void myconnectorclassDB::UpdateDouble(CString from, CString what, CString to, CS
 	//	value = CPtoUnicode(row[0], 1251);
 	//}
 }
+
+
+
+
+
+std::vector<CString> myconnectorclassDB::CheckFOODID()
+{
+	vector<CString> value; // Create the object to receive the answer to the query
+	CString value_int;
+	CString query = _T("SELECT stock_ID FROM stock WHERE stock_type = 'Food'");
+	//Create a query by combining CStrings
+	Query(query); // Pass the query. The result will be
+	//stored in the result object.
+	while ((row = mysql_fetch_row(result)) != NULL)
+		// Method to fetch rows from result
+	{
+		value_int = CPtoUnicode(row[0], 1251);
+		value.push_back(value_int);
+	}
+	return value;
+}
+
+std::vector<CString> myconnectorclassDB::CheckMEDICINEID()
+{
+	vector<CString> value; // Create the object to receive the answer to the query
+	CString value_int;
+	CString query = _T("SELECT stock_ID FROM stock WHERE stock_type = 'Medicine'");
+	//Create a query by combining CStrings
+	Query(query); // Pass the query. The result will be
+	//stored in the result object.
+	while ((row = mysql_fetch_row(result)) != NULL)
+		// Method to fetch rows from result
+	{
+		value_int = CPtoUnicode(row[0], 1251);
+		value.push_back(value_int);
+	}
+	return value;
+}
+
+std::vector<CString> myconnectorclassDB::CheckResponsibleFOODID()
+{
+	vector<CString> value; // Create the object to receive the answer to the query
+	CString value_int;
+	CString query = _T("SELECT user_ID FROM responsible WHERE responsible.stock_ID IN (select stock_ID from stock Where stock_type = 'Food')");
+	//Create a query by combining CStrings
+	Query(query); // Pass the query. The result will be
+	//stored in the result object.
+	while ((row = mysql_fetch_row(result)) != NULL)
+		// Method to fetch rows from result
+	{
+		value_int = CPtoUnicode(row[0], 1251);
+		value.push_back(value_int);
+	}
+	return value;
+}
+
+
+std::vector<CString> myconnectorclassDB::CheckResponsibleMEDICINEID()
+{
+	vector<CString> value; // Create the object to receive the answer to the query
+	CString value_int;
+	CString query = _T("SELECT user_ID FROM responsible WHERE responsible.stock_ID IN (select stock_ID from stock Where stock_type = 'Medicine')");
+	//Create a query by combining CStrings
+	Query(query); // Pass the query. The result will be
+	//stored in the result object.
+	while ((row = mysql_fetch_row(result)) != NULL)
+		// Method to fetch rows from result
+	{
+		value_int = CPtoUnicode(row[0], 1251);
+		value.push_back(value_int);
+	}
+	return value;
+}
+
+std::vector<CString> myconnectorclassDB::CheckFoodType()
+{
+	vector<CString> value; // Create the object to receive the answer to the query
+	CString value_int;
+	CString query = _T("SELECT stock_type FROM stock WHERE stock_type = 'Food'");
+	//Create a query by combining CStrings
+	Query(query); // Pass the query. The result will be
+	//stored in the result object.
+	while ((row = mysql_fetch_row(result)) != NULL)
+		// Method to fetch rows from result
+	{
+		value_int = CPtoUnicode(row[0], 1251);
+		value.push_back(value_int);
+	}
+	return value;
+}
+
+std::vector<CString> myconnectorclassDB::CheckMedicineType()
+{
+	vector<CString> value; // Create the object to receive the answer to the query
+	CString value_int;
+	CString query = _T("SELECT stock_type FROM stock WHERE stock_type = 'Medicine'");
+	//Create a query by combining CStrings
+	Query(query); // Pass the query. The result will be
+	//stored in the result object.
+	while ((row = mysql_fetch_row(result)) != NULL)
+		// Method to fetch rows from result
+	{
+		value_int = CPtoUnicode(row[0], 1251);
+		value.push_back(value_int);
+	}
+	return value;
+}
+
+
+std::vector<CString> myconnectorclassDB::CheckFoodUserID()
+{
+	vector<CString> value; // Create the object to receive the answer to the query
+	CString value_int;
+	CString query = _T("SELECT user_ID FROM orders WHERE orders.stock_ID IN (select stock_ID from stock Where stock_type = 'Food')");
+	//Create a query by combining CStrings
+	Query(query); // Pass the query. The result will be
+	//stored in the result object.
+	while ((row = mysql_fetch_row(result)) != NULL)
+		// Method to fetch rows from result
+	{
+		value_int = CPtoUnicode(row[0], 1251);
+		value.push_back(value_int);
+	}
+	return value;
+}
+
+std::vector<CString> myconnectorclassDB::CheckMedicineUserID()
+{
+	vector<CString> value; // Create the object to receive the answer to the query
+	CString value_int;
+	CString query = _T("SELECT user_ID FROM orders WHERE orders.stock_ID IN (select stock_ID from stock Where stock_type = 'Medicine')");
+	//Create a query by combining CStrings
+	Query(query); // Pass the query. The result will be
+	//stored in the result object.
+	while ((row = mysql_fetch_row(result)) != NULL)
+		// Method to fetch rows from result
+	{
+		value_int = CPtoUnicode(row[0], 1251);
+		value.push_back(value_int);
+	}
+	return value;
+}
+
+
+
+std::vector<CString> myconnectorclassDB::CheckFoodStockID()
+{
+	vector<CString> value; // Create the object to receive the answer to the query
+	CString value_int;
+	CString query = _T("SELECT stock_ID FROM orders WHERE orders.stock_ID IN (select stock_ID from stock Where stock_type = 'Food')");
+	//Create a query by combining CStrings
+	Query(query); // Pass the query. The result will be
+	//stored in the result object.
+	while ((row = mysql_fetch_row(result)) != NULL)
+		// Method to fetch rows from result
+	{
+		value_int = CPtoUnicode(row[0], 1251);
+		value.push_back(value_int);
+	}
+	return value;
+}
+
+
+std::vector<CString> myconnectorclassDB::CheckMedicineStockID()
+{
+	vector<CString> value; // Create the object to receive the answer to the query
+	CString value_int;
+	CString query = _T("SELECT stock_ID FROM orders WHERE orders.stock_ID IN (select stock_ID from stock Where stock_type = 'Medicine')");
+	//Create a query by combining CStrings
+	Query(query); // Pass the query. The result will be
+	//stored in the result object.
+	while ((row = mysql_fetch_row(result)) != NULL)
+		// Method to fetch rows from result
+	{
+		value_int = CPtoUnicode(row[0], 1251);
+		value.push_back(value_int);
+	}
+	return value;
+}
+
+
+std::vector<CString> myconnectorclassDB::CheckFoodOrderDate()
+{
+	vector<CString> value; // Create the object to receive the answer to the query
+	CString value_int;
+	CString query = _T("SELECT order_date FROM orders WHERE orders.stock_ID IN (select stock_ID from stock Where stock_type = 'Food')");
+	//Create a query by combining CStrings
+	Query(query); // Pass the query. The result will be
+	//stored in the result object.
+	while ((row = mysql_fetch_row(result)) != NULL)
+		// Method to fetch rows from result
+	{
+		value_int = CPtoUnicode(row[0], 1251);
+		value.push_back(value_int);
+	}
+	return value;
+}
+
+
+std::vector<CString> myconnectorclassDB::CheckMedicineOrderDate()
+{
+	vector<CString> value; // Create the object to receive the answer to the query
+	CString value_int;
+	CString query = _T("SELECT order_date FROM orders WHERE orders.stock_ID IN (select stock_ID from stock Where stock_type = 'Medicine')");
+	//Create a query by combining CStrings
+	Query(query); // Pass the query. The result will be
+	//stored in the result object.
+	while ((row = mysql_fetch_row(result)) != NULL)
+		// Method to fetch rows from result
+	{
+		value_int = CPtoUnicode(row[0], 1251);
+		value.push_back(value_int);
+	}
+	return value;
+}
+
+
+
+std::vector<CString> myconnectorclassDB::CheckFoodOrderQuantity()
+{
+	vector<CString> value; // Create the object to receive the answer to the query
+	CString value_int;
+	CString query = _T("SELECT order_quantity FROM orders WHERE orders.stock_ID IN (select stock_ID from stock Where stock_type = 'Food')");
+	//Create a query by combining CStrings
+	Query(query); // Pass the query. The result will be
+	//stored in the result object.
+	while ((row = mysql_fetch_row(result)) != NULL)
+		// Method to fetch rows from result
+	{
+		value_int = CPtoUnicode(row[0], 1251);
+		value.push_back(value_int);
+	}
+	return value;
+}
+
+
+std::vector<CString> myconnectorclassDB::CheckMedicineOrderQuantity()
+{
+	vector<CString> value; // Create the object to receive the answer to the query
+	CString value_int;
+	CString query = _T("SELECT order_quantity FROM orders WHERE orders.stock_ID IN (select stock_ID from stock Where stock_type = 'Medicine')");
+	//Create a query by combining CStrings
+	Query(query); // Pass the query. The result will be
+	//stored in the result object.
+	while ((row = mysql_fetch_row(result)) != NULL)
+		// Method to fetch rows from result
+	{
+		value_int = CPtoUnicode(row[0], 1251);
+		value.push_back(value_int);
+	}
+	return value;
+}
+
+std::vector<CString> myconnectorclassDB::CheckFoodDescription()
+{
+	vector<CString> value; // Create the object to receive the answer to the query
+	CString value_int;
+	CString query = _T("SELECT stock_description FROM orders LEFT JOIN stock ON stock.stock_ID = orders.stock_ID WHERE orders.stock_ID IN (select stock_ID from stock Where stock_type = 'Food')");
+	//Create a query by combining CStrings
+	Query(query); // Pass the query. The result will be
+	//stored in the result object.
+	while ((row = mysql_fetch_row(result)) != NULL)
+		// Method to fetch rows from result
+	{
+		value_int = CPtoUnicode(row[0], 1251);
+		value.push_back(value_int);
+	}
+	return value;
+}
+
+
+std::vector<CString> myconnectorclassDB::CheckMedicineDescription()
+{
+	vector<CString> value; // Create the object to receive the answer to the query
+	CString value_int;
+	CString query = _T("SELECT stock_description FROM orders LEFT JOIN stock ON stock.stock_ID = orders.stock_ID WHERE orders.stock_ID IN (select stock_ID from stock Where stock_type = 'Medicine')");
+	//Create a query by combining CStrings
+	Query(query); // Pass the query. The result will be
+	//stored in the result object.
+	while ((row = mysql_fetch_row(result)) != NULL)
+		// Method to fetch rows from result
+	{
+		value_int = CPtoUnicode(row[0], 1251);
+		value.push_back(value_int);
+	}
+	return value;
+}
+
+
+
+
+std::vector<CString> myconnectorclassDB::FoodDescriptions()
+{
+	vector<CString> value; // Create the object to receive the answer to the query
+	CString value_int;
+	CString query = _T("SELECT stock_description FROM stock WHERE stock_type = 'Food'");
+	//Create a query by combining CStrings
+	Query(query); // Pass the query. The result will be
+	//stored in the result object.
+	while ((row = mysql_fetch_row(result)) != NULL)
+		// Method to fetch rows from result
+	{
+		value_int = CPtoUnicode(row[0], 1251);
+		value.push_back(value_int);
+	}
+	return value;
+}
+
+
+std::vector<CString> myconnectorclassDB::MedicineDescriptions()
+{
+	vector<CString> value; // Create the object to receive the answer to the query
+	CString value_int;
+	CString query = _T("SELECT stock_description FROM stock WHERE stock_type = 'Medicine'");
+	//Create a query by combining CStrings
+	Query(query); // Pass the query. The result will be
+	//stored in the result object.
+	while ((row = mysql_fetch_row(result)) != NULL)
+		// Method to fetch rows from result
+	{
+		value_int = CPtoUnicode(row[0], 1251);
+		value.push_back(value_int);
+	}
+	return value;
+}
+
+CString myconnectorclassDB::CheckStockID(CString stock_description)
+{
+	CString value;
+	CString query = _T("SELECT stock_ID FROM orders WHERE orders.stock_ID IN (select stock_ID from stock Where stock_description ='") + stock_description + _T("' )");
+	//Create a query by combining CStrings
+	Query(query); // Pass the query. The result will be
+	//stored in the result object.
+	while ((row = mysql_fetch_row(result)) != NULL)
+		// Method to fetch rows from result
+	{
+		value = CPtoUnicode(row[0], 1251);
+	}
+	return value;
+}
+
+
+
+
+
+CString myconnectorclassDB::CheckNewStockID(CString stock_description)
+{
+	CString value;
+	CString query = _T("SELECT stock_ID FROM stock WHERE stock_description ='") + stock_description + _T("'");
+	//Create a query by combining CStrings
+	Query(query); // Pass the query. The result will be
+	//stored in the result object.
+	while ((row = mysql_fetch_row(result)) != NULL)
+		// Method to fetch rows from result
+	{
+		value = CPtoUnicode(row[0], 1251);
+	}
+	return value;
+}
+
+std::vector<CString> myconnectorclassDB::CheckStocksIDs()
+{
+	vector<CString> value; // Create the object to receive the answer to the query
+	CString value_int;
+	CString query = _T("SELECT stock_ID FROM stock");
+	//Create a query by combining CStrings
+	Query(query); // Pass the query. The result will be
+	//stored in the result object.
+	while ((row = mysql_fetch_row(result)) != NULL)
+		// Method to fetch rows from result
+	{
+		value_int = CPtoUnicode(row[0], 1251);
+		value.push_back(value_int);
+	}
+	return value;
+}
+
+
+CString myconnectorclassDB::LastStockID()
+{
+	CString value; // Create the object to receive the answer to the query
+	CString query = _T("SELECT max(stock_ID) FROM stock");
+	//Create a query by combining CStrings
+	Query(query); // Pass the query. The result will be
+	//stored in the result object.
+	while ((row = mysql_fetch_row(result)) != NULL)
+		// Method to fetch rows from result
+	{
+		value = CPtoUnicode(row[0], 1251);
+	}
+	return value;
+}
+
+
+void myconnectorclassDB::NewOrderOldDescription(CString user_ID, CString stock_ID, CString order_date, CString order_quantity)
+{
+	CString query1 = _T("INSERT INTO orders VALUE ('") + user_ID + _T("', '") + stock_ID + _T("', '") + order_date + _T("', '") + order_quantity + _T("')");
+	//Create a query by combining CStrings
+	Query(query1); // Pass the query. The result will be
+	//stored in the result object.
+
+}
+
+void myconnectorclassDB::NewOrderNewDescription(CString stock_ID, CString stock_type, CString stock_description, CString initial_quantity, CString unit_value)
+{
+	CString query1 = _T("INSERT INTO stock VALUE ('") + stock_ID + _T("', '") + stock_type + _T("', '") + stock_description + _T("', '") + initial_quantity + _T("', '") + unit_value + _T("');");
+	//Create a query by combining CStrings
+	Query(query1); // Pass the query. The result will be
+	//stored in the result object.
+
+}
+

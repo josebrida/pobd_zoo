@@ -24,4 +24,6 @@ public:
 	afx_msg void OnBnClickedManagegodfathers();
 	afx_msg void OnBnClickedButtonmanageanimals();
 	afx_msg void OnBnClickedManageemployees();
+	afx_msg void OnBnClickedOrderbutton();
+	CString username_2;
 };

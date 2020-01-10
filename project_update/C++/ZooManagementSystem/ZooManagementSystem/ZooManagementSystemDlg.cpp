@@ -187,6 +187,7 @@ void CZooManagementSystemDlg::OnBnClickedButtonlogin()
 		}
 		else if (std::find(manager_IDs.begin(), manager_IDs.end(), username) != manager_IDs.end()) {
 			MyDlg4 dlg;
+			dlg.username_2 = username;
 			dlg.DoModal();
 		}
 		else if (std::find(visitor_IDs.begin(), visitor_IDs.end(), username) != visitor_IDs.end()) {
