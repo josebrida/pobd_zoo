@@ -187,6 +187,7 @@
     </ResourceCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="AddAnimalDlg.h" />
     <ClInclude Include="DlgConfirmExtend.h" />
     <ClInclude Include="DlgVeterinarian.h" />
     <ClInclude Include="myconnectorclassDB.h" />
@@ -206,6 +207,7 @@
     <ClInclude Include="ZooManagementSystemDlg.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="AddAnimalDlg.cpp" />
     <ClCompile Include="DlgConfirmExtend.cpp" />
     <ClCompile Include="DlgVeterinarian.cpp" />
     <ClCompile Include="myconnectorclassDB.cpp" />

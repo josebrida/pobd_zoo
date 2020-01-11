@@ -1,5 +1,16 @@
-﻿  MyDlg10.cpp
+﻿  AddAnimalDlg.cpp
+  DlgConfirmExtend.cpp
+  DlgVeterinarian.cpp
+  MyDlg10.cpp
   MyDlg11.cpp
+  MyDlg2.cpp
+  MyDlg3.cpp
+  MyDlg4.cpp
+  MyDlg5.cpp
+  MyDlg6.cpp
+  MyDlg7.cpp
+  MyDlg8.cpp
+  ZooManagementSystem.cpp
+  ZooManagementSystemDlg.cpp
   Generating Code...
-  LINK : C:\Users\JosÚ Brida\Desktop\pobd_zoo\project_update\C++\ZooManagementSystem\Debug\ZooManagementSystem.exe not found or not built by the last incremental link; performing full link
   ZooManagementSystem.vcxproj -> C:\Users\José Brida\Desktop\pobd_zoo\project_update\C++\ZooManagementSystem\Debug\ZooManagementSystem.exe

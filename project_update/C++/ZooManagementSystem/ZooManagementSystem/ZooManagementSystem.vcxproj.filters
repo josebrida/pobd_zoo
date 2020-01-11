@@ -66,6 +66,9 @@
     <ClInclude Include="MyDlg11.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="AddAnimalDlg.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ZooManagementSystem.cpp">
@@ -111,6 +114,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="MyDlg11.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="AddAnimalDlg.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

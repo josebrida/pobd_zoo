@@ -134,6 +134,29 @@ BEGIN
     COMBOBOX        IDC_stock_description_combo,329,85,86,30,CBS_DROPDOWN | CBS_SORT | WS_VSCROLL | WS_TABSTOP
 END
 
+IDD_AddAnimalDialog DIALOGEX 0, 0, 483, 267
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Dialog"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    PUSHBUTTON      "Add Animal",IDC_ADD_Animal_Button,429,226,50,14
+    EDITTEXT        IDC_New_AnimalGender,76,50,40,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_New_AnimalName,76,30,40,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_New_AnimalBirthDate,76,70,40,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT4,76,151,40,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_New_AnimalOrigin,76,89,40,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT6,76,110,40,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT7,76,130,40,14,ES_AUTOHSCROLL
+    LTEXT           "Animal Name",IDC_STATIC,23,33,42,8
+    LTEXT           "Birth Date",IDC_STATIC,23,73,33,8
+    LTEXT           "Origin",IDC_STATIC,23,91,20,8
+    LTEXT           "Static",IDC_STATIC,23,113,19,8
+    LTEXT           "Static",IDC_STATIC,23,131,19,8
+    LTEXT           "Static",IDC_STATIC,23,154,19,8
+    LTEXT           "Gender",IDC_STATIC,23,52,24,8
+    CONTROL         "",IDC_New_Animal_Photo,"Static",SS_BLACKFRAME,264,26,20,20
+END
+
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -214,6 +237,13 @@ BEGIN
         LEFTMARGIN, 7
         TOPMARGIN, 7
     END
+
+    IDD_AddAnimalDialog, DIALOG
+    BEGIN
+        RIGHTMARGIN, 479
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 260
+    END
 END
 #endif    // APSTUDIO_INVOKED
 
@@ -239,6 +269,11 @@ BEGIN
 END
 
 IDD_MedicineDialog AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
+IDD_AddAnimalDialog AFX_DIALOG_LAYOUT
 BEGIN
     0
 END
@@ -348,11 +383,24 @@ BEGIN
     GROUPBOX        "",IDC_STATIC,21,136,69,49
 END
 
-IDD_ManageAnimalsDialog DIALOGEX 0, 0, 531, 226
+IDD_ManageAnimalsDialog DIALOGEX 0, 0, 549, 209
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "Dialog"
 FONT 8, "MS Shell Dlg", 400, 0, 0x1
 BEGIN
+    EDITTEXT        IDC_EDIT1,21,27,489,119,ES_MULTILINE | ES_AUTOHSCROLL | ES_READONLY | WS_VSCROLL
+    PUSHBUTTON      "Add Animal",IDC_ADD_Animal_Button,149,160,71,14
+    PUSHBUTTON      "Give Wild Date",IDC_WildDate_Button,268,160,61,14
+    EDITTEXT        IDC_EditWildYear,431,175,36,14,ES_AUTOHSCROLL
+    LTEXT           "Year:",IDC_STATIC,431,166,19,8
+    LTEXT           "Month:",IDC_STATIC,475,166,24,8
+    LTEXT           "Day:",IDC_STATIC,506,166,16,8
+    EDITTEXT        IDC_EditWildMonth,475,175,23,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EditWildDay,506,175,22,14,ES_AUTOHSCROLL
+    CTEXT           "-",IDC_STATIC,467,179,8,8
+    CTEXT           "-",IDC_STATIC,498,179,8,8
+    GROUPBOX        "Wild date:",IDC_STATIC,429,157,102,34
+    LISTBOX         IDC_animal_listbox,343,155,78,47,LBS_SORT | LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
 END
 
 IDD_GodfatherDialog DIALOGEX 0, 0, 455, 293
@@ -469,9 +517,9 @@ BEGIN
     IDD_ManageAnimalsDialog, DIALOG
     BEGIN
         LEFTMARGIN, 7
-        RIGHTMARGIN, 524
+        RIGHTMARGIN, 542
         TOPMARGIN, 7
-        BOTTOMMARGIN, 219
+        BOTTOMMARGIN, 202
     END
 
     IDD_GodfatherDialog, DIALOG

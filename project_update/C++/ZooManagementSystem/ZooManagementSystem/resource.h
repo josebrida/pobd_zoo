@@ -18,6 +18,7 @@
 #define IDD_VeterinarianDialog          148
 #define IDD_FoodDialog                  150
 #define IDD_MedicineDialog              152
+#define IDD_AddAnimalDialog             154
 #define IDC_Username                    1000
 #define IDC_Password                    1001
 #define IDC_BUTTONLogin                 1002
@@ -25,18 +26,25 @@
 #define IDC_Information                 1004
 #define IDC_AnimalName                  1004
 #define IDC_EditName                    1004
+#define IDC_New_AnimalName              1004
 #define IDC_Search1                     1005
 #define IDC_newemployeepassword         1005
 #define IDC_Order_Quantity              1005
+#define IDC_New_AnimalBirthDate         1005
 #define IDC_AnimalGender                1006
 #define IDC_newemployeebirthdate        1006
 #define IDC_Stock_Description2          1006
+#define IDC_EDIT4                       1006
 #define IDC_AnimalBirth                 1007
 #define IDC_newemployeeemail            1007
+#define IDC_EDIT5                       1007
+#define IDC_New_AnimalOrigin            1007
 #define IDC_AnimalOrigin                1008
 #define IDC_newemployeebegincontract    1008
+#define IDC_EDIT6                       1008
 #define IDC_AnimalWild                  1009
 #define IDC_newemployeeendcontract      1009
+#define IDC_EDIT7                       1009
 #define IDC_ZoneSearch                  1010
 #define IDC_newemployeephone            1010
 #define IDC_Search2                     1011
@@ -105,15 +113,22 @@
 #define IDC_NewEnd                      1057
 #define IDC_HistoryRecords              1058
 #define IDC_OrderButton                 1059
-#define IDC_LIST1                       1060
+#define IDC_ADD_Animal_Button           1061
+#define IDC_WildDate_Button             1062
+#define IDC_EditWildYear                1066
+#define IDC_EditWildMonth               1067
+#define IDC_EditWildDay                 1068
+#define IDC_animal_listbox              1070
+#define IDC_New_Animal_Photo            1072
+#define IDC_New_AnimalGender            1073
 
 // Next default values for new objects
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
-#define _APS_NEXT_RESOURCE_VALUE        154
+#define _APS_NEXT_RESOURCE_VALUE        156
 #define _APS_NEXT_COMMAND_VALUE         32771
-#define _APS_NEXT_CONTROL_VALUE         1061
+#define _APS_NEXT_CONTROL_VALUE         1074
 #define _APS_NEXT_SYMED_VALUE           101
 #endif
 #endif

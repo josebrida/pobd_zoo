@@ -247,6 +247,25 @@ std::vector<CString> myconnectorclassDB::CheckAvailableAnimalIDs()
 	return value;
 }
 
+std::vector<CString> myconnectorclassDB::CheckAllAnimalIDs()
+{
+	vector<CString> value; // Create the object to receive the answer to the query
+	CString value_int;
+	CString query = _T("SELECT animal_ID FROM animal");
+	//Create a query by combining CStrings
+	Query(query); // Pass the query. The result will be
+	//stored in the result object.
+	while ((row = mysql_fetch_row(result)) != NULL)
+		// Method to fetch rows from result
+	{
+		value_int = CPtoUnicode(row[0], 1251);
+		value.push_back(value_int);
+	}
+	return value;
+}
+
+
+
 CString myconnectorclassDB::CheckSpecieID(CString animal_ID)
 {
 	CString value; // Create the object to receive the answer to the query
@@ -1212,5 +1231,14 @@ void myconnectorclassDB::NewOrderNewDescription(CString stock_ID, CString stock_
 	Query(query1); // Pass the query. The result will be
 	//stored in the result object.
 
+}
+
+void myconnectorclassDB::GiveWildDate(CString animal_ID, CString wild_date)
+{
+	CString query1 = _T("UPDATE animal SET wild_date  = '") + wild_date + _T("' WHERE animal_ID = '") + animal_ID + _T("'");
+	//Create a query by combining CStrings
+	Query(query1); // Pass the query. The result will be
+	//stored in the result object.
+	
 }
 
