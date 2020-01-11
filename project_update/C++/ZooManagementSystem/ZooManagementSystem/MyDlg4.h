@@ -26,4 +26,5 @@ public:
 	afx_msg void OnBnClickedManageemployees();
 	afx_msg void OnBnClickedOrderbutton();
 	CString username_2;
+	afx_msg void OnBnClickedAddAssignTasksButton();
 };

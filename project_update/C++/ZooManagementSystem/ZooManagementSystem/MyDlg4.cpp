@@ -12,7 +12,7 @@
 #include "MyDlg11.h"
 #include "ZooManagementSystemDlg.h"
 #include "myconnectorclassDB.h"
-
+#include "AssignTasksDlg.h"
 
 // MyDlg4 dialog
 
@@ -39,6 +39,7 @@ BEGIN_MESSAGE_MAP(MyDlg4, CDialogEx)
 	ON_BN_CLICKED(IDC_BUTTONMANAGEANIMALS, &MyDlg4::OnBnClickedButtonmanageanimals)
 	ON_BN_CLICKED(IDC_ManageEmployees, &MyDlg4::OnBnClickedManageemployees)
 	ON_BN_CLICKED(IDC_OrderButton, &MyDlg4::OnBnClickedOrderbutton)
+	ON_BN_CLICKED(IDC_Add_Assign_Tasks_Button, &MyDlg4::OnBnClickedAddAssignTasksButton)
 END_MESSAGE_MAP()
 
 
@@ -86,4 +87,10 @@ void MyDlg4::OnBnClickedOrderbutton()
 		dlg.userID_confirm = username_2;
 		dlg.DoModal();
 	}
+}
+
+void MyDlg4::OnBnClickedAddAssignTasksButton()
+{
+	AssignTasksDlg dlg;
+	dlg.DoModal();
 }

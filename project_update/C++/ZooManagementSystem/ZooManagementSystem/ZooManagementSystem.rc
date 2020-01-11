@@ -163,6 +163,34 @@ BEGIN
     COMBOBOX        IDC_COMBO_Zone,75,147,76,30,CBS_DROPDOWN | CBS_SORT | WS_VSCROLL | WS_TABSTOP
 END
 
+IDD_Assign_Tasks DIALOGEX 0, 0, 187, 279
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Dialog"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    GROUPBOX        "Add Tasks",IDC_STATIC,16,175,145,80
+    EDITTEXT        IDC_Task_to_add,43,213,87,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "Add Task",IDC_AddTask_Button,61,236,50,14
+    COMBOBOX        IDC_COMBO_task_type,43,191,88,30,CBS_DROPDOWN | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    GROUPBOX        "Assign Task",IDC_STATIC,15,23,146,144
+    COMBOBOX        IDC_COMBO_keeper,51,38,95,30,CBS_DROPDOWN | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_COMBO_zones,51,78,95,30,CBS_DROPDOWN | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_COMBO_tasks,51,58,96,30,CBS_DROPDOWN | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Keeper",IDC_STATIC,27,40,24,8
+    LTEXT           "Task",IDC_STATIC,27,60,16,8
+    LTEXT           "Zone",IDC_STATIC,28,81,17,8
+    PUSHBUTTON      "Assign Task",IDC_AssignTask_Button,57,143,50,14
+    LTEXT           "Date:",IDC_STATIC,29,110,19,8
+    EDITTEXT        IDC_EditTaskYear,51,106,36,14,ES_AUTOHSCROLL
+    LTEXT           "Month:",IDC_STATIC,95,96,24,8
+    LTEXT           "Day:",IDC_STATIC,127,96,16,8
+    EDITTEXT        IDC_EditTaskMonth,95,106,23,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EditTaskDay,125,106,22,14,ES_AUTOHSCROLL
+    CTEXT           "-",IDC_STATIC,87,109,8,8
+    CTEXT           "-",IDC_STATIC,119,109,8,8
+    LTEXT           "Year:",IDC_STATIC,53,98,19,8
+END
+
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -250,6 +278,14 @@ BEGIN
         TOPMARGIN, 7
         BOTTOMMARGIN, 245
     END
+
+    IDD_Assign_Tasks, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 180
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 272
+    END
 END
 #endif    // APSTUDIO_INVOKED
 
@@ -280,6 +316,11 @@ BEGIN
 END
 
 IDD_AddAnimalDialog AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
+IDD_Assign_Tasks AFX_DIALOG_LAYOUT
 BEGIN
     0
 END
@@ -363,15 +404,16 @@ BEGIN
     GROUPBOX        "Birth date:",IDC_STATIC,7,45,102,34
 END
 
-IDD_ManagerDialog DIALOGEX 0, 0, 143, 175
+IDD_ManagerDialog DIALOGEX 0, 0, 143, 208
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "Dialog"
 FONT 8, "MS Shell Dlg", 400, 0, 0x1
 BEGIN
-    PUSHBUTTON      "Manage godfathers",IDC_ManageGodfathers,21,100,101,14
-    PUSHBUTTON      "Manage animals",IDC_BUTTONMANAGEANIMALS,39,14,64,14
-    PUSHBUTTON      "Manage Employees",IDC_ManageEmployees,34,54,76,14
-    PUSHBUTTON      "Orders",IDC_OrderButton,44,135,50,14
+    PUSHBUTTON      "Manage godfathers",IDC_ManageGodfathers,16,88,105,16
+    PUSHBUTTON      "Manage animals",IDC_BUTTONMANAGEANIMALS,16,17,105,14
+    PUSHBUTTON      "Manage Employees",IDC_ManageEmployees,16,52,105,14
+    PUSHBUTTON      "Orders",IDC_OrderButton,16,126,105,14
+    PUSHBUTTON      "Add/Assign Tasks",IDC_Add_Assign_Tasks_Button,16,160,105,14
 END
 
 IDD_ManageGodfathersDialog DIALOGEX 0, 0, 181, 203
@@ -506,10 +548,10 @@ BEGIN
 
     IDD_ManagerDialog, DIALOG
     BEGIN
-        LEFTMARGIN, 7
-        RIGHTMARGIN, 136
+        LEFTMARGIN, 16
+        RIGHTMARGIN, 121
         TOPMARGIN, 7
-        BOTTOMMARGIN, 168
+        BOTTOMMARGIN, 201
     END
 
     IDD_ManageGodfathersDialog, DIALOG

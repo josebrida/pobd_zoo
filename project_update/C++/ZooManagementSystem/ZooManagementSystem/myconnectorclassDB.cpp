@@ -1343,3 +1343,82 @@ CString myconnectorclassDB::LastAnimalID()
 	}
 	return value;
 }
+
+CString myconnectorclassDB::LastTaskID()
+{
+	CString value; // Create the object to receive the answer to the query
+	CString query = _T("SELECT max(task_ID) FROM tasks");
+	//Create a query by combining CStrings
+	Query(query); // Pass the query. The result will be
+	//stored in the result object.
+	while ((row = mysql_fetch_row(result)) != NULL)
+		// Method to fetch rows from result
+	{
+		value = CPtoUnicode(row[0], 1251);
+	}
+	return value;
+}
+
+
+std::vector<CString> myconnectorclassDB::CheckTasksNames()
+{
+	vector<CString> value; // Create the object to receive the answer to the query
+	CString value_int;
+	CString query = _T("SELECT task_description FROM tasks");
+	//Create a query by combining CStrings
+	Query(query); // Pass the query. The result will be
+	//stored in the result object.
+	while ((row = mysql_fetch_row(result)) != NULL)
+		// Method to fetch rows from result
+	{
+		value_int = CPtoUnicode(row[0], 1251);
+		value.push_back(value_int);
+	}
+	return value;
+}
+
+
+
+
+CString myconnectorclassDB::CheckTaskID(CString task_description)
+{
+	CString value; // Create the object to receive the answer to the query
+	CString query = _T("SELECT task_ID FROM tasks where task_description = '") + task_description + _T("'");
+	//Create a query by combining CStrings
+	Query(query); // Pass the query. The result will be
+	//stored in the result object.
+	while ((row = mysql_fetch_row(result)) != NULL)
+		// Method to fetch rows from result
+	{
+		value = CPtoUnicode(row[0], 1251);
+	}
+	return value;
+}
+
+
+
+
+void myconnectorclassDB::NewTask(CString task_ID, CString task_type, CString task_description)
+{
+	
+	CString query1 = _T("INSERT INTO tasks VALUE (") + task_ID + _T(", '") + task_type +  _T("', '") + task_description + _T("');");
+	//Create a query by combining CStrings
+	Query(query1); // Pass the query. The result will be
+	//stored in the result object.
+	
+}
+
+
+void myconnectorclassDB::AssignTask(CString task_ID, CString zones_ID, CString schedule_date, CString user_ID)
+{
+
+	CString query1 = _T("INSERT INTO schedule_keeper VALUE (") + task_ID + _T(", '") + zones_ID + _T("', '") + schedule_date + _T("');");
+	//Create a query by combining CStrings
+	Query(query1); // Pass the query. The result will be
+	//stored in the result object.
+	CString query2 = _T("INSERT INTO assigned VALUE (") + user_ID + _T(", ") + zones_ID + _T(", ") + task_ID + _T(", '") + schedule_date + _T("');");
+	//Create a query by combining CStrings
+	Query(query2); // Pass the query. The result will be
+	//stored in the result object.
+
+}

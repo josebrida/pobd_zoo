@@ -103,6 +103,11 @@ public:
 	std::vector<CString> CheckZoneName();
 	void NewAnimal(CString animal_ID, CString animal_name, CString animal_gender, CString animal_birthdate, CString wild_date, CString animal_origin, CString Photo, CString specie_ID, CString zones_ID);
 	CString LastAnimalID();
+	void NewTask(CString task_ID, CString task_type, CString task_description);
+	CString LastTaskID();
+	CString CheckTaskID(CString task_description);
+	void AssignTask(CString task_ID, CString zones_ID, CString schedule_date, CString user_ID);
+	std::vector<CString> CheckTasksNames();
 	myconnectorclassDB(void);
 	virtual ~myconnectorclassDB(void);
 };

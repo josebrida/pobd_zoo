@@ -19,6 +19,7 @@
 #define IDD_FoodDialog                  150
 #define IDD_MedicineDialog              152
 #define IDD_AddAnimalDialog             154
+#define IDD_Assign_Tasks                158
 #define IDC_Username                    1000
 #define IDC_Password                    1001
 #define IDC_BUTTONLogin                 1002
@@ -60,10 +61,10 @@
 #define IDC_COMBOEmployees              1020
 #define IDC_stock_description_combo     1020
 #define IDC_COMBO_Gender                1020
+#define IDC_COMBO_task_type             1020
 #define IDC_ManageGodfathers            1021
 #define IDC_COMBO_Species               1021
 #define IDC_LISTPENDING                 1022
-#define IDC_COMBO_Species2              1022
 #define IDC_COMBO_Zone                  1022
 #define IDC_RADIOACCEPT                 1023
 #define IDC_RADIODECLINE                1024
@@ -119,14 +120,25 @@
 #define IDC_EditWildDay                 1068
 #define IDC_animal_listbox              1070
 #define IDC_New_Animal_Photo            1072
+#define IDC_Task_to_add                 1074
+#define IDC_AddTask_Button              1075
+#define IDC_COMBO_keeper                1076
+#define IDC_COMBO_zones                 1077
+#define IDC_COMBO_tasks                 1078
+#define IDC_AssignTask_Button           1079
+#define IDC_EditTaskYear                1080
+#define IDC_EditTaskMonth               1081
+#define IDC_EditTaskDay                 1082
+#define IDC_BUTTON1                     1083
+#define IDC_Add_Assign_Tasks_Button     1083
 
 // Next default values for new objects
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
-#define _APS_NEXT_RESOURCE_VALUE        156
+#define _APS_NEXT_RESOURCE_VALUE        160
 #define _APS_NEXT_COMMAND_VALUE         32771
-#define _APS_NEXT_CONTROL_VALUE         1074
+#define _APS_NEXT_CONTROL_VALUE         1084
 #define _APS_NEXT_SYMED_VALUE           101
 #endif
 #endif
