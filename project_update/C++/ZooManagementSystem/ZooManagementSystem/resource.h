@@ -30,21 +30,16 @@
 #define IDC_Search1                     1005
 #define IDC_newemployeepassword         1005
 #define IDC_Order_Quantity              1005
-#define IDC_New_AnimalBirthDate         1005
 #define IDC_AnimalGender                1006
 #define IDC_newemployeebirthdate        1006
 #define IDC_Stock_Description2          1006
-#define IDC_EDIT4                       1006
 #define IDC_AnimalBirth                 1007
 #define IDC_newemployeeemail            1007
-#define IDC_EDIT5                       1007
 #define IDC_New_AnimalOrigin            1007
 #define IDC_AnimalOrigin                1008
 #define IDC_newemployeebegincontract    1008
-#define IDC_EDIT6                       1008
 #define IDC_AnimalWild                  1009
 #define IDC_newemployeeendcontract      1009
-#define IDC_EDIT7                       1009
 #define IDC_ZoneSearch                  1010
 #define IDC_newemployeephone            1010
 #define IDC_Search2                     1011
@@ -64,8 +59,12 @@
 #define IDC_COMBOPENDING                1020
 #define IDC_COMBOEmployees              1020
 #define IDC_stock_description_combo     1020
+#define IDC_COMBO_Gender                1020
 #define IDC_ManageGodfathers            1021
+#define IDC_COMBO_Species               1021
 #define IDC_LISTPENDING                 1022
+#define IDC_COMBO_Species2              1022
+#define IDC_COMBO_Zone                  1022
 #define IDC_RADIOACCEPT                 1023
 #define IDC_RADIODECLINE                1024
 #define IDC_BUTTONCONFIRM               1025
@@ -120,7 +119,6 @@
 #define IDC_EditWildDay                 1068
 #define IDC_animal_listbox              1070
 #define IDC_New_Animal_Photo            1072
-#define IDC_New_AnimalGender            1073
 
 // Next default values for new objects
 // 

@@ -1242,3 +1242,104 @@ void myconnectorclassDB::GiveWildDate(CString animal_ID, CString wild_date)
 	
 }
 
+std::vector<CString> myconnectorclassDB::CheckSpeciesName()
+{
+	vector<CString> value; // Create the object to receive the answer to the query
+	CString value_int;
+	CString query = _T("SELECT species_name FROM species");
+	//Create a query by combining CStrings
+	Query(query); // Pass the query. The result will be
+	//stored in the result object.
+	while ((row = mysql_fetch_row(result)) != NULL)
+		// Method to fetch rows from result
+	{
+		value_int = CPtoUnicode(row[0], 1251);
+		value.push_back(value_int);
+	}
+	return value;
+}
+
+CString myconnectorclassDB::SelectSpeciesID(CString species_name)
+{
+	CString value; // Create the object to receive the answer to the query
+	CString query = _T("SELECT species_ID from species WHERE species_name = '") +  species_name   +_T("'");
+	//Create a query by combining CStrings
+	Query(query); // Pass the query. The result will be
+	//stored in the result object.
+	while ((row = mysql_fetch_row(result)) != NULL)
+		// Method to fetch rows from result
+	{
+		value = CPtoUnicode(row[0], 1251);
+	}
+	return value;
+}
+
+
+std::vector<CString> myconnectorclassDB::CheckZoneName()
+{
+	vector<CString> value; // Create the object to receive the answer to the query
+	CString value_int;
+	CString query = _T("SELECT biome FROM zones");
+	//Create a query by combining CStrings
+	Query(query); // Pass the query. The result will be
+	//stored in the result object.
+	while ((row = mysql_fetch_row(result)) != NULL)
+		// Method to fetch rows from result
+	{
+		value_int = CPtoUnicode(row[0], 1251);
+		value.push_back(value_int);
+	}
+	return value;
+}
+
+
+CString myconnectorclassDB::SelectZoneID(CString biome)
+{
+	CString value; // Create the object to receive the answer to the query
+	CString query = _T("SELECT zones_ID from zones WHERE biome = '") + biome + _T("'");
+	//Create a query by combining CStrings
+	Query(query); // Pass the query. The result will be
+	//stored in the result object.
+	while ((row = mysql_fetch_row(result)) != NULL)
+		// Method to fetch rows from result
+	{
+		value = CPtoUnicode(row[0], 1251);
+	}
+	return value;
+}
+
+
+
+
+void myconnectorclassDB::NewAnimal(CString animal_ID, CString animal_name, CString animal_gender, CString animal_birthdate, CString wild_date, CString animal_origin, CString Photo , CString specie_ID, CString zones_ID)
+{
+	CString query1 = _T("INSERT INTO animal VALUE ('") + animal_ID + _T("', '") + animal_name + _T("', '") + animal_gender + _T("', '") + animal_birthdate + _T("', ") + wild_date + _T(", '") + animal_origin + _T("', '") + Photo + _T("');");
+	//Create a query by combining CStrings
+	Query(query1); // Pass the query. The result will be
+	//stored in the result object.
+	CString query2 = _T("INSERT INTO belongs VALUE ('") + animal_ID + _T("', '") + specie_ID + _T("');");
+	//Create a query by combining CStrings
+	Query(query2); // Pass the query. The result will be
+	//stored in the result object.
+	CString query3 = _T("INSERT INTO lives VALUE ('") + animal_ID + _T("', '") + zones_ID + _T("');");
+	//Create a query by combining CStrings
+	Query(query3); // Pass the query. The result will be
+	//stored in the result object.
+}
+
+
+
+CString myconnectorclassDB::LastAnimalID()
+{
+	CString value; // Create the object to receive the answer to the query
+	CString query = _T("SELECT max(animal_ID) FROM animal");
+	//Create a query by combining CStrings
+	Query(query); // Pass the query. The result will be
+	//stored in the result object.
+	while ((row = mysql_fetch_row(result)) != NULL)
+		// Method to fetch rows from result
+	{
+		value = CPtoUnicode(row[0], 1251);
+	}
+	return value;
+}

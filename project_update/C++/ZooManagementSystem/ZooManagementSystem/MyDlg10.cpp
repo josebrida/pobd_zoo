@@ -210,6 +210,7 @@ void MyDlg10::OnBnClickedNewitemorderbutton()
 	int new_stock_ID = _ttoi(MyConnection.LastStockID()) + 1;
 	CString new_stock_ID_str;
 	new_stock_ID_str.Format(_T("%d"), new_stock_ID);
+
 	CString order_stock_type = MyConnection.CheckFoodType()[1];
 
 	vector<CString> StocksIDs = MyConnection.CheckFoodStockID();

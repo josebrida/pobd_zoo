@@ -97,6 +97,12 @@ public:
 	std::vector<CString> CheckMedicineOrderQuantity();
 	std::vector<CString> CheckMedicineType();
 	void GiveWildDate(CString animal_ID, CString wild_date);
+	std::vector<CString> CheckSpeciesName();
+	CString SelectSpeciesID(CString species_name);
+	CString SelectZoneID(CString biome);
+	std::vector<CString> CheckZoneName();
+	void NewAnimal(CString animal_ID, CString animal_name, CString animal_gender, CString animal_birthdate, CString wild_date, CString animal_origin, CString Photo, CString specie_ID, CString zones_ID);
+	CString LastAnimalID();
 	myconnectorclassDB(void);
 	virtual ~myconnectorclassDB(void);
 };
