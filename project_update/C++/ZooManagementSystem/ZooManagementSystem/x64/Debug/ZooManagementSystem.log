@@ -1,7 +1,10 @@
-﻿  stdafx.cpp
+﻿  AddAnimalDlg.cpp
+  AssignTasksDlg.cpp
   DlgConfirmExtend.cpp
   DlgVeterinarian.cpp
   myconnectorclassDB.cpp
+  MyDlg10.cpp
+  MyDlg11.cpp
   MyDlg2.cpp
   MyDlg3.cpp
   MyDlg4.cpp
@@ -18,4 +21,4 @@ myconnectorclassDB.obj : error LNK2019: unresolved external symbol mysql_query r
 myconnectorclassDB.obj : error LNK2019: unresolved external symbol mysql_store_result referenced in function "private: void __cdecl myconnectorclassDB::Query(class ATL::CStringT<wchar_t,class StrTraitMFC<wchar_t,class ATL::ChTraitsCRT<wchar_t> > >)" (?Query@myconnectorclassDB@@AEAAXV?$CStringT@_WV?$StrTraitMFC@_WV?$ChTraitsCRT@_W@ATL@@@@@ATL@@@Z)
 myconnectorclassDB.obj : error LNK2019: unresolved external symbol mysql_fetch_row referenced in function "public: class std::vector<class ATL::CStringT<wchar_t,class StrTraitMFC<wchar_t,class ATL::ChTraitsCRT<wchar_t> > >,class std::allocator<class ATL::CStringT<wchar_t,class StrTraitMFC<wchar_t,class ATL::ChTraitsCRT<wchar_t> > > > > __cdecl myconnectorclassDB::AcceptedGodanimalsIDs(class ATL::CStringT<wchar_t,class StrTraitMFC<wchar_t,class ATL::ChTraitsCRT<wchar_t> > >)" (?AcceptedGodanimalsIDs@myconnectorclassDB@@QEAA?AV?$vector@V?$CStringT@_WV?$StrTraitMFC@_WV?$ChTraitsCRT@_W@ATL@@@@@ATL@@V?$allocator@V?$CStringT@_WV?$StrTraitMFC@_WV?$ChTraitsCRT@_W@ATL@@@@@ATL@@@std@@@std@@V?$CStringT@_WV?$StrTraitMFC@_WV?$ChTraitsCRT@_W@ATL@@@@@ATL@@@Z)
 libmysql.lib : warning LNK4272: library machine type 'x86' conflicts with target machine type 'x64'
-C:\Users\José Brida\Desktop\pobd_zoo\project_update\C++\ZooManagementSystem\x64\Debug\ZooManagementSystem.exe : fatal error LNK1120: 5 unresolved externals
+C:\Users\migsa\OneDrive\Documentos\GitHub\pobd_zoo\project_update\C++\ZooManagementSystem\x64\Debug\ZooManagementSystem.exe : fatal error LNK1120: 5 unresolved externals

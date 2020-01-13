@@ -54,6 +54,7 @@
 #define IDC_Age                         1018
 #define IDC_medicine_history_list       1018
 #define IDC_food_history_list           1018
+#define IDC_a_family                    1018
 #define IDC_EditPassword                1019
 #define IDC_COMBO1                      1020
 #define IDC_ComboAnimal                 1020
@@ -131,6 +132,31 @@
 #define IDC_EditTaskDay                 1082
 #define IDC_BUTTON1                     1083
 #define IDC_Add_Assign_Tasks_Button     1083
+#define IDC_ADD_Record                  1083
+#define IDC_a_ID                        1084
+#define IDC_a_gender                    1085
+#define IDC_a_birth                     1086
+#define IDC_a_age                       1087
+#define IDC_a_origin                    1088
+#define IDC_a_specie                    1089
+#define IDC_a_phylum                    1091
+#define IDC_a_class                     1092
+#define IDC_a_order                     1093
+#define IDC_a_suborder                  1094
+#define IDC_a_subfamily                 1095
+#define IDC_a_scientific                1096
+#define IDC_a_conservation              1097
+#define IDC_Type_Routine                1098
+#define IDC_Type_Emergency              1099
+#define IDC_new_description             1100
+#define IDC_new_prescription            1101
+#define IDC_new_year                    1102
+#define IDC_new_month                   1103
+#define IDC_new_day                     1104
+#define IDC_insert_today                1105
+#define IDC_tasks_today                 1106
+#define IDC_EDIT3                       1107
+#define IDC_tasks_history               1107
 
 // Next default values for new objects
 // 
@@ -138,7 +164,7 @@
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_NEXT_RESOURCE_VALUE        160
 #define _APS_NEXT_COMMAND_VALUE         32771
-#define _APS_NEXT_CONTROL_VALUE         1084
+#define _APS_NEXT_CONTROL_VALUE         1108
 #define _APS_NEXT_SYMED_VALUE           101
 #endif
 #endif

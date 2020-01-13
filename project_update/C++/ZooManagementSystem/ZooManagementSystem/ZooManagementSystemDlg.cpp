@@ -183,6 +183,7 @@ void CZooManagementSystemDlg::OnBnClickedButtonlogin()
 		CString today = MyConnection.ReturnCurrentDate();
 		if (std::find(keeper_IDs.begin(), keeper_IDs.end(), username) != keeper_IDs.end()) {
 			MyDlg2 dlg;
+			dlg.username = username;
 			dlg.DoModal();	
 		}
 		else if (std::find(manager_IDs.begin(), manager_IDs.end(), username) != manager_IDs.end()) {
@@ -213,6 +214,7 @@ void CZooManagementSystemDlg::OnBnClickedButtonlogin()
 		}
 		else if (std::find(veterinarian_IDs.begin(), veterinarian_IDs.end(), username) != veterinarian_IDs.end()) {
 			DlgVeterinarian dlg;
+			dlg.username = username;
 			dlg.DoModal();
 		}
 	}

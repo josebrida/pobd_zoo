@@ -1422,3 +1422,49 @@ void myconnectorclassDB::AssignTask(CString task_ID, CString zones_ID, CString s
 	//stored in the result object.
 
 }
+
+
+void myconnectorclassDB::SimpleInsert(CString into, CString what)
+{
+
+	CString query = _T("INSERT INTO ") + into + _T(" VALUE (") + what + _T(");");
+	//Create a query by combining CStrings
+	Query(query); // Pass the query. The result will be
+	//stored in the result object.
+
+}
+
+
+CString myconnectorclassDB::LastID(CString ID, CString from)
+{
+	CString value; // Create the object to receive the answer to the query
+	CString query = _T("SELECT max(") + ID + _T(") FROM ") + from;
+	//Create a query by combining CStrings
+	Query(query); // Pass the query. The result will be
+	//stored in the result object.
+	while ((row = mysql_fetch_row(result)) != NULL)
+		// Method to fetch rows from result
+	{
+		value = CPtoUnicode(row[0], 1251);
+	}
+	return value;
+}
+
+std::vector<CString> myconnectorclassDB::ListQuery(CString select, CString from, CString where, int columns)
+{
+	vector<CString> value; // Create the object to receive the answer to the query
+	CString value_int;
+	CString query = _T("SELECT ") + select + _T(" FROM ") + from + _T(" WHERE ") + where;
+	//Create a query by combining CStrings
+	Query(query); // Pass the query. The result will be
+	//stored in the result object.
+	while ((row = mysql_fetch_row(result)) != NULL)
+		// Method to fetch rows from result
+	{
+		for (int i = 0; i < columns; i++) {
+			value_int = CPtoUnicode(row[i], 1251);
+			value.push_back(value_int);
+		}
+	}
+	return value;
+}

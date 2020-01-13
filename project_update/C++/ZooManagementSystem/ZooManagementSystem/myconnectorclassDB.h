@@ -108,6 +108,9 @@ public:
 	CString CheckTaskID(CString task_description);
 	void AssignTask(CString task_ID, CString zones_ID, CString schedule_date, CString user_ID);
 	std::vector<CString> CheckTasksNames();
+	void SimpleInsert(CString medical_record, CString insert);
+	CString LastID(CString ID, CString from);
+	std::vector<CString>ListQuery(CString select, CString from, CString where, int columns);
 	myconnectorclassDB(void);
 	virtual ~myconnectorclassDB(void);
 };
