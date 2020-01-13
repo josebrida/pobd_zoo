@@ -49,6 +49,8 @@ BOOL MyDlg2::OnInitDialog()
 
 	vector<CString> aux = MyConnection.ListQuery(_T("task_ID, zones_ID, schedule_date"), _T("assigned"), _T("user_ID = ") + username + _T(" and DATEDIFF('") + today + _T("', schedule_date) > 0"), 3);
 
+	tasks_history = _T("Type | Description | Zone | Date \r\n ----- \r\n");
+
 	size_t k = 0;
 	while (k < aux.size()) {
 		for (int i = 0; i < 3; i++) {
@@ -69,6 +71,8 @@ BOOL MyDlg2::OnInitDialog()
 	}
 
 	vector<CString> aux1 = MyConnection.ListQuery(_T("task_ID, zones_ID, schedule_date"), _T("assigned"), _T("user_ID = ") + username + _T(" and DATEDIFF('") + today + _T("', schedule_date) <= 0"), 3);
+
+	today_tasks = _T("Type | Description | Zone | Date \r\n ----- \r\n");
 
 	k = 0;
 	while (k < aux1.size()) {
@@ -102,11 +106,13 @@ MyDlg2::MyDlg2(CWnd* pParent /*=nullptr*/)
 	, animal_gender(_T(""))
 	, animal_birth(_T(""))
 	, animal_origin(_T(""))
-	, animal_wild(_T(""))
 	, results_zonesearch(_T(""))
 	, zone_ID_search(_T(""))
 	, tasks_history(_T(""))
 	, today_tasks(_T(""))
+	, result_biome(_T(""))
+	, animal_specie(_T(""))
+	, animal_zone(_T(""))
 {
 
 }
@@ -123,11 +129,13 @@ void MyDlg2::DoDataExchange(CDataExchange* pDX)
 	DDX_Text(pDX, IDC_AnimalGender, animal_gender);
 	DDX_Text(pDX, IDC_AnimalBirth, animal_birth);
 	DDX_Text(pDX, IDC_AnimalOrigin, animal_origin);
-	DDX_Text(pDX, IDC_AnimalWild, animal_wild);
 	DDX_Text(pDX, IDC_ResultsZone, results_zonesearch);
 	DDX_Text(pDX, IDC_ZoneSearch, zone_ID_search);
 	DDX_Text(pDX, IDC_tasks_history, tasks_history);
 	DDX_Text(pDX, IDC_tasks_today, today_tasks);
+	DDX_Text(pDX, IDC_Result_Biome, result_biome);
+	DDX_Text(pDX, IDC_AnimalSpecie, animal_specie);
+	DDX_Text(pDX, IDC_AnimalZone, animal_zone);
 }
 
 
@@ -149,7 +157,9 @@ void MyDlg2::OnBnClickedSearch1()
 	animal_gender = MyConnection.CheckAnimalGender(animal_ID_search);
 	animal_birth = MyConnection.CheckAnimalBirthDate(animal_ID_search);
 	animal_origin = MyConnection.CheckAnimalOrigin(animal_ID_search);
-	animal_wild = MyConnection.CheckAnimalWildDate(animal_ID_search);
+	CString specie_ID = MyConnection.SimpleQuery(_T("species_ID"), _T("belongs"), _T("animal_ID"), animal_ID_search);
+	animal_specie = MyConnection.SimpleQuery(_T("species_name"), _T("species"), _T("species_ID"), specie_ID);
+	animal_zone = MyConnection.SimpleQuery(_T("zones_ID"), _T("lives"), _T("animal_ID"), animal_ID_search);
 	UpdateData(FALSE);
 }
 
@@ -159,10 +169,14 @@ void MyDlg2::OnBnClickedSearch2()
 	UpdateData(TRUE);
 	myconnectorclassDB MyConnection;
 	MyConnection.connect();
+	result_biome = MyConnection.SimpleQuery(_T("biome"), _T("zones"), _T("zones_ID"), zone_ID_search);
 	vector<CString> animal_IDs = MyConnection.CheckZoneAnimal(zone_ID_search);
-	CString str = _T("");
+	CString str = _T("Animal ID | Animal name | Specie name \r\n ----- \r\n");
 	for (size_t i = 0; i < animal_IDs.size(); i++) {
-		str = str + animal_IDs[i] + _T("\r\n");
+		CString specie_ID = MyConnection.SimpleQuery(_T("species_ID"), _T("belongs"), _T("animal_ID"), animal_IDs[i]);
+		CString specie_name = MyConnection.SimpleQuery(_T("species_name"), _T("species"), _T("species_ID"), specie_ID);
+		CString animal_name = MyConnection.SimpleQuery(_T("animal_name"), _T("animal"), _T("animal_ID"), animal_IDs[i]);
+		str = str + animal_IDs[i] + _T(" | ") + animal_name + _T(" | ") + specie_name + _T("\r\n");
 	}
 	results_zonesearch = str;
 	UpdateData(FALSE);

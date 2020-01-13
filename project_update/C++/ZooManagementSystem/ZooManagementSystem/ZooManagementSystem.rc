@@ -351,34 +351,40 @@ LANGUAGE LANG_PORTUGUESE, SUBLANG_PORTUGUESE
 // Dialog
 //
 
-IDD_KeeperDialog DIALOGEX 0, 0, 571, 311
+IDD_KeeperDialog DIALOGEX 0, 0, 428, 312
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "Dialog"
 FONT 8, "MS Shell Dlg", 400, 0, 0x1
 BEGIN
     LTEXT           "Animal ID:",IDC_STATIC,21,19,35,8
-    EDITTEXT        IDC_EDIT1,62,16,129,14,ES_AUTOHSCROLL
-    EDITTEXT        IDC_AnimalName,48,49,144,15,ES_AUTOHSCROLL | ES_READONLY | ES_WANTRETURN
-    PUSHBUTTON      "Search",IDC_Search1,206,16,50,14
-    LTEXT           "Name:",IDC_STATIC,20,52,23,8
-    LTEXT           "Gender:",IDC_STATIC,20,72,27,8
-    EDITTEXT        IDC_AnimalGender,48,70,53,14,ES_AUTOHSCROLL | ES_READONLY
-    LTEXT           "Birth date:",IDC_STATIC,20,91,35,8
-    EDITTEXT        IDC_AnimalBirth,58,88,78,14,ES_AUTOHSCROLL | ES_READONLY
-    LTEXT           "Origin:",IDC_STATIC,20,110,23,8
-    EDITTEXT        IDC_AnimalOrigin,45,108,79,14,ES_AUTOHSCROLL | ES_READONLY
-    LTEXT           "Wild date:",IDC_STATIC,20,128,35,8
-    EDITTEXT        IDC_AnimalWild,58,125,80,14,ES_AUTOHSCROLL | ES_READONLY
-    EDITTEXT        IDC_ZoneSearch,378,16,79,14,ES_AUTOHSCROLL
-    LTEXT           "Zone ID:",IDC_STATIC,345,19,29,8
-    PUSHBUTTON      "Search",IDC_Search2,466,16,50,14
-    LTEXT           "Results:",IDC_STATIC,345,36,27,8
-    EDITTEXT        IDC_ResultsZone,345,46,213,102,ES_MULTILINE | ES_AUTOHSCROLL | ES_READONLY
-    GROUPBOX        "Results:",IDC_STATIC,14,41,185,106
-    EDITTEXT        IDC_tasks_today,345,167,213,57,ES_MULTILINE | ES_AUTOHSCROLL | ES_READONLY | WS_VSCROLL
-    LTEXT           "Today tasks:",IDC_STATIC,345,158,43,8
-    LTEXT           "History of taks:",IDC_STATIC,345,231,50,8
-    EDITTEXT        IDC_tasks_history,345,240,213,57,ES_MULTILINE | ES_AUTOHSCROLL | ES_READONLY | WS_VSCROLL
+    EDITTEXT        IDC_EDIT1,62,16,60,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_AnimalName,81,49,81,15,ES_AUTOHSCROLL | ES_READONLY | ES_WANTRETURN
+    PUSHBUTTON      "Search",IDC_Search1,129,16,50,14
+    LTEXT           "Name:",IDC_STATIC,56,53,23,8
+    LTEXT           "Gender:",IDC_STATIC,52,73,27,8
+    EDITTEXT        IDC_AnimalGender,81,69,53,14,ES_AUTOHSCROLL | ES_READONLY
+    LTEXT           "Birth date:",IDC_STATIC,44,91,35,8
+    EDITTEXT        IDC_AnimalBirth,81,88,81,14,ES_AUTOHSCROLL | ES_READONLY
+    LTEXT           "Origin:",IDC_STATIC,56,110,23,8
+    EDITTEXT        IDC_AnimalOrigin,81,107,81,14,ES_AUTOHSCROLL | ES_READONLY
+    LTEXT           "Specie:",IDC_STATIC,53,129,26,8
+    EDITTEXT        IDC_AnimalSpecie,81,126,81,14,ES_AUTOHSCROLL | ES_READONLY
+    EDITTEXT        IDC_ZoneSearch,235,16,79,14,ES_AUTOHSCROLL
+    LTEXT           "Zone ID:",IDC_STATIC,202,19,29,8
+    PUSHBUTTON      "Search",IDC_Search2,323,16,50,14
+    LTEXT           "Animals:",IDC_STATIC,202,54,30,8
+    EDITTEXT        IDC_ResultsZone,202,64,213,84,ES_MULTILINE | ES_AUTOHSCROLL | ES_READONLY | WS_VSCROLL
+    GROUPBOX        "Results:",IDC_STATIC,14,41,165,123
+    EDITTEXT        IDC_tasks_today,202,173,213,57,ES_MULTILINE | ES_AUTOHSCROLL | ES_READONLY | WS_VSCROLL
+    LTEXT           "Today and future tasks:",IDC_STATIC,202,164,79,8
+    LTEXT           "History of taks:",IDC_STATIC,202,237,50,8
+    EDITTEXT        IDC_tasks_history,202,246,213,57,ES_MULTILINE | ES_AUTOHSCROLL | ES_READONLY | WS_VSCROLL
+    EDITTEXT        IDC_Result_Biome,235,34,79,14,ES_AUTOHSCROLL | ES_READONLY
+    LTEXT           "Biome:",IDC_STATIC,202,37,24,8
+    GROUPBOX        "Zone search:",IDC_STATIC,194,7,227,145
+    GROUPBOX        "Schedule:",IDC_STATIC,194,156,227,149
+    LTEXT           "Zone:",IDC_STATIC,59,148,20,8
+    EDITTEXT        IDC_AnimalZone,81,145,81,14,ES_AUTOHSCROLL | ES_READONLY
 END
 
 IDD_FormApplyGodfather DIALOGEX 0, 0, 311, 203
@@ -455,18 +461,18 @@ BEGIN
     LISTBOX         IDC_animal_listbox,343,155,78,47,LBS_SORT | LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
 END
 
-IDD_GodfatherDialog DIALOGEX 0, 0, 455, 293
+IDD_GodfatherDialog DIALOGEX 0, 0, 502, 294
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "Dialog"
 FONT 8, "MS Shell Dlg", 400, 0, 0x1
 BEGIN
-    COMBOBOX        IDC_ComboGodanimal,388,7,60,30,CBS_DROPDOWN | CBS_SORT | WS_VSCROLL | WS_TABSTOP
-    LTEXT           "Animal name:",IDC_STATIC,340,9,47,8
+    COMBOBOX        IDC_ComboGodanimal,426,7,60,30,CBS_DROPDOWN | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "Animal name:",IDC_STATIC,377,9,47,8
     LTEXT           "Name:",IDC_STATIC,7,9,23,8
     LTEXT           "Specie:",IDC_STATIC,8,90,26,8
     LTEXT           "Gender:",IDC_STATIC,7,26,27,8
     LTEXT           "Age:",IDC_STATIC,7,41,16,8
-    LTEXT           "Conservation status:",IDC_STATIC,7,230,68,8
+    LTEXT           "Conservation status:",IDC_STATIC,7,217,68,8
     LTEXT           "Origin:",IDC_STATIC,7,57,23,8
     LTEXT           "Family:",IDC_STATIC,8,169,25,8
     LTEXT           "Phylum:",IDC_STATIC,8,105,27,8
@@ -487,16 +493,18 @@ BEGIN
     EDITTEXT        IDC_Family,43,167,108,14,ES_AUTOHSCROLL | ES_READONLY
     EDITTEXT        IDC_Subfamily,46,183,109,14,ES_AUTOHSCROLL | ES_READONLY
     EDITTEXT        IDC_ScientificName,86,199,140,14,ES_AUTOHSCROLL | ES_READONLY
-    EDITTEXT        IDC_Conservation,79,228,89,14,ES_AUTOHSCROLL | ES_READONLY
-    CONTROL         "",IDC_Animal_Photo,"Static",SS_BITMAP,233,29,215,216
+    EDITTEXT        IDC_Conservation,79,215,89,14,ES_AUTOHSCROLL | ES_READONLY
+    CONTROL         "",IDC_Animal_Photo,"Static",SS_BITMAP,271,29,215,216
     LTEXT           "Start date:",IDC_STATIC,7,258,36,8
     LTEXT           "End date:",IDC_STATIC,7,275,32,8
     EDITTEXT        IDC_StartDate,47,255,67,14,ES_AUTOHSCROLL | ES_READONLY
-    EDITTEXT        IDC_EndDate,42,272,60,14,ES_AUTOHSCROLL | ES_READONLY
+    EDITTEXT        IDC_EndDate,42,273,60,14,ES_AUTOHSCROLL | ES_READONLY
     LTEXT           "Fee:",IDC_STATIC,135,266,16,8
     EDITTEXT        IDC_Fee,153,263,28,14,ES_AUTOHSCROLL | ES_READONLY
     LTEXT           "Euros",IDC_STATIC,183,266,19,8
-    PUSHBUTTON      "Extend one more year!",IDC_BUTTON_Extend,353,263,86,14,WS_DISABLED
+    PUSHBUTTON      "Extend one more year!",IDC_BUTTON_Extend,402,267,86,14,WS_DISABLED
+    LTEXT           "Legend: EX - Extinct; EW - Extinct in wild; CR - Critically endangered;",IDC_STATIC,7,230,228,8
+    LTEXT           " EN - Endangered; VU - Vulnerable; NT - Near threatned; LC - Least concern",IDC_STATIC,7,240,251,8
 END
 
 IDD_ConfirmExtend DIALOGEX 0, 0, 268, 110
@@ -584,9 +592,9 @@ BEGIN
     IDD_KeeperDialog, DIALOG
     BEGIN
         LEFTMARGIN, 7
-        RIGHTMARGIN, 564
+        RIGHTMARGIN, 421
         TOPMARGIN, 7
-        BOTTOMMARGIN, 304
+        BOTTOMMARGIN, 305
     END
 
     IDD_FormApplyGodfather, DIALOG
@@ -624,9 +632,9 @@ BEGIN
     IDD_GodfatherDialog, DIALOG
     BEGIN
         LEFTMARGIN, 7
-        RIGHTMARGIN, 448
+        RIGHTMARGIN, 495
         TOPMARGIN, 7
-        BOTTOMMARGIN, 286
+        BOTTOMMARGIN, 287
     END
 
     IDD_ConfirmExtend, DIALOG

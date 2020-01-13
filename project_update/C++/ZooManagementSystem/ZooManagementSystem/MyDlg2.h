@@ -33,11 +33,13 @@ public:
 	CString animal_gender;
 	CString animal_birth;
 	CString animal_origin;
-	CString animal_wild;
 	CString results_zonesearch;
 	afx_msg void OnBnClickedSearch2();
 	CString zone_ID_search;
 	CString tasks_history;
 	CString today_tasks;
 	CString username;
+	CString result_biome;
+	CString animal_specie;
+	CString animal_zone;
 };

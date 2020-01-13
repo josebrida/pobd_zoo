@@ -41,6 +41,7 @@
 #define IDC_newemployeebegincontract    1008
 #define IDC_AnimalWild                  1009
 #define IDC_newemployeeendcontract      1009
+#define IDC_AnimalSpecie                1009
 #define IDC_ZoneSearch                  1010
 #define IDC_newemployeephone            1010
 #define IDC_Search2                     1011
@@ -155,8 +156,10 @@
 #define IDC_new_day                     1104
 #define IDC_insert_today                1105
 #define IDC_tasks_today                 1106
-#define IDC_EDIT3                       1107
 #define IDC_tasks_history               1107
+#define IDC_Result_Biome                1108
+#define IDC_animal_zone                 1109
+#define IDC_AnimalZone                  1109
 
 // Next default values for new objects
 // 
@@ -164,7 +167,7 @@
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_NEXT_RESOURCE_VALUE        160
 #define _APS_NEXT_COMMAND_VALUE         32771
-#define _APS_NEXT_CONTROL_VALUE         1108
+#define _APS_NEXT_CONTROL_VALUE         1110
 #define _APS_NEXT_SYMED_VALUE           101
 #endif
 #endif

@@ -96,7 +96,7 @@ BOOL MyDlg3::OnInitDialog()
 	vector<CString> age_str;
 	vector<CString> fee_str;
 	CString today_date = MyConnection.ReturnCurrentDate();
-	CString str_list = _T("Animal name | Specie | Age (years) | Fee (€/month) \r\n ------ \r\n");
+	CString str_list = _T("Animal name | Specie | Age (years) | Fee (€/year) \r\n ------ \r\n");
 	for (size_t i = 0; i < animal_names.size(); i++) {
 		m_comboAnimal.AddString(animal_names[i]);
 		species_ID = MyConnection.CheckSpecieID(animal_IDs[i]);
