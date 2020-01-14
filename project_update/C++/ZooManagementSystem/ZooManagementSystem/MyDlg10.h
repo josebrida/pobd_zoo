@@ -38,8 +38,15 @@ public:
 	afx_msg void OnCbnSelchangestockdescriptioncombo();
 	CString order_stock_ID;
 	CString order_today_date;
-	CString new_stock_description;
 	CString first_quantity;
 	afx_msg void OnBnClickedNewitemorderbutton();
-
+	CString consumption_histoty;
+	CString consumption_quantity;
+	CString consumption_animal;
+	CComboBox c_combo_consumption;
+	CString v_combo_consumption;
+	CString curr_stock;
+	afx_msg void OnBnClickedConsumptionbutton();
+	afx_msg void OnCbnSelchangeComboConsumption();
+	CString new_stock_description;
 };

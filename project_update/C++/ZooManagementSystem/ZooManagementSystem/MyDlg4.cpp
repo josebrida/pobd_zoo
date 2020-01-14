@@ -18,6 +18,53 @@
 
 IMPLEMENT_DYNAMIC(MyDlg4, CDialogEx)
 
+BOOL MyDlg4::OnInitDialog()
+{
+	CDialogEx::OnInitDialog();
+
+	// Add "About..." menu item to system menu.
+
+	// IDM_ABOUTBOX must be in the system command range.
+	ASSERT((IDM_ABOUTBOX & 0xFFF0) == IDM_ABOUTBOX);
+	ASSERT(IDM_ABOUTBOX < 0xF000);
+
+	CMenu* pSysMenu = GetSystemMenu(FALSE);
+	if (pSysMenu != nullptr)
+	{
+		BOOL bNameValid;
+		CString strAboutMenu;
+		bNameValid = strAboutMenu.LoadString(IDS_ABOUTBOX);
+		ASSERT(bNameValid);
+		if (!strAboutMenu.IsEmpty())
+		{
+			pSysMenu->AppendMenu(MF_SEPARATOR);
+			pSysMenu->AppendMenu(MF_STRING, IDM_ABOUTBOX, strAboutMenu);
+		}
+	}
+
+	// Set the icon for this dialog.  The framework does this automatically
+	//  when the application's main window is not a dialog
+	SetIcon(m_hIcon, TRUE);			// Set big icon
+	SetIcon(m_hIcon, FALSE);		// Set small icon
+
+	// TODO: Add extra initialization here
+	myconnectorclassDB MyConnection;
+	MyConnection.connect();
+	vector<CString> MedicineUserID = MyConnection.CheckResponsibleMEDICINEID();
+	vector<CString> FoodUserID = MyConnection.CheckResponsibleFOODID();
+
+	if (std::find(FoodUserID.begin(), FoodUserID.end(), username_2) != FoodUserID.end()) {
+		FoodUser = TRUE;
+		GetDlgItem(IDC_OrderButton)->EnableWindow(true);
+	}
+	else if (std::find(MedicineUserID.begin(), MedicineUserID.end(), username_2) != MedicineUserID.end()) {
+		MedicineUser = TRUE;
+		GetDlgItem(IDC_OrderButton)->EnableWindow(true);
+	}
+
+	return TRUE;  // return TRUE  unless you set the focus to a control
+}
+
 MyDlg4::MyDlg4(CWnd* pParent /*=nullptr*/)
 	: CDialogEx(IDD_ManagerDialog, pParent)
 {
@@ -77,12 +124,12 @@ void MyDlg4::OnBnClickedOrderbutton()
 	vector<CString> MedicineUserID = MyConnection.CheckResponsibleMEDICINEID();
 	vector<CString> FoodUserID = MyConnection.CheckResponsibleFOODID();
 
-	if (std::find(FoodUserID.begin(), FoodUserID.end(), username_2) != FoodUserID.end()) {
+	if (FoodUser) {
 		MyDlg10 dlg;
 		dlg.userID_confirm = username_2;
 		dlg.DoModal();
 	}
-	else {
+	else if (MedicineUser) {
 		MyDlg11 dlg;
 		dlg.userID_confirm = username_2;
 		dlg.DoModal();

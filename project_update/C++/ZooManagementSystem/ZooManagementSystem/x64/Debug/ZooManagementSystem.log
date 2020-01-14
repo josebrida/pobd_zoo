@@ -13,6 +13,7 @@
   MyDlg8.cpp
   ZooManagementSystem.cpp
   ZooManagementSystemDlg.cpp
+  myconnectorclassDB.cpp
   Generating Code...
 myconnectorclassDB.obj : error LNK2019: unresolved external symbol mysql_init referenced in function "public: void __cdecl myconnectorclassDB::connect(void)" (?connect@myconnectorclassDB@@QEAAXXZ)
 myconnectorclassDB.obj : error LNK2019: unresolved external symbol mysql_real_connect referenced in function "public: void __cdecl myconnectorclassDB::connect(void)" (?connect@myconnectorclassDB@@QEAAXXZ)

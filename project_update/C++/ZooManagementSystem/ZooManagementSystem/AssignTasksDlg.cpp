@@ -58,6 +58,7 @@ BEGIN_MESSAGE_MAP(AssignTasksDlg, CDialogEx)
 	ON_CBN_SELCHANGE(IDC_COMBO_keeper, &AssignTasksDlg::OnCbnSelchangeCombokeeper)
 	ON_CBN_SELCHANGE(IDC_COMBO_tasks, &AssignTasksDlg::OnCbnSelchangeCombotasks)
 	ON_CBN_SELCHANGE(IDC_COMBO_zones, &AssignTasksDlg::OnCbnSelchangeCombozones)
+	ON_BN_CLICKED(IDC_InsertToday, &AssignTasksDlg::OnBnClickedInserttoday)
 END_MESSAGE_MAP()
 
 
@@ -106,10 +107,10 @@ BOOL AssignTasksDlg::OnInitDialog()
 	c_combo_task_type.AddString(Exceptional);
 
 
-	for (size_t i = 0; i < MyConnection.CheckZoneName().size(); i++)
+	for (size_t i = 0; i < MyConnection.CheckZoneID().size(); i++)
 	{
-		CString zone_names = MyConnection.CheckZoneName()[i];
-		c_combo_zones.AddString(zone_names);
+		CString zone_IDs = MyConnection.CheckZoneID()[i];
+		c_combo_zones.AddString(zone_IDs);
 	}
 
 
@@ -151,6 +152,16 @@ void AssignTasksDlg::OnBnClickedAddtaskButton()
 		CString msg;
 		msg.Format(_T("Task added!"));
 		AfxMessageBox(msg);
+
+		GetDlgItem(IDC_COMBO_task_type)->SetWindowText(_T(""));
+		GetDlgItem(IDC_Task_to_add)->SetWindowText(_T(""));
+
+		c_combo_tasks.ResetContent();
+		for (size_t i = 0; i < MyConnection.CheckTasksNames().size(); i++)
+		{
+			CString tasks_names = MyConnection.CheckTasksNames()[i];
+			c_combo_tasks.AddString(tasks_names);
+		}
 	}
 	else {
 		CString msg;
@@ -166,9 +177,6 @@ void AssignTasksDlg::OnCbnSelchangeCombotasktype()
 	// TODO: Add your control notification handler code here
 	c_combo_task_type.GetLBText(c_combo_task_type.GetCurSel(), v_combo_task_type);
 }
-
-
-
 
 
 void AssignTasksDlg::OnCbnSelchangeCombokeeper()
@@ -204,7 +212,6 @@ void AssignTasksDlg::OnBnClickedAssigntaskButton()
 	MyConnection.connect();
 
 	CString task_ID = MyConnection.CheckTaskID(v_combo_tasks);
-	CString zones_ID = MyConnection.SelectZoneID(v_combo_zones);
 	CString keeper_ID = MyConnection.CheckUserID(v_combo_keeper);
 
 	bool is_year;
@@ -248,20 +255,45 @@ void AssignTasksDlg::OnBnClickedAssigntaskButton()
 	}
 
 	CString new_task_date = new_task_year + _T("-") + new_task_month + _T("-") + new_task_day;
+	CString today = MyConnection.ReturnCurrentDate();
+	CString today_year = today.Left(4);
+	CString aux = today.Mid(5);
+	CString today_month = aux.Left(2);
+	CString today_day = aux.Mid(3);
+	int diff = _ttoi(MyConnection.CalculateDateDiff(today, new_task_date));
+	if (!new_task_year.IsEmpty() && !new_task_month.IsEmpty() && !new_task_day.IsEmpty() && is_year && is_month && is_day && !v_combo_keeper.IsEmpty() && !v_combo_tasks.IsEmpty() && !v_combo_zones.IsEmpty()) {
+		if (diff <= 0) {
+			MyConnection.AssignTask(task_ID, v_combo_zones, new_task_date, keeper_ID);
 
-	if (!new_task_year.IsEmpty() && !new_task_month.IsEmpty() && !new_task_day.IsEmpty() && is_year && is_month && is_day 
-		&& !v_combo_keeper.IsEmpty() && !v_combo_tasks.IsEmpty() && !v_combo_zones.IsEmpty()  ) {
-		
-		MyConnection.AssignTask(task_ID, zones_ID, new_task_date, keeper_ID);
+			new_task_msg.Format(_T("Task assigned!"));
+			AfxMessageBox(new_task_msg);
 
-		new_task_msg.Format(_T("Task assigned!"));
-		AfxMessageBox(new_task_msg);
-
+			GetDlgItem(IDC_COMBO_keeper)->SetWindowText(_T(""));
+			GetDlgItem(IDC_COMBO_tasks)->SetWindowText(_T(""));
+			GetDlgItem(IDC_COMBO_zones)->SetWindowText(_T(""));
+			GetDlgItem(IDC_EditTaskYear)->SetWindowText(_T(""));
+			GetDlgItem(IDC_EditTaskMonth)->SetWindowText(_T(""));
+			GetDlgItem(IDC_EditTaskDay)->SetWindowText(_T(""));
+		}
+		else if (diff > 0) {
+			new_task_msg.Format(_T("Error! Select today's or future date."));
+			AfxMessageBox(new_task_msg);
+		}
 	}
 	else {
 		new_task_msg.Format(_T("Error! Please check that all fields are filled correctly."));
 		AfxMessageBox(new_task_msg);
 	}
+}
 
-	
+void AssignTasksDlg::OnBnClickedInserttoday()
+{
+	myconnectorclassDB MyConnection;
+	MyConnection.connect();
+
+	CString today = MyConnection.ReturnCurrentDate();
+	GetDlgItem(IDC_EditTaskYear)->SetWindowText(today.Left(4));
+	CString aux = today.Mid(5);
+	GetDlgItem(IDC_EditTaskMonth)->SetWindowText(aux.Left(2));
+	GetDlgItem(IDC_EditTaskDay)->SetWindowText(aux.Mid(3));
 }

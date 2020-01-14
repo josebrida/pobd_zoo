@@ -44,4 +44,5 @@ public:
 	afx_msg void OnCbnSelchangeCombokeeper();
 	afx_msg void OnCbnSelchangeCombotasks();
 	afx_msg void OnCbnSelchangeCombozones();
+	afx_msg void OnBnClickedInserttoday();
 };

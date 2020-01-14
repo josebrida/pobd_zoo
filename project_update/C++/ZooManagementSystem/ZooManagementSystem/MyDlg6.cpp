@@ -85,28 +85,32 @@ BOOL MyDlg6::OnInitDialog()
 	vector<CString> animal_IDs = MyConnection.CheckAllAnimalIDs();
 
 
-	CString str_list = _T("Animal ID | Animal Name| Gender | Birth Date | Wild Date | Origin \r\n ------ \r\n");
+	CString str_list = _T("Animal ID | Animal Name| Gender | Birth Date | Wild Date | Origin | Zone | Specie \r\n ------ \r\n");
 
 	for (size_t i = 0; i < animal_IDs.size(); i++) {
-
+		CString wild_date = MyConnection.CheckAnimalWildDate(animal_IDs[i]);
+		if (wild_date.IsEmpty()) {
+			wild_date = _T("None");
+		}
+		CString zone_ID = MyConnection.SimpleQuery(_T("zones_ID"), _T("lives"), _T("animal_ID"), animal_IDs[i]);
+		if (zone_ID.IsEmpty()) {
+			zone_ID = _T("None");
+		}
 		str_list =  str_list + animal_IDs[i]  +_T(" | ") + MyConnection.CheckAnimalName(animal_IDs[i]) + _T(" | ") + MyConnection.CheckAnimalGender(animal_IDs[i]) +
-				    _T(" | ") + MyConnection.CheckAnimalBirthDate(animal_IDs[i]) + _T(" | ") + MyConnection.CheckAnimalWildDate(animal_IDs[i]) + 
-					_T(" | ") + MyConnection.CheckAnimalOrigin(animal_IDs[i]) + _T("\r\n");
+				    _T(" | ") + MyConnection.CheckAnimalBirthDate(animal_IDs[i]) + _T(" | ") + wild_date + 
+					_T(" | ") + MyConnection.CheckAnimalOrigin(animal_IDs[i]) + _T(" | ") + zone_ID +
+					_T(" | ") + MyConnection.SimpleQuery(_T("species_name"), _T("species"), _T("species_ID"), MyConnection.SimpleQuery(_T("species_ID"), _T("belongs"), _T("animal_ID"), animal_IDs[i])) + _T("\r\n");
 	}
 	animals_with_species_list = str_list;
 	UpdateData(FALSE);
 
-	for (size_t i = 0; i < animal_IDs.size(); i++)
+	vector<CString> available_animal_IDs = MyConnection.CheckAvailableAnimalIDs();
+
+	for (size_t i = 0; i < available_animal_IDs.size(); i++)
 	{
-		CString animals_names = MyConnection.CheckAnimalName(animal_IDs[i]);
+		CString animals_names = MyConnection.CheckAnimalName(available_animal_IDs[i]);
 		c_listbox_animal.AddString(animals_names);
 	}
-
-
-
-
-
-
 
 	return TRUE;  // return TRUE  unless you set the focus to a control
 }
@@ -116,7 +120,7 @@ void MyDlg6::OnBnClickedAddAnimalButton()
 	// TODO: Add your control notification handler code here
 	AddAnimalDlg dlg;
 	dlg.DoModal();
-
+	EndDialog(0);
 }
 
 
@@ -131,7 +135,11 @@ void MyDlg6::OnBnClickedWilddateButton()
 	myconnectorclassDB MyConnection;
 	MyConnection.connect();
 
-
+	CString today = MyConnection.ReturnCurrentDate();
+	CString today_year = today.Left(4);
+	CString aux = today.Mid(5);
+	CString today_month = aux.Left(2);
+	CString today_day = aux.Mid(3);
 
 	bool is_year;
 	bool is_month;
@@ -176,29 +184,43 @@ void MyDlg6::OnBnClickedWilddateButton()
 	if (!wild_year.IsEmpty() && !wild_month.IsEmpty() && !wild_day.IsEmpty() && is_year && is_month && is_day)
 	{
 		CString wild_date = wild_year + _T("-") + wild_month + _T("-") + wild_day;
-		CString animal_ID;
-		animal_ID = MyConnection.CheckAnimalID(v_listbox_animal);
+		int diff = _ttoi(MyConnection.CalculateDateDiff(today, wild_date));
+		if (diff >= 0) {
+			CString animal_ID;
+			animal_ID = MyConnection.CheckAnimalID(v_listbox_animal);
 
-		MyConnection.GiveWildDate(animal_ID, wild_date);
+			MyConnection.GiveWildDate(animal_ID, wild_date);
 
-		wild_msg.Format(_T("Wild Date given!"));
-		AfxMessageBox(wild_msg);
+			MyConnection.SimpleDelete(_T("lives"), _T("animal_ID = ") + animal_ID);
 
-		UpdateData(FALSE);
+			wild_msg.Format(_T("Wild Date given!"));
+			AfxMessageBox(wild_msg);
 
-		vector<CString> animal_IDs = MyConnection.CheckAllAnimalIDs();
+			vector<CString> animal_IDs = MyConnection.CheckAllAnimalIDs();
 
+			CString str_list = _T("Animal ID | Animal Name| Gender | Birth Date | Wild Date | Origin | Zone | Specie \r\n ------ \r\n");
 
-		CString str_list = _T("Animal ID | Animal Name| Gender | Birth Date | Wild Date | Origin \r\n ------ \r\n");
-
-		for (size_t i = 0; i < animal_IDs.size(); i++) {
-
-			str_list = str_list + animal_IDs[i] + _T(" | ") + MyConnection.CheckAnimalName(animal_IDs[i]) + _T(" | ") + MyConnection.CheckAnimalGender(animal_IDs[i]) +
-				_T(" | ") + MyConnection.CheckAnimalBirthDate(animal_IDs[i]) + _T(" | ") + MyConnection.CheckAnimalWildDate(animal_IDs[i]) +
-				_T(" | ") + MyConnection.CheckAnimalOrigin(animal_IDs[i]) + _T("\r\n");
+			for (size_t i = 0; i < animal_IDs.size(); i++) {
+				CString wild_date = MyConnection.CheckAnimalWildDate(animal_IDs[i]);
+				if (wild_date.IsEmpty()) {
+					wild_date = _T("None");
+				}
+				CString zone_ID = MyConnection.SimpleQuery(_T("zones_ID"), _T("lives"), _T("animal_ID"), animal_IDs[i]);
+				if (zone_ID.IsEmpty()) {
+					zone_ID = _T("None");
+				}
+				str_list = str_list + animal_IDs[i] + _T(" | ") + MyConnection.CheckAnimalName(animal_IDs[i]) + _T(" | ") + MyConnection.CheckAnimalGender(animal_IDs[i]) +
+					_T(" | ") + MyConnection.CheckAnimalBirthDate(animal_IDs[i]) + _T(" | ") + wild_date +
+					_T(" | ") + MyConnection.CheckAnimalOrigin(animal_IDs[i]) + _T(" | ") + zone_ID +
+					_T(" | ") + MyConnection.SimpleQuery(_T("species_name"), _T("species"), _T("species_ID"), MyConnection.SimpleQuery(_T("species_ID"), _T("belongs"), _T("animal_ID"), animal_IDs[i])) + _T("\r\n");
+				animals_with_species_list = str_list;
+				UpdateData(FALSE);
+			}
 		}
-		animals_with_species_list = str_list;
-		UpdateData(FALSE);
+		else {
+			wild_msg.Format(_T("Error! Wild date must be past or today's date."));
+			AfxMessageBox(wild_msg);
+		}
 	}
 	else {
 		wild_msg.Format(_T("Error! Please check that all fields are filled correctly."));

@@ -168,6 +168,9 @@ void DlgVeterinarian::OnCbnSelchangeComboanimal()
 
 	CString str_list = _T("Date | Type | Veterinarian ID | Description | Prescription \r\n ------ \r\n");
 	for (size_t i = 0; i < record_type.size(); i++) {
+		if (prescription[i].IsEmpty()) {
+			prescription[i] = _T("None");
+		}
 		str_list = str_list + date[i] + _T(" | ") + record_type[i] + _T(" | ") + vet_ID[i] + _T(" | ") + description[i] + _T(" | ") + prescription[i] +_T("\r\n");
 	}
 	history_records = str_list;
@@ -215,14 +218,13 @@ void DlgVeterinarian::OnBnClickedAddRecord()
 			vector<int> days_of_month{ 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
 			if (1 <= _ttoi(new_month) && _ttoi(new_month) <= 12) {
 				is_month = TRUE;
-				if (1 <= _ttoi(new_day) && _ttoi(new_day) <= days_of_month[_ttoi(new_day) - 1]) {
+				if (1 <= _ttoi(new_day) && _ttoi(new_day) <= days_of_month[_ttoi(new_month) - 1]) {
 					is_day = TRUE;
 				}
 			}
 		}
 	}
-	CString selected_date = new_year + _T("-") + new_month + _T("-") + new_day;
-	int diff = _ttoi(MyConnection.CalculateDateDiff(today, selected_date));
+	UpdateData(FALSE);
 	if (!new_description.IsEmpty())
 	{
 		if (!record_type.IsEmpty())
@@ -230,6 +232,8 @@ void DlgVeterinarian::OnBnClickedAddRecord()
 			if (is_year) {
 				if (is_month) {
 					if (is_day) {
+						CString selected_date = new_year + _T("-") + new_month + _T("-") + new_day;
+						int diff = _ttoi(MyConnection.CalculateDateDiff(today, selected_date));
 						if (diff >= 0) {
 							CString record_ID;
 							CString new_date = new_year + _T("-") + new_month + _T("-") + new_day;
@@ -249,6 +253,9 @@ void DlgVeterinarian::OnBnClickedAddRecord()
 
 							CString str_list = _T("Date | Type | Veterinarian ID | Description | Prescription \r\n ------ \r\n");
 							for (size_t i = 0; i < record_type.size(); i++) {
+								if (prescription[i].IsEmpty()) {
+									prescription[i] = _T("None");
+								}
 								str_list = str_list + date[i] + _T(" | ") + record_type[i] + _T(" | ") + vet_ID[i] + _T(" | ") + description[i] + _T(" | ") + prescription[i] + _T("\r\n");
 							}
 							history_records = str_list;

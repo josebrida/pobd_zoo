@@ -17,19 +17,18 @@ public:
 #endif
 
 protected:
+	HICON m_hIcon;
+
+	// Generated message map functions
+	virtual BOOL OnInitDialog();
 	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
 
 	DECLARE_MESSAGE_MAP()
 public:
 	CString new_employee_name;
 	CString new_employee_password;
-	CString new_employee_birthdate;
 	CString new_employee_email;
-	BOOL add_employee;
-	afx_msg void OnBnClickedAddemployee();
 	afx_msg void OnBnClickedAddemployeebutton();
-	BOOL eliminate_employee;
-	afx_msg void OnBnClickedEliminateemployee();
 	CString employees_list;
 	CComboBox c_comboemployees;
 	CString v_comboemployees;
@@ -38,8 +37,6 @@ public:
 	afx_msg void OnBnClickedManagerradio();
 	afx_msg void OnBnClickedKeeperradio();
 	afx_msg void OnBnClickedVeterinarianradio();
-	CString new_employee_begincontract;
-	CString new_employee_endcontract;
 	int new_type_employee = 0;
 	CString new_responsability = _T("");
 	afx_msg void OnBnClickedNewmanagertype();
@@ -50,4 +47,13 @@ public:
 	afx_msg void OnBnClickedResponsiblefood();
 	afx_msg void OnBnClickedResponsiblemedicine();
 	afx_msg void OnBnClickedResponsiblenone();
+	CString birth_day;
+	CString begin_day;
+	CString end_day;
+	CString birth_year;
+	CString begin_year;
+	CString end_year;
+	CString birth_month;
+	CString begin_month;
+	CString end_month;
 };

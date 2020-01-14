@@ -71,6 +71,7 @@ public:
 	CString DoubleQuery(CString select, CString from, CString where1, CString wanted1, CString where2, CString wanted2);
 	CString DateDiff(CString date1, CString date2);
 	std::vector<CString> VectorQuery(CString select, CString from, CString where);
+	std::vector<CString> VectorQueryNoWhere(CString select, CString from);
 	void UpdateDouble(CString from, CString what, CString to, CString where1, CString wanted1, CString where2, CString wanted2);
 	std::vector<CString> CheckFOODID();
 	std::vector<CString> CheckMEDICINEID();
@@ -99,8 +100,7 @@ public:
 	void GiveWildDate(CString animal_ID, CString wild_date);
 	std::vector<CString> CheckSpeciesName();
 	CString SelectSpeciesID(CString species_name);
-	CString SelectZoneID(CString biome);
-	std::vector<CString> CheckZoneName();
+	std::vector<CString> CheckZoneID();
 	void NewAnimal(CString animal_ID, CString animal_name, CString animal_gender, CString animal_birthdate, CString wild_date, CString animal_origin, CString Photo, CString specie_ID, CString zones_ID);
 	CString LastAnimalID();
 	void NewTask(CString task_ID, CString task_type, CString task_description);
@@ -112,6 +112,9 @@ public:
 	CString LastID(CString ID, CString from);
 	std::vector<CString>ListQuery(CString select, CString from, CString where, int columns);
 	std::vector<CString>CompleteVectorQuery(CString select, CString from);
+	void myconnectorclassDB::SimpleDelete(CString from, CString where);
+	std::vector<CString> CheckConsumption(CString stock_ID);
+	CString Sum(CString select, CString from, CString where);
 	myconnectorclassDB(void);
 	virtual ~myconnectorclassDB(void);
 };

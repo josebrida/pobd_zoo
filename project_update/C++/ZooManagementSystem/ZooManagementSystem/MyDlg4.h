@@ -17,6 +17,10 @@ public:
 #endif
 
 protected:
+	HICON m_hIcon;
+
+	// Generated message map functions
+	virtual BOOL OnInitDialog();
 	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
 
 	DECLARE_MESSAGE_MAP()
@@ -27,4 +31,6 @@ public:
 	afx_msg void OnBnClickedOrderbutton();
 	CString username_2;
 	afx_msg void OnBnClickedAddAssignTasksButton();
+	bool FoodUser = FALSE;
+	bool MedicineUser = FALSE;
 };

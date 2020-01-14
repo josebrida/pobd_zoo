@@ -34,14 +34,17 @@
 #define IDC_AnimalGender                1006
 #define IDC_newemployeebirthdate        1006
 #define IDC_Stock_Description2          1006
+#define IDC_newemployeebirthday         1006
 #define IDC_AnimalBirth                 1007
 #define IDC_newemployeeemail            1007
 #define IDC_New_AnimalOrigin            1007
 #define IDC_AnimalOrigin                1008
 #define IDC_newemployeebegincontract    1008
+#define IDC_newemployeebegincontractday 1008
 #define IDC_AnimalWild                  1009
 #define IDC_newemployeeendcontract      1009
 #define IDC_AnimalSpecie                1009
+#define IDC_newemployeeendcontractday   1009
 #define IDC_ZoneSearch                  1010
 #define IDC_newemployeephone            1010
 #define IDC_Search2                     1011
@@ -134,6 +137,9 @@
 #define IDC_BUTTON1                     1083
 #define IDC_Add_Assign_Tasks_Button     1083
 #define IDC_ADD_Record                  1083
+#define IDC_InsertToday                 1083
+#define IDC_ConsumptionButton           1083
+#define IDC_RegConsMed                  1083
 #define IDC_a_ID                        1084
 #define IDC_a_gender                    1085
 #define IDC_a_birth                     1086
@@ -161,8 +167,24 @@
 #define IDC_AnimalZone                  1109
 #define IDC_ResponsibleFood             1110
 #define IDC_ResponsibleMedicine         1111
-#define IDC_RADIO3                      1112
 #define IDC_ResponsibleNone             1112
+#define IDC_birth_month                 1113
+#define IDC_begin_month                 1114
+#define IDC_end_month                   1115
+#define IDC_birth_year                  1116
+#define IDC_begin_year                  1117
+#define IDC_end_year                    1118
+#define IDC_CurrentStock                1119
+#define IDC_food_consumption            1120
+#define IDC_ConsumptionQuantity         1121
+#define IDC_COMBO_Consumption           1122
+#define IDC_AnimalConsumption           1123
+#define IDC_CurrStockMedicine           1124
+#define IDC_HistoryStockMed             1125
+#define IDC_Combo_Consumption_med       1127
+#define IDC_Consumed_Quant_med          1128
+#define IDC_EDIT4                       1129
+#define IDC_Consume_Animal_med          1129
 
 // Next default values for new objects
 // 
@@ -170,7 +192,7 @@
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_NEXT_RESOURCE_VALUE        160
 #define _APS_NEXT_COMMAND_VALUE         32771
-#define _APS_NEXT_CONTROL_VALUE         1113
+#define _APS_NEXT_CONTROL_VALUE         1130
 #define _APS_NEXT_SYMED_VALUE           101
 #endif
 #endif

@@ -10,6 +10,7 @@
 #include <vector>
 #include <algorithm>
 #include <cstring>
+#include "MyDlg6.h"
 using namespace std;
 // AddAnimalDlg dialog
 
@@ -109,10 +110,10 @@ BOOL AddAnimalDlg::OnInitDialog()
 		c_combo_species.AddString(species_names);
 	}
 
-	for (size_t i = 0; i < MyConnection.CheckZoneName().size(); i++)
+	for (size_t i = 0; i < MyConnection.CheckZoneID().size(); i++)
 	{
-		CString zone_names = MyConnection.CheckZoneName()[i];
-		c_combo_zone.AddString(zone_names);
+		CString zones_IDs = MyConnection.CheckZoneID()[i];
+		c_combo_zone.AddString(zones_IDs);
 	}
 
 
@@ -175,9 +176,7 @@ void AddAnimalDlg::OnBnClickedAddAnimalButton()
 		is_year = FALSE;
 	}
 
-
 	CString new_speciesID = MyConnection.SelectSpeciesID(v_combo_species);
-	CString new_zonesID = MyConnection.SelectZoneID(v_combo_zone);
 
 	CString new_birth_date = new_birth_year + _T("-") + new_birth_month + _T("-") + new_birth_day;
 
@@ -191,57 +190,63 @@ void AddAnimalDlg::OnBnClickedAddAnimalButton()
 		wrong_animal_msg.Format(_T("Error! Name already exists, please choose another one"));
 		AfxMessageBox(wrong_animal_msg);
 	}
+	else if (!new_birth_year.IsEmpty() && !new_birth_month.IsEmpty() && !new_birth_day.IsEmpty() && is_year && is_month && is_day
+		&& !new_animal_name.IsEmpty()  && !new_animal_origin.IsEmpty() && !v_combo_gender.IsEmpty() && !v_combo_species.IsEmpty() && !v_combo_zone.IsEmpty()  )
+			{
+			CString Photo = _T("C:\\Users\\José Brida\\Desktop\\pobd_zoo\\Imagens\\") + new_animal_name + _T(".jpg");
 
-		else if (!new_birth_year.IsEmpty() && !new_birth_month.IsEmpty() && !new_birth_day.IsEmpty() && is_year && is_month && is_day
-			&& !new_animal_name.IsEmpty()  && !new_animal_origin.IsEmpty() && !v_combo_gender.IsEmpty() && !v_combo_species.IsEmpty() && !v_combo_zone.IsEmpty()  )
-			 {
-				CString Photo = _T("C:\\Users\\José Brida\\Desktop\\pobd_zoo\\Imagens\\") + new_animal_name + _T(".jpg");
+			int new_animal_ID = _ttoi(MyConnection.LastAnimalID()) + 1;
+			CString new_animal_ID_str;
+			new_animal_ID_str.Format(_T("%d"), new_animal_ID);
 
-				int new_animal_ID = _ttoi(MyConnection.LastAnimalID()) + 1;
-				CString new_animal_ID_str;
-				new_animal_ID_str.Format(_T("%d"), new_animal_ID);
+			MyConnection.NewAnimal(new_animal_ID_str, new_animal_name, v_combo_gender, new_birth_date, new_wild_date,
+								new_animal_origin, Photo, new_speciesID, v_combo_zone);
 
-				MyConnection.NewAnimal(new_animal_ID_str, new_animal_name, v_combo_gender, new_birth_date, new_wild_date,
-									new_animal_origin, Photo, new_speciesID, new_zonesID);
+			new_birth_msg.Format(_T("Animal added to data base!"));
+			AfxMessageBox(new_birth_msg);
 
-				CFileDialog dlg(TRUE);
+			/*CFileDialog dlg(TRUE);
 
-				CString sPath = _T("C:\\Users\\José Brida\\Desktop\\pobd_zoo\\Imagens\\") + new_animal_name + _T(".jpg");
+			CString sPath = _T("C:\\Users\\José Brida\\Desktop\\pobd_zoo\\Imagens\\") + new_animal_name + _T(".jpg");
 
 
-				CImage img;
-				HRESULT hr = img.Load(sPath);
-				if (FAILED(hr))
-				{
-					CString sErrorMsg;
-					sErrorMsg.Format(_T("Failed to load %s"), sPath);
-					AfxMessageBox(sErrorMsg);
-					return;
-				}
+			CImage img;
+			HRESULT hr = img.Load(sPath);
+			if (FAILED(hr))
+			{
+				CString sErrorMsg;
+				sErrorMsg.Format(_T("Failed to load %s"), sPath);
+				AfxMessageBox(sErrorMsg);
+				return;
+			}
 
-				CRect rect;
-				c_new_animal_photo.GetClientRect(rect);
-				int nWidth = rect.Width();
-				int nHeight = rect.Height();
+			CRect rect;
+			c_new_animal_photo.GetClientRect(rect);
+			int nWidth = rect.Width();
+			int nHeight = rect.Height();
 
-				CDC* pScreenDC = GetDC();
-				CDC MemDC;
-				MemDC.CreateCompatibleDC(pScreenDC);
-				CBitmap bmp;
-				bmp.CreateCompatibleBitmap(pScreenDC, nWidth, nHeight);
+			CDC* pScreenDC = GetDC();
+			CDC MemDC;
+			MemDC.CreateCompatibleDC(pScreenDC);
+			CBitmap bmp;
+			bmp.CreateCompatibleBitmap(pScreenDC, nWidth, nHeight);
 
-				CBitmap* pOldObj = MemDC.SelectObject(&bmp);
-				img.StretchBlt(MemDC.m_hDC, 0, 0, nWidth, nHeight, 0, 0, img.GetWidth(), img.GetHeight(), SRCCOPY);
-				MemDC.SelectObject(pOldObj);
+			CBitmap* pOldObj = MemDC.SelectObject(&bmp);
+			img.StretchBlt(MemDC.m_hDC, 0, 0, nWidth, nHeight, 0, 0, img.GetWidth(), img.GetHeight(), SRCCOPY);
+			MemDC.SelectObject(pOldObj);
 
-				c_new_animal_photo.SetBitmap((HBITMAP)bmp.Detach());
-				ReleaseDC(pScreenDC);
+			c_new_animal_photo.SetBitmap((HBITMAP)bmp.Detach());
+			ReleaseDC(pScreenDC);
+			*/
+			MyDlg6 dlg;
+			dlg.DoModal();
+			EndDialog(0);
 
-			 }
-				else {
-					new_birth_msg.Format(_T("Error! Please check that all fields are filled correctly."));
-					AfxMessageBox(new_birth_msg);
-				}
+			}
+	else {
+		new_birth_msg.Format(_T("Error! Please check that all fields are filled correctly."));
+		AfxMessageBox(new_birth_msg);
+	}
 
 
 }

@@ -605,7 +605,7 @@ void myconnectorclassDB::NewKeeper(CString user_ID, CString user_name, CString u
 	//Create a query by combining CStrings
 	Query(query1); // Pass the query. The result will be
 	//stored in the result object.
-	CString query2 = _T("INSERT INTO employee VALUE (") + user_ID + _T(", '") + begin_contract + _T("', '") + end_contract + _T("', '") + phone + _T("');");
+	CString query2 = _T("INSERT INTO employee VALUE (") + user_ID + _T(", '") + begin_contract + _T("', ") + end_contract + _T(", '") + phone + _T("');");
 	//Create a query by combining CStrings
 	Query(query2); // Pass the query. The result will be
 	//stored in the result object.
@@ -622,7 +622,7 @@ void myconnectorclassDB::NewManager(CString user_ID, CString user_name, CString 
 	//Create a query by combining CStrings
 	Query(query1); // Pass the query. The result will be
 	//stored in the result object.
-	CString query2 = _T("INSERT INTO employee VALUE (") + user_ID + _T(", '") + begin_contract + _T("', '") + end_contract + _T("', '") + phone + _T("');");
+	CString query2 = _T("INSERT INTO employee VALUE (") + user_ID + _T(", '") + begin_contract + _T("', ") + end_contract + _T(", '") + phone + _T("');");
 	//Create a query by combining CStrings
 	Query(query2); // Pass the query. The result will be
 	//stored in the result object.
@@ -638,7 +638,7 @@ void myconnectorclassDB::NewVeterinarian(CString user_ID, CString user_name, CSt
 	//Create a query by combining CStrings
 	Query(query1); // Pass the query. The result will be
 	//stored in the result object.
-	CString query2 = _T("INSERT INTO employee VALUE (") + user_ID + _T(", '") + begin_contract + _T("', '") + end_contract + _T("', '") + phone + _T("');");
+	CString query2 = _T("INSERT INTO employee VALUE (") + user_ID + _T(", '") + begin_contract + _T("', ") + end_contract + _T(", '") + phone + _T("');");
 	//Create a query by combining CStrings
 	Query(query2); // Pass the query. The result will be
 	//stored in the result object.
@@ -656,6 +656,14 @@ void myconnectorclassDB::NewVeterinarian(CString user_ID, CString user_name, CSt
 
 void myconnectorclassDB::EliminateManager(CString user_ID)
 {
+	CString query4 = _T("DELETE FROM orders WHERE user_ID = '") + user_ID + ("'");
+	//Create a query by combining CStrings
+	Query(query4); // Pass the query. The result will be
+	//stored in the result object.
+	CString query0 = _T("DELETE FROM responsible WHERE user_ID = '") + user_ID + ("'");
+	//Create a query by combining CStrings
+	Query(query0); // Pass the query. The result will be
+	//stored in the result object.
 	CString query1 = _T("DELETE FROM manager WHERE user_ID = '") + user_ID + ("'");
 	//Create a query by combining CStrings
 	Query(query1); // Pass the query. The result will be
@@ -796,6 +804,23 @@ std::vector<CString> myconnectorclassDB::VectorQuery(CString select, CString fro
 	vector<CString> value; // Create the object to receive the answer to the query
 	CString value_int;
 	CString query = _T("SELECT ") + select + _T(" FROM ") + from + _T(" WHERE ") + where;
+	//Create a query by combining CStrings
+	Query(query); // Pass the query. The result will be
+	//stored in the result object.
+	while ((row = mysql_fetch_row(result)) != NULL)
+		// Method to fetch rows from result
+	{
+		value_int = CPtoUnicode(row[0], 1251);
+		value.push_back(value_int);
+	}
+	return value;
+}
+
+std::vector<CString> myconnectorclassDB::VectorQueryNoWhere(CString select, CString from)
+{
+	vector<CString> value; // Create the object to receive the answer to the query
+	CString value_int;
+	CString query = _T("SELECT ") + select + _T(" FROM ") + from;
 	//Create a query by combining CStrings
 	Query(query); // Pass the query. The result will be
 	//stored in the result object.
@@ -1275,11 +1300,11 @@ CString myconnectorclassDB::SelectSpeciesID(CString species_name)
 }
 
 
-std::vector<CString> myconnectorclassDB::CheckZoneName()
+std::vector<CString> myconnectorclassDB::CheckZoneID()
 {
 	vector<CString> value; // Create the object to receive the answer to the query
 	CString value_int;
-	CString query = _T("SELECT biome FROM zones");
+	CString query = _T("SELECT zones_ID FROM zones");
 	//Create a query by combining CStrings
 	Query(query); // Pass the query. The result will be
 	//stored in the result object.
@@ -1291,24 +1316,6 @@ std::vector<CString> myconnectorclassDB::CheckZoneName()
 	}
 	return value;
 }
-
-
-CString myconnectorclassDB::SelectZoneID(CString biome)
-{
-	CString value; // Create the object to receive the answer to the query
-	CString query = _T("SELECT zones_ID from zones WHERE biome = '") + biome + _T("'");
-	//Create a query by combining CStrings
-	Query(query); // Pass the query. The result will be
-	//stored in the result object.
-	while ((row = mysql_fetch_row(result)) != NULL)
-		// Method to fetch rows from result
-	{
-		value = CPtoUnicode(row[0], 1251);
-	}
-	return value;
-}
-
-
 
 
 void myconnectorclassDB::NewAnimal(CString animal_ID, CString animal_name, CString animal_gender, CString animal_birthdate, CString wild_date, CString animal_origin, CString Photo , CString specie_ID, CString zones_ID)
@@ -1482,6 +1489,49 @@ std::vector<CString> myconnectorclassDB::CompleteVectorQuery(CString select, CSt
 	{
 		value_int = CPtoUnicode(row[0], 1251);
 		value.push_back(value_int);
+	}
+	return value;
+}
+
+void myconnectorclassDB::SimpleDelete(CString from, CString where)
+{
+	CString query = _T("DELETE FROM ") + from + _T(" WHERE ") + where;
+	//Create a query by combining CStrings
+	Query(query); // Pass the query. The result will be
+	//stored in the result object.
+
+}
+
+std::vector<CString> myconnectorclassDB::CheckConsumption(CString stock_ID)
+{
+	vector<CString> value; // Create the object to receive the answer to the query
+	CString value_int;
+	CString query = _T("SELECT animal_ID, stock_ID, consume_date, consume_quantity FROM consume WHERE stock_ID = ") + stock_ID;
+	//Create a query by combining CStrings
+	Query(query); // Pass the query. The result will be
+	//stored in the result object.
+	while ((row = mysql_fetch_row(result)) != NULL)
+		// Method to fetch rows from result
+	{
+		for (int i = 0; i < 4; i++) {
+			value_int = CPtoUnicode(row[i], 1251);
+			value.push_back(value_int);
+		}
+	}
+	return value;
+}
+
+CString myconnectorclassDB::Sum(CString select, CString from, CString where)
+{
+	CString value; // Create the object to receive the answer to the query
+	CString query = _T("SELECT sum(") + select + _T(") FROM ") + from + _T(" WHERE ") + where;
+	//Create a query by combining CStrings
+	Query(query); // Pass the query. The result will be
+	//stored in the result object.
+	while ((row = mysql_fetch_row(result)) != NULL)
+		// Method to fetch rows from result
+	{
+		value = CPtoUnicode(row[0], 1251);
 	}
 	return value;
 }

@@ -33,8 +33,8 @@ public:
 	CString new_order_stock_description;
 	CString new_order_unit_value;
 	CString userID_confirm;
-	CComboBox c_combodescriptions;
-	CString v_combodescriptions;
+	CComboBox c_combodescriptionsmed;
+	CString v_combodescriptionsmed;
 	afx_msg void OnCbnSelchangestockdescriptioncombo();
 	CString order_stock_ID;
 	CString order_today_date;
@@ -42,4 +42,12 @@ public:
 	CString first_quantity;
 	afx_msg void OnBnClickedNewitemorderbutton();
 
+	CString curr_stock_med;
+	CComboBox c_consumption_med;
+	CString v_consumption_med;
+	CString consumend_quant_med;
+	CString consume_animal_med;
+	CString consumption_history_med;
+	afx_msg void OnCbnSelchangeComboConsumptionmed();
+	afx_msg void OnBnClickedRegconsmed();
 };

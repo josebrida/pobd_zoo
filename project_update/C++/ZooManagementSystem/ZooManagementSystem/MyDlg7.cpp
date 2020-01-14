@@ -102,7 +102,6 @@ void MyDlg7::DoDataExchange(CDataExchange* pDX)
 	DDX_Text(pDX, IDC_Conservation, a_status);
 	DDX_Control(pDX, IDC_ComboGodanimal, c_combo_godanimal);
 	DDX_CBString(pDX, IDC_ComboGodanimal, v_combo_godanimal);
-	DDX_Control(pDX, IDC_Animal_Photo, m_AnimalPicture);
 	DDX_Text(pDX, IDC_StartDate, a_startdate);
 	DDX_Text(pDX, IDC_EndDate, a_enddate);
 	DDX_Text(pDX, IDC_Fee, a_fee);
@@ -156,7 +155,7 @@ void MyDlg7::OnCbnSelchangeCombogodanimal()
 	UpdateData(FALSE);
 
 	// Show image.... (https://stackoverflow.com/questions/33366461/display-image-from-browse-button)
-	CFileDialog dlg(TRUE);
+	/*CFileDialog dlg(TRUE);
 	CString sPath = MyConnection.SimpleQuery(_T("photo"), _T("animal"), _T("animal_ID"), godanimal_ID);
 
 	CImage img;
@@ -186,6 +185,7 @@ void MyDlg7::OnCbnSelchangeCombogodanimal()
 
 	m_AnimalPicture.SetBitmap((HBITMAP)bmp.Detach());
 	ReleaseDC(pScreenDC);
+	*/
 }
 
 
