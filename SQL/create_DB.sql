@@ -1,7 +1,7 @@
-DROP DATABASE IF EXISTS zoo_management;
+DROP DATABASE IF EXISTS ist425614;
 
-CREATE DATABASE zoo_management;
-USE zoo_management;
+CREATE DATABASE ist425614;
+USE ist425614;
 
 CREATE TABLE user
 (

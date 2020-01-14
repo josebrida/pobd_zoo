@@ -190,9 +190,16 @@ void DlgVeterinarian::OnBnClickedTypeEmergency()
 void DlgVeterinarian::OnBnClickedAddRecord()
 {
 	UpdateData(TRUE);
-	bool is_year;
-	bool is_month;
-	bool is_day;
+	myconnectorclassDB MyConnection;
+	MyConnection.connect();
+	CString today = MyConnection.ReturnCurrentDate();
+	CString today_year = today.Left(4);
+	CString aux = today.Mid(5);
+	CString today_month = aux.Left(2);
+	CString today_day = aux.Mid(3);
+	bool is_year = FALSE;
+	bool is_month = FALSE;
+	bool is_day = FALSE;
 	if (1900 <= _ttoi(new_year)) {
 		is_year = TRUE;
 		if ((_ttoi(new_year) % 4 == 0 && _ttoi(new_year) % 100 != 0) || _ttoi(new_year) % 400 == 0) {
@@ -202,12 +209,6 @@ void DlgVeterinarian::OnBnClickedAddRecord()
 				if (1 <= _ttoi(new_day) && _ttoi(new_day) <= days_of_month[_ttoi(new_month) - 1]) {
 					is_day = TRUE;
 				}
-				else {
-					is_day = FALSE;
-				}
-			}
-			else {
-				is_month = FALSE;
 			}
 		}
 		else {
@@ -217,18 +218,11 @@ void DlgVeterinarian::OnBnClickedAddRecord()
 				if (1 <= _ttoi(new_day) && _ttoi(new_day) <= days_of_month[_ttoi(new_day) - 1]) {
 					is_day = TRUE;
 				}
-				else {
-					is_day = FALSE;
-				}
-			}
-			else {
-				is_month = FALSE;
 			}
 		}
 	}
-	else {
-		is_year = FALSE;
-	}
+	CString selected_date = new_year + _T("-") + new_month + _T("-") + new_day;
+	int diff = _ttoi(MyConnection.CalculateDateDiff(today, selected_date));
 	if (!new_description.IsEmpty())
 	{
 		if (!record_type.IsEmpty())
@@ -236,40 +230,42 @@ void DlgVeterinarian::OnBnClickedAddRecord()
 			if (is_year) {
 				if (is_month) {
 					if (is_day) {
-						myconnectorclassDB MyConnection;
-						MyConnection.connect();
+						if (diff >= 0) {
+							CString record_ID;
+							CString new_date = new_year + _T("-") + new_month + _T("-") + new_day;
+							record_ID.Format(_T("%d"), _ttoi(MyConnection.LastID(_T("record_ID"), _T("medical_record"))) + 1);
+							CString animal_ID = MyConnection.CheckAnimalID(v_combo_animal);
+							CString insert = _T("'") + record_ID + _T("', '") + username + _T("', '") + animal_ID + _T("', '") + record_type + _T("', '") + new_description + _T("', '") + new_prescription + _T("', '") + new_date + _T("'");
+							MyConnection.SimpleInsert(_T("medical_record"), insert);
 
-						CString record_ID;
-						CString new_date = new_year + _T("-") + new_month + _T("-") + new_day;
-						record_ID.Format(_T("%d"), _ttoi(MyConnection.LastID(_T("record_ID"), _T("medical_record"))) + 1);
-						CString animal_ID = MyConnection.CheckAnimalID(v_combo_animal);
-						CString insert = _T("'") + record_ID + _T("', '") + username + _T("', '") + animal_ID + _T("', '") + record_type + _T("', '") + new_description + _T("', '") + new_prescription + _T("', '") + new_date + _T("'");
-						MyConnection.SimpleInsert(_T("medical_record"), insert);
+							// Rebuild medical record for selected animal
+							CString where = _T("animal_ID = '") + animal_ID + _T("'");
 
-						// Rebuild medical record for selected animal
-						CString where = _T("animal_ID = '") + animal_ID + _T("'");
+							vector<CString> date = MyConnection.VectorQuery(_T("appointment_date"), _T("medical_record"), where);
+							vector<CString> description = MyConnection.VectorQuery(_T("record_description"), _T("medical_record"), where);
+							vector<CString> record_type = MyConnection.VectorQuery(_T("record_type"), _T("medical_record"), where);
+							vector<CString> prescription = MyConnection.VectorQuery(_T("prescription"), _T("medical_record"), where);
+							vector<CString> vet_ID = MyConnection.VectorQuery(_T("user_ID"), _T("medical_record"), where);
 
-						vector<CString> date = MyConnection.VectorQuery(_T("appointment_date"), _T("medical_record"), where);
-						vector<CString> description = MyConnection.VectorQuery(_T("record_description"), _T("medical_record"), where);
-						vector<CString> record_type = MyConnection.VectorQuery(_T("record_type"), _T("medical_record"), where);
-						vector<CString> prescription = MyConnection.VectorQuery(_T("prescription"), _T("medical_record"), where);
-						vector<CString> vet_ID = MyConnection.VectorQuery(_T("user_ID"), _T("medical_record"), where);
+							CString str_list = _T("Date | Type | Veterinarian ID | Description | Prescription \r\n ------ \r\n");
+							for (size_t i = 0; i < record_type.size(); i++) {
+								str_list = str_list + date[i] + _T(" | ") + record_type[i] + _T(" | ") + vet_ID[i] + _T(" | ") + description[i] + _T(" | ") + prescription[i] + _T("\r\n");
+							}
+							history_records = str_list;
 
-						CString str_list = _T("Date | Type | Veterinarian ID | Description | Prescription \r\n ------ \r\n");
-						for (size_t i = 0; i < record_type.size(); i++) {
-							str_list = str_list + date[i] + _T(" | ") + record_type[i] + _T(" | ") + vet_ID[i] + _T(" | ") + description[i] + _T(" | ") + prescription[i] + _T("\r\n");
+							// Clear Edit Controls
+							new_day = _T("");
+							new_month = _T("");
+							new_year = _T("");
+							new_description = _T("");
+							new_prescription = _T("");
+							UpdateData(FALSE);
+
+							record_msg.Format(_T("Record stored!"));
 						}
-						history_records = str_list;
-
-						// Clear Edit Controls
-						new_day = _T("");
-						new_month = _T("");
-						new_year = _T("");
-						new_description = _T("");
-						new_prescription = _T("");
-						UpdateData(FALSE);
-
-						record_msg.Format(_T("Record stored!"));
+						else {
+							record_msg.Format(_T("Can't insert a future date!"));
+						}
 					}
 					else {
 						record_msg.Format(_T("Invalid day!"));

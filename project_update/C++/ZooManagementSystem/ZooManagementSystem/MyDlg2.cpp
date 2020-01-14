@@ -153,14 +153,29 @@ void MyDlg2::OnBnClickedSearch1()
 	UpdateData(TRUE);
 	myconnectorclassDB MyConnection;
 	MyConnection.connect();
-	animal_name = MyConnection.CheckAnimalName(animal_ID_search);
-	animal_gender = MyConnection.CheckAnimalGender(animal_ID_search);
-	animal_birth = MyConnection.CheckAnimalBirthDate(animal_ID_search);
-	animal_origin = MyConnection.CheckAnimalOrigin(animal_ID_search);
-	CString specie_ID = MyConnection.SimpleQuery(_T("species_ID"), _T("belongs"), _T("animal_ID"), animal_ID_search);
-	animal_specie = MyConnection.SimpleQuery(_T("species_name"), _T("species"), _T("species_ID"), specie_ID);
-	animal_zone = MyConnection.SimpleQuery(_T("zones_ID"), _T("lives"), _T("animal_ID"), animal_ID_search);
-	UpdateData(FALSE);
+	vector<CString> available_animal_IDs = MyConnection.CheckAvailableAnimalIDs();
+	if (std::find(available_animal_IDs.begin(), available_animal_IDs.end(), animal_ID_search) != available_animal_IDs.end()) {
+		animal_name = MyConnection.CheckAnimalName(animal_ID_search);
+		animal_gender = MyConnection.CheckAnimalGender(animal_ID_search);
+		animal_birth = MyConnection.CheckAnimalBirthDate(animal_ID_search);
+		animal_origin = MyConnection.CheckAnimalOrigin(animal_ID_search);
+		CString specie_ID = MyConnection.SimpleQuery(_T("species_ID"), _T("belongs"), _T("animal_ID"), animal_ID_search);
+		animal_specie = MyConnection.SimpleQuery(_T("species_name"), _T("species"), _T("species_ID"), specie_ID);
+		animal_zone = MyConnection.SimpleQuery(_T("zones_ID"), _T("lives"), _T("animal_ID"), animal_ID_search);
+		UpdateData(FALSE);
+	}
+	else {
+		GetDlgItem(IDC_AnimalName)->SetWindowText(_T(""));
+		GetDlgItem(IDC_AnimalGender)->SetWindowText(_T(""));
+		GetDlgItem(IDC_AnimalBirth)->SetWindowText(_T(""));
+		GetDlgItem(IDC_AnimalOrigin)->SetWindowText(_T(""));
+		GetDlgItem(IDC_AnimalSpecie)->SetWindowText(_T(""));
+		GetDlgItem(IDC_AnimalZone)->SetWindowText(_T(""));
+
+		CString not_found;
+		not_found.Format(_T("Not found!"));
+		AfxMessageBox(not_found);
+	}
 }
 
 
@@ -169,15 +184,26 @@ void MyDlg2::OnBnClickedSearch2()
 	UpdateData(TRUE);
 	myconnectorclassDB MyConnection;
 	MyConnection.connect();
-	result_biome = MyConnection.SimpleQuery(_T("biome"), _T("zones"), _T("zones_ID"), zone_ID_search);
-	vector<CString> animal_IDs = MyConnection.CheckZoneAnimal(zone_ID_search);
-	CString str = _T("Animal ID | Animal name | Specie name \r\n ----- \r\n");
-	for (size_t i = 0; i < animal_IDs.size(); i++) {
-		CString specie_ID = MyConnection.SimpleQuery(_T("species_ID"), _T("belongs"), _T("animal_ID"), animal_IDs[i]);
-		CString specie_name = MyConnection.SimpleQuery(_T("species_name"), _T("species"), _T("species_ID"), specie_ID);
-		CString animal_name = MyConnection.SimpleQuery(_T("animal_name"), _T("animal"), _T("animal_ID"), animal_IDs[i]);
-		str = str + animal_IDs[i] + _T(" | ") + animal_name + _T(" | ") + specie_name + _T("\r\n");
+	vector<CString> zone_IDs = MyConnection.CompleteVectorQuery(_T("zones_ID"), _T("zones"));
+	if (std::find(zone_IDs.begin(), zone_IDs.end(), zone_ID_search) != zone_IDs.end()) {
+		result_biome = MyConnection.SimpleQuery(_T("biome"), _T("zones"), _T("zones_ID"), zone_ID_search);
+		vector<CString> animal_IDs = MyConnection.CheckZoneAnimal(zone_ID_search);
+		CString str = _T("Animal ID | Animal name | Specie name \r\n ----- \r\n");
+		for (size_t i = 0; i < animal_IDs.size(); i++) {
+			CString specie_ID = MyConnection.SimpleQuery(_T("species_ID"), _T("belongs"), _T("animal_ID"), animal_IDs[i]);
+			CString specie_name = MyConnection.SimpleQuery(_T("species_name"), _T("species"), _T("species_ID"), specie_ID);
+			CString animal_name = MyConnection.SimpleQuery(_T("animal_name"), _T("animal"), _T("animal_ID"), animal_IDs[i]);
+			str = str + animal_IDs[i] + _T(" | ") + animal_name + _T(" | ") + specie_name + _T("\r\n");
+		}
+		results_zonesearch = str;
+		UpdateData(FALSE);
 	}
-	results_zonesearch = str;
-	UpdateData(FALSE);
+	else {
+		GetDlgItem(IDC_Result_Biome)->SetWindowText(_T(""));
+		GetDlgItem(IDC_ResultsZone)->SetWindowText(_T(""));
+
+		CString not_found;
+		not_found.Format(_T("Not found!"));
+		AfxMessageBox(not_found);
+	}
 }

@@ -41,9 +41,13 @@ public:
 	CString new_employee_begincontract;
 	CString new_employee_endcontract;
 	int new_type_employee = 0;
+	CString new_responsability = _T("");
 	afx_msg void OnBnClickedNewmanagertype();
 	afx_msg void OnBnClickedNewkeepertype();
 	afx_msg void OnBnClickedNewveterinariantype();
 	CString new_employee_phone;
 	afx_msg void OnCbnSelchangeComboemployees();
+	afx_msg void OnBnClickedResponsiblefood();
+	afx_msg void OnBnClickedResponsiblemedicine();
+	afx_msg void OnBnClickedResponsiblenone();
 };

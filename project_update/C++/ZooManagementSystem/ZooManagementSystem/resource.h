@@ -158,8 +158,11 @@
 #define IDC_tasks_today                 1106
 #define IDC_tasks_history               1107
 #define IDC_Result_Biome                1108
-#define IDC_animal_zone                 1109
 #define IDC_AnimalZone                  1109
+#define IDC_ResponsibleFood             1110
+#define IDC_ResponsibleMedicine         1111
+#define IDC_RADIO3                      1112
+#define IDC_ResponsibleNone             1112
 
 // Next default values for new objects
 // 
@@ -167,7 +170,7 @@
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_NEXT_RESOURCE_VALUE        160
 #define _APS_NEXT_COMMAND_VALUE         32771
-#define _APS_NEXT_CONTROL_VALUE         1110
+#define _APS_NEXT_CONTROL_VALUE         1113
 #define _APS_NEXT_SYMED_VALUE           101
 #endif
 #endif

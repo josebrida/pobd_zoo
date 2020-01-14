@@ -118,17 +118,11 @@ BOOL MyDlg11::OnInitDialog()
 	medicine_history_list = str_list;
 	UpdateData(FALSE);
 
-
-
 	for (size_t i = 0; i < MyConnection.MedicineDescriptions().size(); i++)
 	{
 		CString medicinedescriptions = MyConnection.MedicineDescriptions()[i];
 		c_combodescriptions.AddString(medicinedescriptions);
 	}
-
-
-
-
 
 	return TRUE;  // return TRUE  unless you set the focus to a control
 }
@@ -153,9 +147,6 @@ void MyDlg11::OnBnClickedOrderfoodbutton()
 	pending_msg.Format(_T("Ordered"));
 	AfxMessageBox(pending_msg);
 
-
-
-
 	vector<CString> medicine_user_ID = MyConnection.CheckMedicineUserID();
 	vector<CString> medicine_stock_ID = MyConnection.CheckMedicineStockID();
 	vector<CString> medicine_order_date = MyConnection.CheckMedicineOrderDate();
@@ -171,16 +162,6 @@ void MyDlg11::OnBnClickedOrderfoodbutton()
 
 
 }
-
-
-
-
-
-
-
-
-
-
 
 
 void MyDlg11::OnCbnSelchangestockdescriptioncombo()

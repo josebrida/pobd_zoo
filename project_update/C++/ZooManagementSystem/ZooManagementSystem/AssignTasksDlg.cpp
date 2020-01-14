@@ -137,16 +137,26 @@ void AssignTasksDlg::OnBnClickedAddtaskButton()
 {
 	// TODO: Add your control notification handler code here
 	UpdateData(TRUE);
-	CString str;
-	myconnectorclassDB MyConnection;
-	MyConnection.connect();
+	if (!v_combo_task_type.IsEmpty() && !new_task_description.IsEmpty()) {
+		CString str;
+		myconnectorclassDB MyConnection;
+		MyConnection.connect();
 
-	int new_task_ID = _ttoi(MyConnection.LastTaskID()) + 1;
-	CString new_task_ID_str;
-	new_task_ID_str.Format(_T("%d"), new_task_ID);
+		int new_task_ID = _ttoi(MyConnection.LastTaskID()) + 1;
+		CString new_task_ID_str;
+		new_task_ID_str.Format(_T("%d"), new_task_ID);
 
-	MyConnection.NewTask(new_task_ID_str, v_combo_task_type, new_task_description);
+		MyConnection.NewTask(new_task_ID_str, v_combo_task_type, new_task_description);
 
+		CString msg;
+		msg.Format(_T("Task added!"));
+		AfxMessageBox(msg);
+	}
+	else {
+		CString msg;
+		msg.Format(_T("Error! Please check that all fields are filled correctly."));
+		AfxMessageBox(msg);
+	}
 }
 
 

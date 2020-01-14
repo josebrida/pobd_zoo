@@ -65,6 +65,9 @@ BEGIN_MESSAGE_MAP(MyDlg8, CDialogEx)
 	ON_BN_CLICKED(IDC_NewKeeperType, &MyDlg8::OnBnClickedNewkeepertype)
 	ON_BN_CLICKED(IDC_NewVeterinarianType, &MyDlg8::OnBnClickedNewveterinariantype)
 	ON_CBN_SELCHANGE(IDC_COMBOEmployees, &MyDlg8::OnCbnSelchangeComboemployees)
+	ON_BN_CLICKED(IDC_ResponsibleFood, &MyDlg8::OnBnClickedResponsiblefood)
+	ON_BN_CLICKED(IDC_ResponsibleMedicine, &MyDlg8::OnBnClickedResponsiblemedicine)
+	ON_BN_CLICKED(IDC_ResponsibleNone, &MyDlg8::OnBnClickedResponsiblenone)
 END_MESSAGE_MAP()
 
 
@@ -105,6 +108,9 @@ void MyDlg8::OnBnClickedAddemployee()
 		GetDlgItem(IDC_NewManagerType)->EnableWindow(false);
 		GetDlgItem(IDC_NewKeeperType)->EnableWindow(false);
 		GetDlgItem(IDC_NewVeterinarianType)->EnableWindow(false);
+		GetDlgItem(IDC_ResponsibleMedicine)->EnableWindow(false);
+		GetDlgItem(IDC_ResponsibleFood)->EnableWindow(false);
+		GetDlgItem(IDC_ResponsibleNone)->EnableWindow(false);
 
 	}
 }
@@ -121,6 +127,13 @@ void MyDlg8::OnBnClickedAddemployeebutton()
 		CString new_apply_ID_str;
 		new_apply_ID_str.Format(_T("%d"), new_apply_ID);
 		MyConnection.NewManager(new_apply_ID_str, new_employee_name, new_employee_email, new_employee_birthdate, new_employee_password, new_employee_begincontract, new_employee_endcontract, new_employee_phone);
+		if (new_responsability != _T("None")) {
+			vector<CString> stock_IDs = MyConnection.VectorQuery(_T("stock_ID"), _T("stock"), _T("stock_type = '") + new_responsability + _T("'"));
+			for (int i = 0; i < stock_IDs.size(); i++) {
+				CString insert = _T("'") + new_apply_ID_str + _T("', '") + stock_IDs[i] + _T("'");
+				MyConnection.SimpleInsert(_T("responsible"), insert);
+			}
+		}
 	}
 	else if (new_type_employee == 2) {
 		myconnectorclassDB MyConnection;
@@ -141,16 +154,6 @@ void MyDlg8::OnBnClickedAddemployeebutton()
 
 	}
 }
-
-
-
-
-
-
-
-
-
-
 
 void MyDlg8::OnBnClickedEliminateemployee()
 {
@@ -307,6 +310,9 @@ void MyDlg8::OnBnClickedNewmanagertype()
 {
 	// TODO: Add your control notification handler code here
 	new_type_employee = 1;
+	GetDlgItem(IDC_ResponsibleMedicine)->EnableWindow(true);
+	GetDlgItem(IDC_ResponsibleFood)->EnableWindow(true);
+	GetDlgItem(IDC_ResponsibleNone)->EnableWindow(true);
 }
 
 
@@ -314,6 +320,9 @@ void MyDlg8::OnBnClickedNewkeepertype()
 {
 	// TODO: Add your control notification handler code here
 	new_type_employee = 2;
+	GetDlgItem(IDC_ResponsibleMedicine)->EnableWindow(false);
+	GetDlgItem(IDC_ResponsibleFood)->EnableWindow(false);
+	GetDlgItem(IDC_ResponsibleNone)->EnableWindow(false);
 }
 
 
@@ -321,4 +330,27 @@ void MyDlg8::OnBnClickedNewveterinariantype()
 {
 	// TODO: Add your control notification handler code here
 	new_type_employee = 3;
+	GetDlgItem(IDC_ResponsibleMedicine)->EnableWindow(false);
+	GetDlgItem(IDC_ResponsibleFood)->EnableWindow(false);
+	GetDlgItem(IDC_ResponsibleNone)->EnableWindow(false);
+}
+
+void MyDlg8::OnBnClickedResponsiblefood()
+{
+	// TODO: Add your control notification handler code here
+	new_responsability = _T("Food");
+}
+
+
+void MyDlg8::OnBnClickedResponsiblemedicine()
+{
+	// TODO: Add your control notification handler code here
+	new_responsability = _T("Medicine");
+}
+
+
+void MyDlg8::OnBnClickedResponsiblenone()
+{
+	// TODO: Add your control notification handler code here
+	new_responsability = _T("None");
 }

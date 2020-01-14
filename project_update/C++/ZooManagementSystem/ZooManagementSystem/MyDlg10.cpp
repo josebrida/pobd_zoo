@@ -176,16 +176,6 @@ void MyDlg10::OnBnClickedOrderfoodbutton()
 }
 
 
-
-
-
-
-
-
-
-
-
-
 void MyDlg10::OnCbnSelchangestockdescriptioncombo()
 {
 	// TODO: Add your control notification handler code here

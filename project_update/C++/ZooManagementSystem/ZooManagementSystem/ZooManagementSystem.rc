@@ -71,25 +71,29 @@ BEGIN
     EDITTEXT        IDC_newemployeepassword,71,93,92,12,ES_AUTOHSCROLL | WS_DISABLED
     EDITTEXT        IDC_newemployeebirthdate,71,108,92,12,ES_AUTOHSCROLL | WS_DISABLED
     EDITTEXT        IDC_newemployeeemail,71,124,92,12,ES_AUTOHSCROLL | WS_DISABLED
-    PUSHBUTTON      "ADD",IDC_ADDEmployeeButton,197,151,50,14,WS_DISABLED
-    LTEXT           "List of Employees:",-1,303,60,59,8
+    PUSHBUTTON      "ADD",IDC_ADDEmployeeButton,197,175,50,14,WS_DISABLED
+    LTEXT           "List of Employees:",IDC_STATIC,303,60,59,8
     EDITTEXT        IDC_EmployeesList,302,73,91,117,ES_MULTILINE | ES_AUTOHSCROLL | ES_READONLY | WS_DISABLED | WS_VSCROLL
     PUSHBUTTON      "Eliminate",IDC_EliminateEmployeeButton,420,153,50,14,WS_DISABLED
     COMBOBOX        IDC_COMBOEmployees,405,115,80,30,CBS_DROPDOWN | CBS_SORT | WS_DISABLED | WS_VSCROLL | WS_TABSTOP
     CONTROL         "Manager",IDC_ManagerRadio,"Button",BS_AUTORADIOBUTTON | WS_DISABLED,419,68,44,10
     CONTROL         "Keeper",IDC_KeeperRadio,"Button",BS_AUTORADIOBUTTON | WS_DISABLED,419,82,39,10
     CONTROL         "Veterinarian",IDC_VeterinarianRadio,"Button",BS_AUTORADIOBUTTON | WS_DISABLED,419,94,55,10
-    GROUPBOX        "Select Employee Type",-1,406,57,78,53
-    GROUPBOX        "Select Employee Type",-1,168,66,91,67
+    GROUPBOX        "Select Employee Type",IDC_STATIC,406,57,78,53
+    GROUPBOX        "Select Employee Type",IDC_STATIC,168,66,91,51
     LTEXT           "Begin Contract",1039,18,141,48,8
     LTEXT           "End Contract",1045,17,156,43,8
     EDITTEXT        IDC_newemployeebegincontract,72,139,92,12,ES_AUTOHSCROLL | WS_DISABLED
     EDITTEXT        IDC_newemployeeendcontract,72,154,92,12,ES_AUTOHSCROLL | WS_DISABLED
-    CONTROL         "Manager",IDC_NewManagerType,"Button",BS_AUTORADIOBUTTON | WS_DISABLED,189,78,60,10
-    CONTROL         "Keeper",IDC_NewKeeperType,"Button",BS_AUTORADIOBUTTON | WS_DISABLED,189,95,60,10
-    CONTROL         "Veterinarian",IDC_NewVeterinarianType,"Button",BS_AUTORADIOBUTTON | WS_DISABLED,189,110,60,10
+    CONTROL         "Manager",IDC_NewManagerType,"Button",BS_AUTORADIOBUTTON | WS_DISABLED,183,103,60,10
+    CONTROL         "Keeper",IDC_NewKeeperType,"Button",BS_AUTORADIOBUTTON | WS_DISABLED,183,75,60,10
+    CONTROL         "Veterinarian",IDC_NewVeterinarianType,"Button",BS_AUTORADIOBUTTON | WS_DISABLED,183,89,60,10
     EDITTEXT        IDC_newemployeephone,72,170,92,12,ES_AUTOHSCROLL | WS_DISABLED
     LTEXT           "Phone",1049,15,172,21,8
+    CONTROL         "Food",IDC_ResponsibleFood,"Button",BS_AUTORADIOBUTTON | WS_DISABLED,183,131,32,10
+    CONTROL         "Medicine",IDC_ResponsibleMedicine,"Button",BS_AUTORADIOBUTTON | WS_DISABLED,183,143,45,10
+    GROUPBOX        "Responsible for:",IDC_STATIC,168,120,91,48
+    CONTROL         "None",IDC_ResponsibleNone,"Button",BS_AUTORADIOBUTTON | WS_DISABLED,183,155,33,10
 END
 
 IDD_FoodDialog DIALOGEX 0, 0, 619, 202
