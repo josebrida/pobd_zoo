@@ -20,6 +20,7 @@
 #define IDD_MedicineDialog              152
 #define IDD_AddAnimalDialog             154
 #define IDD_Assign_Tasks                158
+#define IDD_NewGodAnimal                160
 #define IDC_Username                    1000
 #define IDC_Password                    1001
 #define IDC_BUTTONLogin                 1002
@@ -67,6 +68,7 @@
 #define IDC_stock_description_combo     1020
 #define IDC_COMBO_Gender                1020
 #define IDC_COMBO_task_type             1020
+#define IDC_SelectNewGodAnimal          1020
 #define IDC_ManageGodfathers            1021
 #define IDC_COMBO_Species               1021
 #define IDC_LISTPENDING                 1022
@@ -140,6 +142,8 @@
 #define IDC_InsertToday                 1083
 #define IDC_ConsumptionButton           1083
 #define IDC_RegConsMed                  1083
+#define IDC_BUTTON_NewGodAnimal         1083
+#define IDC_ButtonSubmitRequest         1083
 #define IDC_a_ID                        1084
 #define IDC_a_gender                    1085
 #define IDC_a_birth                     1086
@@ -183,16 +187,19 @@
 #define IDC_HistoryStockMed             1125
 #define IDC_Combo_Consumption_med       1127
 #define IDC_Consumed_Quant_med          1128
-#define IDC_EDIT4                       1129
 #define IDC_Consume_Animal_med          1129
+#define IDC_OrderMedicineButton         1130
+#define IDC_SelectedSpecie              1131
+#define IDC_EDIT2                       1132
+#define IDC_SelectedFee                 1132
 
 // Next default values for new objects
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
-#define _APS_NEXT_RESOURCE_VALUE        160
+#define _APS_NEXT_RESOURCE_VALUE        162
 #define _APS_NEXT_COMMAND_VALUE         32771
-#define _APS_NEXT_CONTROL_VALUE         1130
+#define _APS_NEXT_CONTROL_VALUE         1133
 #define _APS_NEXT_SYMED_VALUE           101
 #endif
 #endif

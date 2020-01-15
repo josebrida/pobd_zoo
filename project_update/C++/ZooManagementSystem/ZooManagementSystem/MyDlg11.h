@@ -50,4 +50,5 @@ public:
 	CString consumption_history_med;
 	afx_msg void OnCbnSelchangeComboConsumptionmed();
 	afx_msg void OnBnClickedRegconsmed();
+	afx_msg void OnBnClickedOrdermedicinebutton();
 };

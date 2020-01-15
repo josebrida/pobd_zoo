@@ -4,6 +4,7 @@
 #include "stdafx.h"
 #include "ZooManagementSystem.h"
 #include "MyDlg7.h"
+#include "NewGodAnimalDlg.h"
 #include "afxdialogex.h"
 #include "ZooManagementSystemDlg.h"
 #include "myconnectorclassDB.h"
@@ -111,6 +112,7 @@ void MyDlg7::DoDataExchange(CDataExchange* pDX)
 BEGIN_MESSAGE_MAP(MyDlg7, CDialogEx)
 	ON_CBN_SELCHANGE(IDC_ComboGodanimal, &MyDlg7::OnCbnSelchangeCombogodanimal)
 	ON_BN_CLICKED(IDC_BUTTON_Extend, &MyDlg7::OnBnClickedButtonExtend)
+	ON_BN_CLICKED(IDC_BUTTON_NewGodAnimal, &MyDlg7::OnBnClickedButtonNewgodanimal)
 END_MESSAGE_MAP()
 
 // MyDlg7 message handlers
@@ -203,4 +205,13 @@ void MyDlg7::OnBnClickedButtonExtend()
 		a_fee = MyConnection.DoubleQuery(_T("fee"), _T("godfather"), _T("user_ID"), username, _T("animal_ID"), MyConnection.CheckAnimalID(v_combo_godanimal));
 		UpdateData(FALSE);
 	}
+}
+
+
+void MyDlg7::OnBnClickedButtonNewgodanimal()
+{
+	// TODO: Add your control notification handler code here
+	NewGodAnimalDlg dlg;
+	dlg.username = username;
+	dlg.DoModal();
 }

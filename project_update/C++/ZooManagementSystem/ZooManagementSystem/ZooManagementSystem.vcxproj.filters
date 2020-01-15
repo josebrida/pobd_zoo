@@ -72,6 +72,9 @@
     <ClInclude Include="AssignTasksDlg.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="NewGodAnimalDlg.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ZooManagementSystem.cpp">
@@ -123,6 +126,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="AssignTasksDlg.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="NewGodAnimalDlg.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

@@ -193,14 +193,12 @@ void AddAnimalDlg::OnBnClickedAddAnimalButton()
 	else if (!new_birth_year.IsEmpty() && !new_birth_month.IsEmpty() && !new_birth_day.IsEmpty() && is_year && is_month && is_day
 		&& !new_animal_name.IsEmpty()  && !new_animal_origin.IsEmpty() && !v_combo_gender.IsEmpty() && !v_combo_species.IsEmpty() && !v_combo_zone.IsEmpty()  )
 			{
-			CString Photo = _T("C:\\Users\\José Brida\\Desktop\\pobd_zoo\\Imagens\\") + new_animal_name + _T(".jpg");
-
 			int new_animal_ID = _ttoi(MyConnection.LastAnimalID()) + 1;
 			CString new_animal_ID_str;
 			new_animal_ID_str.Format(_T("%d"), new_animal_ID);
 
 			MyConnection.NewAnimal(new_animal_ID_str, new_animal_name, v_combo_gender, new_birth_date, new_wild_date,
-								new_animal_origin, Photo, new_speciesID, v_combo_zone);
+								new_animal_origin, new_speciesID, v_combo_zone);
 
 			new_birth_msg.Format(_T("Animal added to data base!"));
 			AfxMessageBox(new_birth_msg);

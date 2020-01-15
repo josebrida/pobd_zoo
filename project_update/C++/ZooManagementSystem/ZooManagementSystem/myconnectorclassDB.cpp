@@ -1318,9 +1318,9 @@ std::vector<CString> myconnectorclassDB::CheckZoneID()
 }
 
 
-void myconnectorclassDB::NewAnimal(CString animal_ID, CString animal_name, CString animal_gender, CString animal_birthdate, CString wild_date, CString animal_origin, CString Photo , CString specie_ID, CString zones_ID)
+void myconnectorclassDB::NewAnimal(CString animal_ID, CString animal_name, CString animal_gender, CString animal_birthdate, CString wild_date, CString animal_origin, CString specie_ID, CString zones_ID)
 {
-	CString query1 = _T("INSERT INTO animal VALUE ('") + animal_ID + _T("', '") + animal_name + _T("', '") + animal_gender + _T("', '") + animal_birthdate + _T("', ") + wild_date + _T(", '") + animal_origin + _T("', '") + Photo + _T("');");
+	CString query1 = _T("INSERT INTO animal VALUE ('") + animal_ID + _T("', '") + animal_name + _T("', '") + animal_gender + _T("', '") + animal_birthdate + _T("', ") + wild_date + _T(", '") + animal_origin + _T("');");
 	//Create a query by combining CStrings
 	Query(query1); // Pass the query. The result will be
 	//stored in the result object.

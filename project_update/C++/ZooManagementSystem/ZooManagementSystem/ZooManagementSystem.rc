@@ -46,11 +46,11 @@ EXSTYLE WS_EX_APPWINDOW
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     EDITTEXT        IDC_Username,62,18,109,14,ES_AUTOHSCROLL
-    EDITTEXT        IDC_Password,62,38,109,14,ES_AUTOHSCROLL
-    LTEXT           "Username:",IDC_STATIC,19,21,37,8
-    LTEXT           "Password:",IDC_STATIC,19,41,35,8
+    EDITTEXT        IDC_Password,62,38,109,14,ES_PASSWORD | ES_AUTOHSCROLL
     PUSHBUTTON      "Login",IDC_BUTTONLogin,183,27,50,14
     PUSHBUTTON      "Apply!!!",IDC_ApplyGodfather,183,60,50,14
+    LTEXT           "Username:",IDC_STATIC,19,21,37,8
+    LTEXT           "Password:",IDC_STATIC,19,41,35,8
     LTEXT           "Apply for godfather ->",IDC_STATIC,105,63,74,8
 END
 
@@ -59,51 +59,51 @@ STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSM
 CAPTION " "
 FONT 8, "MS Shell Dlg", 400, 0, 0x1
 BEGIN
+    EDITTEXT        IDC_newemployeename,85,197,92,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_newemployeepassword,85,214,92,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_newemployeephone,85,229,92,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_newemployeeemail,85,245,92,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_birth_year,79,266,30,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_birth_month,125,266,20,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_newemployeebirthday,157,266,20,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_begin_year,79,281,30,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_begin_month,125,281,20,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_newemployeebegincontractday,157,281,20,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_end_year,79,296,30,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_end_month,125,296,20,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_newemployeeendcontractday,157,296,20,12,ES_AUTOHSCROLL
+    CONTROL         "Keeper",IDC_NewKeeperType,"Button",BS_AUTORADIOBUTTON,197,196,60,10
+    CONTROL         "Veterinarian",IDC_NewVeterinarianType,"Button",BS_AUTORADIOBUTTON,197,210,60,10
+    CONTROL         "Manager",IDC_NewManagerType,"Button",BS_AUTORADIOBUTTON,197,224,60,10
+    CONTROL         "Food",IDC_ResponsibleFood,"Button",BS_AUTORADIOBUTTON | WS_DISABLED,197,252,32,10
+    CONTROL         "Medicine",IDC_ResponsibleMedicine,"Button",BS_AUTORADIOBUTTON | WS_DISABLED,197,264,45,10
+    CONTROL         "None",IDC_ResponsibleNone,"Button",BS_AUTORADIOBUTTON | WS_DISABLED,197,276,33,10
+    PUSHBUTTON      "Add",IDC_ADDEmployeeButton,201,294,50,14
+    CONTROL         "Manager",IDC_ManagerRadio,"Button",BS_AUTORADIOBUTTON,322,216,44,10
+    CONTROL         "Keeper",IDC_KeeperRadio,"Button",BS_AUTORADIOBUTTON,322,229,39,10
+    CONTROL         "Veterinarian",IDC_VeterinarianRadio,"Button",BS_AUTORADIOBUTTON,322,242,55,10
+    COMBOBOX        IDC_COMBOEmployees,316,263,80,30,CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "Eliminate",IDC_EliminateEmployeeButton,332,280,50,14
     GROUPBOX        "Add",IDC_Adicionar,27,172,251,146
     GROUPBOX        "  Eliminate",1033,303,196,107,102
     LTEXT           "Name:",1034,61,198,24,8
     LTEXT           "Password:",1001,49,215,35,8
     LTEXT           "Birth date:",1035,43,268,35,8
     LTEXT           "Email:",1036,63,246,20,8
-    EDITTEXT        IDC_newemployeename,85,197,92,12,ES_AUTOHSCROLL
-    EDITTEXT        IDC_newemployeepassword,85,214,92,12,ES_AUTOHSCROLL
-    EDITTEXT        IDC_newemployeebirthday,157,266,20,12,ES_AUTOHSCROLL
-    EDITTEXT        IDC_newemployeeemail,85,245,92,12,ES_AUTOHSCROLL
-    PUSHBUTTON      "Add",IDC_ADDEmployeeButton,201,294,50,14
     LTEXT           "Employees:",IDC_STATIC,7,4,59,8
     EDITTEXT        IDC_EmployeesList,7,14,410,142,ES_MULTILINE | ES_AUTOHSCROLL | ES_READONLY | WS_VSCROLL
-    PUSHBUTTON      "Eliminate",IDC_EliminateEmployeeButton,332,280,50,14
-    COMBOBOX        IDC_COMBOEmployees,316,263,80,30,CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
-    CONTROL         "Manager",IDC_ManagerRadio,"Button",BS_AUTORADIOBUTTON,322,216,44,10
-    CONTROL         "Keeper",IDC_KeeperRadio,"Button",BS_AUTORADIOBUTTON,322,229,39,10
-    CONTROL         "Veterinarian",IDC_VeterinarianRadio,"Button",BS_AUTORADIOBUTTON,322,242,55,10
     GROUPBOX        "Filter by employee type:",IDC_STATIC,310,205,92,53
     GROUPBOX        "Select Employee Type",IDC_STATIC,182,187,91,51
     LTEXT           "Begin contract:",1039,29,283,50,8
     LTEXT           "End contract:",1045,35,298,44,8
-    EDITTEXT        IDC_newemployeebegincontractday,157,281,20,12,ES_AUTOHSCROLL
-    EDITTEXT        IDC_newemployeeendcontractday,157,296,20,12,ES_AUTOHSCROLL
-    CONTROL         "Manager",IDC_NewManagerType,"Button",BS_AUTORADIOBUTTON,197,224,60,10
-    CONTROL         "Keeper",IDC_NewKeeperType,"Button",BS_AUTORADIOBUTTON,197,196,60,10
-    CONTROL         "Veterinarian",IDC_NewVeterinarianType,"Button",BS_AUTORADIOBUTTON,197,210,60,10
-    EDITTEXT        IDC_newemployeephone,85,229,92,12,ES_AUTOHSCROLL
     LTEXT           "Phone:",1049,61,230,24,8
-    CONTROL         "Food",IDC_ResponsibleFood,"Button",BS_AUTORADIOBUTTON | WS_DISABLED,197,252,32,10
-    CONTROL         "Medicine",IDC_ResponsibleMedicine,"Button",BS_AUTORADIOBUTTON | WS_DISABLED,197,264,45,10
     GROUPBOX        "Responsible for:",IDC_STATIC,182,241,91,48
-    CONTROL         "None",IDC_ResponsibleNone,"Button",BS_AUTORADIOBUTTON | WS_DISABLED,197,276,33,10
     CTEXT           "-",IDC_STATIC,147,268,8,8
     CTEXT           "-",IDC_STATIC,147,298,8,8
     CTEXT           "-",IDC_STATIC,147,282,8,8
-    EDITTEXT        IDC_birth_month,125,266,20,12,ES_AUTOHSCROLL
-    EDITTEXT        IDC_begin_month,125,281,20,12,ES_AUTOHSCROLL
-    EDITTEXT        IDC_end_month,125,296,20,12,ES_AUTOHSCROLL
     CTEXT           "-",IDC_STATIC,113,268,8,8
     CTEXT           "-",IDC_STATIC,113,282,8,8
     CTEXT           "-",IDC_STATIC,113,298,8,8
-    EDITTEXT        IDC_birth_year,79,266,30,12,ES_AUTOHSCROLL
-    EDITTEXT        IDC_begin_year,79,281,30,12,ES_AUTOHSCROLL
-    EDITTEXT        IDC_end_year,79,296,30,12,ES_AUTOHSCROLL
     LTEXT           "(YYYY-MM-DD)",IDC_STATIC,105,310,49,8
 END
 
@@ -146,20 +146,24 @@ STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSM
 CAPTION "Dialog"
 FONT 8, "MS Shell Dlg", 400, 0, 0x1
 BEGIN
-    PUSHBUTTON      "Place order",IDC_OrderFoodButton,308,184,44,14
+    EDITTEXT        IDC_Stock_Description2,305,51,88,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_new_stock_unitvalue,305,67,87,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "New item",IDC_New_item_order_button,305,85,56,14
+    COMBOBOX        IDC_stock_description_combo,319,149,86,30,CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    EDITTEXT        IDC_Order_Quantity,319,164,45,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "Place order",IDC_OrderMedicineButton,308,184,44,14
+    COMBOBOX        IDC_Combo_Consumption_med,331,244,74,30,CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    EDITTEXT        IDC_Consumed_Quant_med,331,258,40,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_Consume_Animal_med,331,274,40,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "Register consumption",IDC_RegConsMed,283,289,84,14
     LTEXT           "Medicine stock",IDC_STATIC,7,7,89,8
     EDITTEXT        IDC_medicine_history_list,7,133,235,85,ES_MULTILINE | ES_AUTOHSCROLL | ES_READONLY | WS_VSCROLL
-    EDITTEXT        IDC_Order_Quantity,319,164,45,14,ES_AUTOHSCROLL
     LTEXT           "Stock description:",1043,256,151,60,8
     LTEXT           "Quantity:",1044,286,167,29,8
-    EDITTEXT        IDC_new_stock_unitvalue,305,67,87,14,ES_AUTOHSCROLL
     LTEXT           "Unit value:",1048,264,71,37,8
-    PUSHBUTTON      "New item",IDC_New_item_order_button,305,85,56,14
-    EDITTEXT        IDC_Stock_Description2,305,51,88,14,ES_AUTOHSCROLL
     LTEXT           "Description:",1045,263,53,41,8
     GROUPBOX        "Create new item:",IDC_STATIC,259,41,142,63
     GROUPBOX        "New order:",IDC_STATIC,250,141,163,66
-    COMBOBOX        IDC_stock_description_combo,319,149,86,30,CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
     LTEXT           "Current stock:",IDC_STATIC,7,19,47,8
     LTEXT           "Orders history:",IDC_STATIC,7,122,50,8
     LTEXT           "Consumption history:",IDC_STATIC,7,222,70,8
@@ -168,40 +172,34 @@ BEGIN
     LTEXT           "Stock description:",IDC_STATIC,268,246,59,8
     LTEXT           "Quantity:",IDC_STATIC,297,261,31,8
     LTEXT           "Animal ID:",IDC_STATIC,292,276,35,8
-    PUSHBUTTON      "Register consumption",IDC_RegConsMed,283,289,84,14
-    COMBOBOX        IDC_Combo_Consumption_med,331,244,74,30,CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
-    EDITTEXT        IDC_Consumed_Quant_med,331,258,40,14,ES_AUTOHSCROLL
-    EDITTEXT        IDC_Consume_Animal_med,331,274,40,14,ES_AUTOHSCROLL
     GROUPBOX        "New consumption:",IDC_STATIC,255,234,155,78
 END
 
-IDD_AddAnimalDialog DIALOGEX 0, 0, 453, 252
+IDD_AddAnimalDialog DIALOGEX 0, 0, 186, 145
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "Dialog"
 FONT 8, "MS Shell Dlg", 400, 0, 0x1
 BEGIN
-    PUSHBUTTON      "Add Animal",IDC_ADD_Animal_Button,26,189,50,14
-    EDITTEXT        IDC_New_AnimalName,76,30,78,14,ES_AUTOHSCROLL
-    EDITTEXT        IDC_New_AnimalOrigin,75,105,76,14,ES_AUTOHSCROLL
-    LTEXT           "Animal Name",IDC_STATIC,23,33,42,8
-    LTEXT           "Birth Date",IDC_STATIC,23,82,33,8
-    LTEXT           "Origin",IDC_STATIC,23,107,20,8
-    LTEXT           "Specie",IDC_STATIC,23,129,22,8
-    LTEXT           "Zone",IDC_STATIC,23,147,17,8
-    LTEXT           "PHOTO:",IDC_STATIC,231,31,27,8
-    LTEXT           "Gender",IDC_STATIC,23,52,24,8
-    CONTROL         "",IDC_New_Animal_Photo,"Static",SS_BLACKFRAME,264,26,20,20
-    COMBOBOX        IDC_COMBO_Gender,76,51,78,30,CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
-    EDITTEXT        IDC_EditBirthYear,76,79,36,14,ES_AUTOHSCROLL
-    LTEXT           "Month:",IDC_STATIC,120,68,24,8
-    LTEXT           "Day:",IDC_STATIC,151,68,16,8
-    EDITTEXT        IDC_EditBirthMonth,119,79,23,14,ES_AUTOHSCROLL
-    EDITTEXT        IDC_EditBirthDay,149,79,22,14,ES_AUTOHSCROLL
-    CTEXT           "-",IDC_STATIC,112,81,8,8
-    CTEXT           "-",IDC_STATIC,143,81,8,8
-    LTEXT           "Year:",IDC_STATIC,77,70,19,8
-    COMBOBOX        IDC_COMBO_Species,75,127,76,30,CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
-    COMBOBOX        IDC_COMBO_Zone,75,147,76,30,CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    EDITTEXT        IDC_New_AnimalName,76,16,78,14,ES_AUTOHSCROLL
+    COMBOBOX        IDC_COMBO_Gender,76,32,78,30,CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    EDITTEXT        IDC_EditBirthYear,76,53,36,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EditBirthMonth,120,53,23,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EditBirthDay,152,53,22,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_New_AnimalOrigin,76,70,76,14,ES_AUTOHSCROLL
+    COMBOBOX        IDC_COMBO_Species,76,87,76,30,CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_COMBO_Zone,76,102,76,30,CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "Add Animal",IDC_ADD_Animal_Button,70,119,50,14
+    LTEXT           "Animal name:",IDC_STATIC,27,19,46,8
+    LTEXT           "Gender:",IDC_STATIC,46,34,27,8
+    LTEXT           "Birth date:",IDC_STATIC,40,56,35,8
+    LTEXT           "Origin:",IDC_STATIC,52,73,23,8
+    LTEXT           "Specie:",IDC_STATIC,50,89,25,8
+    LTEXT           "Zone:",IDC_STATIC,54,104,20,8
+    LTEXT           "Month:",IDC_STATIC,120,45,24,8
+    LTEXT           "Day:",IDC_STATIC,153,45,16,8
+    CTEXT           "-",IDC_STATIC,113,55,8,8
+    CTEXT           "-",IDC_STATIC,144,55,8,8
+    LTEXT           "Year:",IDC_STATIC,77,45,19,8
 END
 
 IDD_Assign_Tasks DIALOGEX 0, 0, 180, 217
@@ -209,28 +207,28 @@ STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSM
 CAPTION "Dialog"
 FONT 8, "MS Shell Dlg", 400, 0, 0x1
 BEGIN
-    GROUPBOX        "Add Tasks",IDC_STATIC,7,130,166,80
+    COMBOBOX        IDC_COMBO_keeper,51,18,95,30,CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_COMBO_tasks,51,38,95,30,CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_COMBO_zones,51,58,95,30,CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    EDITTEXT        IDC_EditTaskYear,51,86,29,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EditTaskMonth,89,86,23,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EditTaskDay,120,86,23,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "Today",IDC_InsertToday,146,86,24,14
+    PUSHBUTTON      "Assign Task",IDC_AssignTask_Button,64,107,50,14
+    COMBOBOX        IDC_COMBO_task_type,42,145,95,30,CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
     EDITTEXT        IDC_Task_to_add,42,167,95,14,ES_AUTOHSCROLL
     PUSHBUTTON      "Add Task",IDC_AddTask_Button,65,190,50,14
-    COMBOBOX        IDC_COMBO_task_type,42,145,95,30,CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    GROUPBOX        "Add Tasks",IDC_STATIC,7,130,166,80
     GROUPBOX        "Assign Task",IDC_STATIC,7,3,166,122
-    COMBOBOX        IDC_COMBO_keeper,51,18,95,30,CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
-    COMBOBOX        IDC_COMBO_zones,51,58,95,30,CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
-    COMBOBOX        IDC_COMBO_tasks,51,38,95,30,CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
     LTEXT           "Keeper:",IDC_STATIC,23,19,27,8
     LTEXT           "Task:",IDC_STATIC,31,39,19,8
     LTEXT           "Zone:",IDC_STATIC,30,59,20,8
-    PUSHBUTTON      "Assign Task",IDC_AssignTask_Button,64,107,50,14
     LTEXT           "Date:",IDC_STATIC,31,89,19,8
-    EDITTEXT        IDC_EditTaskYear,51,86,29,14,ES_AUTOHSCROLL
     LTEXT           "Month:",IDC_STATIC,89,78,24,8
     LTEXT           "Day:",IDC_STATIC,120,78,16,8
-    EDITTEXT        IDC_EditTaskMonth,89,86,23,14,ES_AUTOHSCROLL
-    EDITTEXT        IDC_EditTaskDay,120,86,23,14,ES_AUTOHSCROLL
     CTEXT           "-",IDC_STATIC,81,89,8,8
     CTEXT           "-",IDC_STATIC,112,89,8,8
     LTEXT           "Year:",IDC_STATIC,51,78,19,8
-    PUSHBUTTON      "Today",IDC_InsertToday,146,86,24,14
 END
 
 
@@ -320,9 +318,9 @@ BEGIN
 
     IDD_AddAnimalDialog, DIALOG
     BEGIN
-        RIGHTMARGIN, 449
+        RIGHTMARGIN, 182
         TOPMARGIN, 7
-        BOTTOMMARGIN, 245
+        BOTTOMMARGIN, 138
     END
 
     IDD_Assign_Tasks, DIALOG
@@ -402,10 +400,12 @@ STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSM
 CAPTION "Dialog"
 FONT 8, "MS Shell Dlg", 400, 0, 0x1
 BEGIN
-    LTEXT           "Animal ID:",IDC_STATIC,21,19,35,8
     EDITTEXT        IDC_EDIT1,62,16,60,14,ES_AUTOHSCROLL
-    EDITTEXT        IDC_AnimalName,81,49,81,15,ES_AUTOHSCROLL | ES_READONLY | ES_WANTRETURN
     PUSHBUTTON      "Search",IDC_Search1,129,16,50,14
+    EDITTEXT        IDC_ZoneSearch,235,16,79,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "Search",IDC_Search2,323,16,50,14
+    LTEXT           "Animal ID:",IDC_STATIC,21,19,35,8
+    EDITTEXT        IDC_AnimalName,81,49,81,15,ES_AUTOHSCROLL | ES_READONLY | ES_WANTRETURN
     LTEXT           "Name:",IDC_STATIC,56,53,23,8
     LTEXT           "Gender:",IDC_STATIC,52,73,27,8
     EDITTEXT        IDC_AnimalGender,81,69,53,14,ES_AUTOHSCROLL | ES_READONLY
@@ -415,9 +415,7 @@ BEGIN
     EDITTEXT        IDC_AnimalOrigin,81,107,81,14,ES_AUTOHSCROLL | ES_READONLY
     LTEXT           "Specie:",IDC_STATIC,53,129,26,8
     EDITTEXT        IDC_AnimalSpecie,81,126,81,14,ES_AUTOHSCROLL | ES_READONLY
-    EDITTEXT        IDC_ZoneSearch,235,16,79,14,ES_AUTOHSCROLL
     LTEXT           "Zone ID:",IDC_STATIC,202,19,29,8
-    PUSHBUTTON      "Search",IDC_Search2,323,16,50,14
     LTEXT           "Animals:",IDC_STATIC,202,54,30,8
     EDITTEXT        IDC_ResultsZone,202,64,213,84,ES_MULTILINE | ES_AUTOHSCROLL | ES_READONLY | WS_VSCROLL
     GROUPBOX        "Results:",IDC_STATIC,14,41,165,123
@@ -438,23 +436,23 @@ STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSM
 CAPTION "Dialog"
 FONT 8, "MS Shell Dlg", 400, 0, 0x1
 BEGIN
+    EDITTEXT        IDC_EditName,35,14,255,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EditEmail,35,28,255,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EditBirthYear,9,63,36,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EditBirthMonth,53,63,23,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EditBirthDay,84,63,22,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EditPassword,46,81,109,14,ES_AUTOHSCROLL
+    COMBOBOX        IDC_ComboAnimal,214,72,75,30,CBS_DROPDOWNLIST | CBS_AUTOHSCROLL | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "Apply now!",IDC_ApplyNow,254,182,50,14
     LTEXT           "Name:",IDC_STATIC,9,16,23,8
     LTEXT           "E-mail:",IDC_STATIC,9,30,24,8
     LTEXT           "Password:",IDC_STATIC,9,83,35,8
     LTEXT           "Animal list:",IDC_STATIC,7,98,38,8
     EDITTEXT        IDC_AnimalList,7,107,202,89,ES_MULTILINE | ES_AUTOHSCROLL | ES_READONLY | WS_VSCROLL
-    PUSHBUTTON      "Apply now!",IDC_ApplyNow,254,182,50,14
-    EDITTEXT        IDC_EditName,35,14,255,14,ES_AUTOHSCROLL
-    EDITTEXT        IDC_EditEmail,35,28,255,14,ES_AUTOHSCROLL
-    EDITTEXT        IDC_EditBirthYear,9,63,36,14,ES_AUTOHSCROLL
-    EDITTEXT        IDC_EditPassword,46,81,109,14,ES_AUTOHSCROLL
-    COMBOBOX        IDC_ComboAnimal,214,72,75,30,CBS_DROPDOWNLIST | CBS_AUTOHSCROLL | CBS_SORT | WS_VSCROLL | WS_TABSTOP
     LTEXT           "Animal name:",IDC_STATIC,166,74,47,8
     LTEXT           "Year:",IDC_STATIC,9,54,19,8
     LTEXT           "Month:",IDC_STATIC,53,54,24,8
     LTEXT           "Day:",IDC_STATIC,84,54,16,8
-    EDITTEXT        IDC_EditBirthMonth,53,63,23,14,ES_AUTOHSCROLL
-    EDITTEXT        IDC_EditBirthDay,84,63,22,14,ES_AUTOHSCROLL
     CTEXT           "-",IDC_STATIC,45,67,8,8
     CTEXT           "-",IDC_STATIC,76,67,8,8
     GROUPBOX        "Birth date:",IDC_STATIC,7,45,102,34
@@ -465,9 +463,9 @@ STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSM
 CAPTION "Dialog"
 FONT 8, "MS Shell Dlg", 400, 0, 0x1
 BEGIN
-    PUSHBUTTON      "Manage godfathers",IDC_ManageGodfathers,16,88,105,16
     PUSHBUTTON      "Manage animals",IDC_BUTTONMANAGEANIMALS,16,17,105,14
     PUSHBUTTON      "Manage employees",IDC_ManageEmployees,16,52,105,14
+    PUSHBUTTON      "Manage godfathers",IDC_ManageGodfathers,16,88,105,16
     PUSHBUTTON      "Orders",IDC_OrderButton,16,126,105,14,WS_DISABLED
     PUSHBUTTON      "Add/assign tasks",IDC_Add_Assign_Tasks_Button,16,160,105,14
 END
@@ -477,13 +475,13 @@ STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSM
 CAPTION "Dialog"
 FONT 8, "MS Shell Dlg", 400, 0, 0x1
 BEGIN
-    LTEXT           "List of pending godfathers:",IDC_STATIC,15,15,88,8
-    EDITTEXT        IDC_LISTPENDING,15,25,142,82,ES_MULTILINE | ES_AUTOHSCROLL | ES_READONLY | WS_VSCROLL
     COMBOBOX        IDC_COMBOPENDING,79,118,79,30,CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
-    LTEXT           "Select user name:",IDC_STATIC,15,120,61,8
     CONTROL         "Accept",IDC_RADIOACCEPT,"Button",BS_AUTORADIOBUTTON,39,147,38,10
     CONTROL         "Decline",IDC_RADIODECLINE,"Button",BS_AUTORADIOBUTTON,39,165,39,10
     PUSHBUTTON      "Confirm",IDC_BUTTONCONFIRM,108,151,50,14
+    LTEXT           "List of pending godfathers:",IDC_STATIC,15,15,88,8
+    EDITTEXT        IDC_LISTPENDING,15,25,142,82,ES_MULTILINE | ES_AUTOHSCROLL | ES_READONLY | WS_VSCROLL
+    LTEXT           "Select user name:",IDC_STATIC,15,120,61,8
     GROUPBOX        "",IDC_STATIC,21,136,69,49
 END
 
@@ -492,19 +490,19 @@ STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSM
 CAPTION "Dialog"
 FONT 8, "MS Shell Dlg", 400, 0, 0x1
 BEGIN
-    EDITTEXT        IDC_EDIT1,21,27,489,119,ES_MULTILINE | ES_AUTOHSCROLL | ES_READONLY | WS_VSCROLL
     PUSHBUTTON      "Add Animal",IDC_ADD_Animal_Button,21,165,71,14
     PUSHBUTTON      "Give Wild Date",IDC_WildDate_Button,268,165,61,14
+    LISTBOX         IDC_animal_listbox,343,155,78,47,LBS_SORT | LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
     EDITTEXT        IDC_EditWildYear,431,174,36,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EditWildMonth,475,174,23,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EditWildDay,506,174,22,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT1,21,27,489,119,ES_MULTILINE | ES_AUTOHSCROLL | ES_READONLY | WS_VSCROLL
     LTEXT           "Year:",IDC_STATIC,431,166,19,8
     LTEXT           "Month:",IDC_STATIC,475,166,24,8
     LTEXT           "Day:",IDC_STATIC,506,166,16,8
-    EDITTEXT        IDC_EditWildMonth,475,174,23,14,ES_AUTOHSCROLL
-    EDITTEXT        IDC_EditWildDay,506,174,22,14,ES_AUTOHSCROLL
     CTEXT           "-",IDC_STATIC,467,177,8,8
     CTEXT           "-",IDC_STATIC,498,177,8,8
     GROUPBOX        "Wild date:",IDC_STATIC,429,157,102,34
-    LISTBOX         IDC_animal_listbox,343,155,78,47,LBS_SORT | LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
 END
 
 IDD_GodfatherDialog DIALOGEX 0, 0, 376, 295
@@ -513,6 +511,24 @@ CAPTION "Dialog"
 FONT 8, "MS Shell Dlg", 400, 0, 0x1
 BEGIN
     COMBOBOX        IDC_ComboGodanimal,302,7,60,28,CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "Extend one more year!",IDC_BUTTON_Extend,266,23,86,14,WS_DISABLED
+    PUSHBUTTON      "Apply for new animal!",IDC_BUTTON_NewGodAnimal,266,40,86,14
+    EDITTEXT        IDC_Name,35,7,123,14,ES_AUTOHSCROLL | ES_READONLY
+    EDITTEXT        IDC_Gender,40,23,64,14,ES_AUTOHSCROLL | ES_READONLY
+    EDITTEXT        IDC_Age,27,39,36,14,ES_AUTOHSCROLL | ES_READONLY
+    EDITTEXT        IDC_Origin,31,55,68,14,ES_AUTOHSCROLL | ES_READONLY
+    EDITTEXT        IDC_CommonName,37,87,105,14,ES_AUTOHSCROLL | ES_READONLY
+    EDITTEXT        IDC_Phylum,39,103,110,14,ES_AUTOHSCROLL | ES_READONLY
+    EDITTEXT        IDC_Class,38,119,112,14,ES_AUTOHSCROLL | ES_READONLY
+    EDITTEXT        IDC_Order,38,135,111,14,ES_AUTOHSCROLL | ES_READONLY
+    EDITTEXT        IDC_Suborder,43,151,111,14,ES_AUTOHSCROLL | ES_READONLY
+    EDITTEXT        IDC_Family,43,167,108,14,ES_AUTOHSCROLL | ES_READONLY
+    EDITTEXT        IDC_Subfamily,46,183,109,14,ES_AUTOHSCROLL | ES_READONLY
+    EDITTEXT        IDC_ScientificName,86,199,140,14,ES_AUTOHSCROLL | ES_READONLY
+    EDITTEXT        IDC_Conservation,79,215,89,14,ES_AUTOHSCROLL | ES_READONLY
+    EDITTEXT        IDC_StartDate,47,255,67,14,ES_AUTOHSCROLL | ES_READONLY
+    EDITTEXT        IDC_EndDate,42,274,60,14,ES_AUTOHSCROLL | ES_READONLY
+    EDITTEXT        IDC_Fee,153,263,28,14,ES_AUTOHSCROLL | ES_READONLY
     LTEXT           "Animal name:",IDC_STATIC,253,9,47,8
     LTEXT           "Name:",IDC_STATIC,7,9,23,8
     LTEXT           "Specie:",IDC_STATIC,8,90,26,8
@@ -527,27 +543,10 @@ BEGIN
     LTEXT           "Class:",IDC_STATIC,8,122,21,8
     LTEXT           "Subfamily:",IDC_STATIC,8,184,36,8
     LTEXT           "Specie scientific name:",IDC_STATIC,7,201,76,8
-    EDITTEXT        IDC_Name,35,7,123,14,ES_AUTOHSCROLL | ES_READONLY
-    EDITTEXT        IDC_Gender,40,23,64,14,ES_AUTOHSCROLL | ES_READONLY
-    EDITTEXT        IDC_Age,27,39,36,14,ES_AUTOHSCROLL | ES_READONLY
-    EDITTEXT        IDC_Origin,31,55,68,14,ES_AUTOHSCROLL | ES_READONLY
-    EDITTEXT        IDC_CommonName,37,87,105,14,ES_AUTOHSCROLL | ES_READONLY
-    EDITTEXT        IDC_Phylum,39,103,110,14,ES_AUTOHSCROLL | ES_READONLY
-    EDITTEXT        IDC_Class,38,119,112,14,ES_AUTOHSCROLL | ES_READONLY
-    EDITTEXT        IDC_Order,38,135,111,14,ES_AUTOHSCROLL | ES_READONLY
-    EDITTEXT        IDC_Suborder,43,151,111,14,ES_AUTOHSCROLL | ES_READONLY
-    EDITTEXT        IDC_Family,43,167,108,14,ES_AUTOHSCROLL | ES_READONLY
-    EDITTEXT        IDC_Subfamily,46,183,109,14,ES_AUTOHSCROLL | ES_READONLY
-    EDITTEXT        IDC_ScientificName,86,199,140,14,ES_AUTOHSCROLL | ES_READONLY
-    EDITTEXT        IDC_Conservation,79,215,89,14,ES_AUTOHSCROLL | ES_READONLY
     LTEXT           "Start date:",IDC_STATIC,7,258,36,8
     LTEXT           "End date:",IDC_STATIC,7,275,32,8
-    EDITTEXT        IDC_StartDate,47,255,67,14,ES_AUTOHSCROLL | ES_READONLY
-    EDITTEXT        IDC_EndDate,42,274,60,14,ES_AUTOHSCROLL | ES_READONLY
     LTEXT           "Fee:",IDC_STATIC,135,266,16,8
-    EDITTEXT        IDC_Fee,153,263,28,14,ES_AUTOHSCROLL | ES_READONLY
     LTEXT           "Euros",IDC_STATIC,183,266,19,8
-    PUSHBUTTON      "Extend one more year!",IDC_BUTTON_Extend,276,267,86,14,WS_DISABLED
     LTEXT           "Legend: EX - Extinct; EW - Extinct in wild; CR - Critically endangered;",IDC_STATIC,7,230,228,8
     LTEXT           " EN - Endangered; VU - Vulnerable; NT - Near threatned; LC - Least concern",IDC_STATIC,7,240,251,8
 END
@@ -573,9 +572,18 @@ STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSM
 CAPTION "Dialog"
 FONT 8, "MS Shell Dlg", 400, 0, 0x1
 BEGIN
+    COMBOBOX        IDC_ComboAnimal,82,12,87,30,CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    EDITTEXT        IDC_new_year,282,245,40,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_new_month,331,245,22,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_new_day,361,245,22,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "Today",IDC_insert_today,448,245,28,14
+    EDITTEXT        IDC_new_description,282,263,224,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_new_prescription,282,282,224,14,ES_AUTOHSCROLL
+    CONTROL         "Routine",IDC_Type_Routine,"Button",BS_AUTORADIOBUTTON,282,301,41,10
+    CONTROL         "Emergency",IDC_Type_Emergency,"Button",BS_AUTORADIOBUTTON,329,301,52,10
+    PUSHBUTTON      "Add new record",IDC_ADD_Record,428,312,77,14,WS_DISABLED
     EDITTEXT        IDC_HistoryRecords,235,26,271,193,ES_MULTILINE | ES_AUTOHSCROLL | ES_READONLY | WS_VSCROLL
     LTEXT           "Animal name:",IDC_STATIC,31,14,47,8
-    COMBOBOX        IDC_ComboAnimal,82,12,87,30,CBS_DROPDOWN | CBS_SORT | WS_VSCROLL | WS_TABSTOP
     LTEXT           "Medical record:",IDC_STATIC,235,16,52,8
     EDITTEXT        IDC_a_ID,82,40,92,14,ES_AUTOHSCROLL | ES_READONLY
     EDITTEXT        IDC_a_gender,82,59,92,14,ES_AUTOHSCROLL | ES_READONLY
@@ -606,23 +614,28 @@ BEGIN
     LTEXT           "Scientific name:",IDC_STATIC,24,286,54,8
     LTEXT           "Conservation status:",IDC_STATIC,10,311,68,8
     GROUPBOX        "Specie information:",IDC_STATIC,7,141,202,186
-    PUSHBUTTON      "Add new record",IDC_ADD_Record,428,312,77,14,WS_DISABLED
     GROUPBOX        "Create new medical record entry:",IDC_STATIC,235,229,271,98
     LTEXT           "Date:",IDC_STATIC,261,248,19,8
     LTEXT           "Description:",IDC_STATIC,240,266,40,8
     LTEXT           "Prescription:",IDC_STATIC,238,285,42,8
     LTEXT           "Record type:",IDC_STATIC,237,302,43,8
-    CONTROL         "Routine",IDC_Type_Routine,"Button",BS_AUTORADIOBUTTON,282,301,41,10
-    CONTROL         "Emergency",IDC_Type_Emergency,"Button",BS_AUTORADIOBUTTON,329,301,52,10
-    EDITTEXT        IDC_new_description,282,263,224,14,ES_AUTOHSCROLL
-    EDITTEXT        IDC_new_prescription,282,282,224,14,ES_AUTOHSCROLL
-    EDITTEXT        IDC_new_year,282,245,40,14,ES_AUTOHSCROLL
     CTEXT           "-",IDC_STATIC,323,248,8,8
-    EDITTEXT        IDC_new_month,331,245,22,14,ES_AUTOHSCROLL
     CTEXT           "-",IDC_STATIC,353,248,8,8
-    EDITTEXT        IDC_new_day,361,245,22,14,ES_AUTOHSCROLL
     LTEXT           "(YYYY-MM-DD)",IDC_STATIC,392,248,49,8
-    PUSHBUTTON      "Today",IDC_insert_today,448,245,28,14
+END
+
+IDD_NewGodAnimal DIALOGEX 0, 0, 311, 88
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Dialog"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    COMBOBOX        IDC_SelectNewGodAnimal,140,21,81,30,CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    EDITTEXT        IDC_SelectedSpecie,65,42,81,14,ES_AUTOHSCROLL | ES_READONLY
+    EDITTEXT        IDC_SelectedFee,65,59,56,14,ES_AUTOHSCROLL | ES_READONLY
+    PUSHBUTTON      "Submit request!",IDC_ButtonSubmitRequest,184,49,68,14,WS_DISABLED
+    LTEXT           "Select animal name:",IDC_STATIC,70,23,68,8
+    LTEXT           "Specie:",IDC_STATIC,38,44,26,8
+    LTEXT           "Fee:",IDC_STATIC,48,62,16,8
 END
 
 
@@ -697,6 +710,14 @@ BEGIN
         TOPMARGIN, 7
         BOTTOMMARGIN, 327
     END
+
+    IDD_NewGodAnimal, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 304
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 81
+    END
 END
 #endif    // APSTUDIO_INVOKED
 
@@ -742,6 +763,11 @@ BEGIN
 END
 
 IDD_VeterinarianDialog AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
+IDD_NewGodAnimal AFX_DIALOG_LAYOUT
 BEGIN
     0
 END

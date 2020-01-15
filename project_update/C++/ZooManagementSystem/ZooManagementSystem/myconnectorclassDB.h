@@ -101,7 +101,7 @@ public:
 	std::vector<CString> CheckSpeciesName();
 	CString SelectSpeciesID(CString species_name);
 	std::vector<CString> CheckZoneID();
-	void NewAnimal(CString animal_ID, CString animal_name, CString animal_gender, CString animal_birthdate, CString wild_date, CString animal_origin, CString Photo, CString specie_ID, CString zones_ID);
+	void NewAnimal(CString animal_ID, CString animal_name, CString animal_gender, CString animal_birthdate, CString wild_date, CString animal_origin, CString specie_ID, CString zones_ID);
 	CString LastAnimalID();
 	void NewTask(CString task_ID, CString task_type, CString task_description);
 	CString LastTaskID();

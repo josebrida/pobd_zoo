@@ -72,11 +72,11 @@ void MyDlg11::DoDataExchange(CDataExchange* pDX)
 
 
 BEGIN_MESSAGE_MAP(MyDlg11, CDialogEx)
-	ON_BN_CLICKED(IDC_OrderFoodButton, &MyDlg11::OnBnClickedOrderfoodbutton)
 	ON_CBN_SELCHANGE(IDC_stock_description_combo, &MyDlg11::OnCbnSelchangestockdescriptioncombo)
 	ON_BN_CLICKED(IDC_New_item_order_button, &MyDlg11::OnBnClickedNewitemorderbutton)
 	ON_CBN_SELCHANGE(IDC_Combo_Consumption_med, &MyDlg11::OnCbnSelchangeComboConsumptionmed)
 	ON_BN_CLICKED(IDC_RegConsMed, &MyDlg11::OnBnClickedRegconsmed)
+	ON_BN_CLICKED(IDC_OrderMedicineButton, &MyDlg11::OnBnClickedOrdermedicinebutton)
 END_MESSAGE_MAP()
 
 
@@ -179,7 +179,7 @@ BOOL MyDlg11::OnInitDialog()
 }
 
 
-void MyDlg11::OnBnClickedOrderfoodbutton()
+void MyDlg11::OnBnClickedOrdermedicinebutton()
 {
 	// TODO: Add your control notification handler code here
 	UpdateData(TRUE);
@@ -299,9 +299,9 @@ void MyDlg11::OnBnClickedNewitemorderbutton()
 				c_consumption_med.ResetContent();
 				for (size_t i = 0; i < MyConnection.FoodDescriptions().size(); i++)
 				{
-					CString fooddescriptions = MyConnection.FoodDescriptions()[i];
-					c_combodescriptionsmed.AddString(fooddescriptions);
-					c_consumption_med.AddString(fooddescriptions);
+					CString medicinedescriptions = MyConnection.MedicineDescriptions()[i];
+					c_combodescriptionsmed.AddString(medicinedescriptions);
+					c_consumption_med.AddString(medicinedescriptions);
 				}
 
 				vector<CString> medicine_IDs = MyConnection.VectorQuery(_T("stock_ID"), _T("stock"), _T("stock_type = 'Medicine'"));

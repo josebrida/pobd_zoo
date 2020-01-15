@@ -51,4 +51,5 @@ public:
 	CString a_enddate;
 	CString a_fee;
 	afx_msg void OnBnClickedButtonExtend();
+	afx_msg void OnBnClickedButtonNewgodanimal();
 };

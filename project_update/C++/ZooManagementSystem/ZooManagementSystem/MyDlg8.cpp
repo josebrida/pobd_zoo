@@ -287,16 +287,6 @@ void MyDlg8::OnBnClickedAddemployeebutton()
 			int diff_begin = _ttoi(MyConnection.CalculateDateDiff(test_date1, test_date2));
 			if (diff_begin > 0) {
 				begin_cmp = TRUE;
-				CString test_date1 = birth_year + _T("-") + birth_month + _T("-") + birth_day;
-				CString test_date2 = begin_year + _T("-") + begin_month + _T("-") + begin_day;
-				int diff_begin = _ttoi(MyConnection.CalculateDateDiff(test_date2, test_date1));
-				if (diff_begin > 0) {
-					begin_birth_cmp = TRUE;
-				}
-				else {
-					msg.Format(_T("Error! Birth date must be previous to begin date."));
-					AfxMessageBox(msg);
-				}
 			}
 			else {
 				msg.Format(_T("Error! Begin date must be previous to end date."));
@@ -304,10 +294,21 @@ void MyDlg8::OnBnClickedAddemployeebutton()
 			}
 		}
 	}
+	/*CString test_date1 = birth_year + _T("-") + birth_month + _T("-") + birth_day;
+	CString test_date2 = begin_year + _T("-") + begin_month + _T("-") + begin_day;
+	int diff_begin = _ttoi(MyConnection.CalculateDateDiff(test_date2, test_date1));
+	if (diff_begin < 0) {
+		begin_birth_cmp = TRUE;
+	}
+	else {
+		msg.Format(_T("Error! Birth date must be previous to begin date."));
+		AfxMessageBox(msg);
+	}*/
 
 
-	if (is_email != -1 && is_year_end && is_month_end && is_day_end && is_year_begin && is_month_begin && is_day_begin && is_year_birth && is_month_birth && is_day_birth && begin_cmp && end_cmp && birth_cmp && new_type_employee != 0 && begin_birth_cmp && is_number) {
+	if (is_email != -1 && is_year_end && is_month_end && is_day_end && is_year_begin && is_month_begin && is_day_begin && is_year_birth && is_month_birth && is_day_birth && begin_cmp && end_cmp && birth_cmp && new_type_employee != 0 && is_number) {
 		if (new_type_employee == 1) {
+			new_employee_endcontract = _T("'") + end_year + _T("-") + end_month + _T("-") + end_day + _T("'");
 			if (!new_responsability.IsEmpty()) {
 				int new_apply_ID = _ttoi(MyConnection.LastUser()) + 1;
 				CString new_apply_ID_str;
@@ -470,85 +471,91 @@ void MyDlg8::OnBnClickedEliminateemployeebutton()
 	UpdateData(TRUE);
 	myconnectorclassDB MyConnection;
 	MyConnection.connect();
-	if (type_employee == 1) {
-		CString manager_selected = MyConnection.CheckUserID(v_comboemployees);
-		MyConnection.EliminateManager(manager_selected);
-	}
-	else if (type_employee == 2) {
-		CString keeper_selected = MyConnection.CheckUserID(v_comboemployees);
-		MyConnection.EliminateKeeper(keeper_selected);
-	}
-	else if (type_employee == 3) {
-		CString veterinarian_selected = MyConnection.CheckUserID(v_comboemployees);
-		MyConnection.EliminateVeterinarian(veterinarian_selected);
-	}
-
-	vector<CString> employee_user_ID = MyConnection.CheckEmployeeID();
-	vector<CString> keeper_IDs = MyConnection.CheckKeeperIDs();
-	vector<CString> manager_IDs = MyConnection.CheckManagerIDs();
-	vector<CString> veterinarian_IDs = MyConnection.CheckVeterinarianIDs();
-	CString type;
-	CString str_list = _T("Name | Type | Email | Phone | Birth date | Begin contract | End contract \r\n ------ \r\n");
-	for (size_t i = 0; i < employee_user_ID.size(); i++) {
-		CString employee_user_name = MyConnection.CheckUserName(employee_user_ID[i]);
-		if (std::find(keeper_IDs.begin(), keeper_IDs.end(), employee_user_ID[i]) != keeper_IDs.end()) {
-			type = _T("Keeper");
+	if (!v_comboemployees.IsEmpty()) {
+		if (type_employee == 1) {
+			CString manager_selected = MyConnection.CheckUserID(v_comboemployees);
+			MyConnection.EliminateManager(manager_selected);
 		}
-		else if (std::find(manager_IDs.begin(), manager_IDs.end(), employee_user_ID[i]) != manager_IDs.end()) {
-			type = _T("Manager");
+		else if (type_employee == 2) {
+			CString keeper_selected = MyConnection.CheckUserID(v_comboemployees);
+			MyConnection.EliminateKeeper(keeper_selected);
 		}
-		else if (std::find(veterinarian_IDs.begin(), veterinarian_IDs.end(), employee_user_ID[i]) != veterinarian_IDs.end()) {
-			type = _T("Veterinarian");
+		else if (type_employee == 3) {
+			CString veterinarian_selected = MyConnection.CheckUserID(v_comboemployees);
+			MyConnection.EliminateVeterinarian(veterinarian_selected);
 		}
-		CString end_contract = MyConnection.SimpleQuery(_T("end_contract"), _T("employee"), _T("user_ID"), employee_user_ID[i]);
-		if (end_contract.IsEmpty()) {
-			end_contract = _T("None");
+
+		vector<CString> employee_user_ID = MyConnection.CheckEmployeeID();
+		vector<CString> keeper_IDs = MyConnection.CheckKeeperIDs();
+		vector<CString> manager_IDs = MyConnection.CheckManagerIDs();
+		vector<CString> veterinarian_IDs = MyConnection.CheckVeterinarianIDs();
+		CString type;
+		CString str_list = _T("Name | Type | Email | Phone | Birth date | Begin contract | End contract \r\n ------ \r\n");
+		for (size_t i = 0; i < employee_user_ID.size(); i++) {
+			CString employee_user_name = MyConnection.CheckUserName(employee_user_ID[i]);
+			if (std::find(keeper_IDs.begin(), keeper_IDs.end(), employee_user_ID[i]) != keeper_IDs.end()) {
+				type = _T("Keeper");
+			}
+			else if (std::find(manager_IDs.begin(), manager_IDs.end(), employee_user_ID[i]) != manager_IDs.end()) {
+				type = _T("Manager");
+			}
+			else if (std::find(veterinarian_IDs.begin(), veterinarian_IDs.end(), employee_user_ID[i]) != veterinarian_IDs.end()) {
+				type = _T("Veterinarian");
+			}
+			CString end_contract = MyConnection.SimpleQuery(_T("end_contract"), _T("employee"), _T("user_ID"), employee_user_ID[i]);
+			if (end_contract.IsEmpty()) {
+				end_contract = _T("None");
+			}
+			str_list = str_list + employee_user_name + _T(" | ") + type + _T(" | ") + MyConnection.SimpleQuery(_T("email"), _T("user"), _T("user_ID"), employee_user_ID[i]) + _T(" | ") +
+				MyConnection.SimpleQuery(_T("phone"), _T("employee"), _T("user_ID"), employee_user_ID[i]) + _T(" | ") +
+				MyConnection.SimpleQuery(_T("birth_date"), _T("user"), _T("user_ID"), employee_user_ID[i]) + _T(" | ") +
+				MyConnection.SimpleQuery(_T("begin_contract"), _T("employee"), _T("user_ID"), employee_user_ID[i]) + _T(" | ") +
+				end_contract + _T("\r\n");
 		}
-		str_list = str_list + employee_user_name + _T(" | ") + type + _T(" | ") + MyConnection.SimpleQuery(_T("email"), _T("user"), _T("user_ID"), employee_user_ID[i]) + _T(" | ") +
-			MyConnection.SimpleQuery(_T("phone"), _T("employee"), _T("user_ID"), employee_user_ID[i]) + _T(" | ") +
-			MyConnection.SimpleQuery(_T("birth_date"), _T("user"), _T("user_ID"), employee_user_ID[i]) + _T(" | ") +
-			MyConnection.SimpleQuery(_T("begin_contract"), _T("employee"), _T("user_ID"), employee_user_ID[i]) + _T(" | ") +
-			end_contract + _T("\r\n");
+		employees_list = str_list;
+
+		v_comboemployees = _T("");
+
+		// Update combo manager
+		vector<CString> manager_user_ID = MyConnection.CheckManagerIDs();
+		if (type_employee == 1) {
+			c_comboemployees.ResetContent();
+			for (size_t i = 0; i < manager_user_ID.size(); i++) {
+				CString manager_user_name = MyConnection.CheckUserName(manager_user_ID[i]);
+				c_comboemployees.AddString(manager_user_name);
+			}
+		}
+
+		// Update combo keeper
+		vector<CString> keeper_user_ID = MyConnection.CheckKeeperIDs();
+		if (type_employee == 2) {
+			c_comboemployees.ResetContent();
+			for (size_t i = 0; i < keeper_user_ID.size(); i++) {
+				CString keeper_user_name = MyConnection.CheckUserName(keeper_user_ID[i]);
+				c_comboemployees.AddString(keeper_user_name);
+			}
+		}
+
+		// Update combo vet
+		vector<CString> veterinarian_user_ID = MyConnection.CheckVeterinarianIDs();
+
+		if (type_employee == 3) {
+			c_comboemployees.ResetContent();
+			for (size_t i = 0; i < veterinarian_user_ID.size(); i++) {
+				CString veterinarian_user_name = MyConnection.CheckUserName(veterinarian_user_ID[i]);
+				c_comboemployees.AddString(veterinarian_user_name);
+			}
+		}
+
+		msg_eliminate.Format(_T("Employee deleted!"));
+		AfxMessageBox(msg_eliminate);
+
+		UpdateData(FALSE);
 	}
-	employees_list = str_list;
-
-	v_comboemployees = _T("");
-
-	// Update combo manager
-	vector<CString> manager_user_ID = MyConnection.CheckManagerIDs();
-	if (type_employee == 1) {
-		c_comboemployees.ResetContent();
-		for (size_t i = 0; i < manager_user_ID.size(); i++) {
-			CString manager_user_name = MyConnection.CheckUserName(manager_user_ID[i]);
-			c_comboemployees.AddString(manager_user_name);
-		}
+	else {
+		msg_eliminate.Format(_T("Erro! Select employee!"));
+		AfxMessageBox(msg_eliminate);
 	}
-
-	// Update combo keeper
-	vector<CString> keeper_user_ID = MyConnection.CheckKeeperIDs();
-	if (type_employee == 2) {
-		c_comboemployees.ResetContent();
-		for (size_t i = 0; i < keeper_user_ID.size(); i++) {
-			CString keeper_user_name = MyConnection.CheckUserName(keeper_user_ID[i]);
-			c_comboemployees.AddString(keeper_user_name);
-		}
-	}
-
-	// Update combo vet
-	vector<CString> veterinarian_user_ID = MyConnection.CheckVeterinarianIDs();
-
-	if (type_employee == 3) {
-		c_comboemployees.ResetContent();
-		for (size_t i = 0; i < veterinarian_user_ID.size(); i++) {
-			CString veterinarian_user_name = MyConnection.CheckUserName(veterinarian_user_ID[i]);
-			c_comboemployees.AddString(veterinarian_user_name);
-		}
-	}
-
-	msg_eliminate.Format(_T("Employee deleted!"));
-	AfxMessageBox(msg_eliminate);
-
-	UpdateData(FALSE);
 }
 
 

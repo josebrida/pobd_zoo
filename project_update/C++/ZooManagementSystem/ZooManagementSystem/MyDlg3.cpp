@@ -129,6 +129,16 @@ CString apply_msg;
 void MyDlg3::OnBnClickedApplynow()
 {
 	UpdateData(TRUE);
+
+	myconnectorclassDB MyConnection;
+	MyConnection.connect();
+
+	CString today = MyConnection.ReturnCurrentDate();
+	CString today_year = today.Left(4);
+	CString aux = today.Mid(5);
+	CString today_month = aux.Left(2);
+	CString today_day = aux.Mid(3);
+
 	int is_email = apply_email.Find(_T("@"));
 	bool is_year;
 	bool is_month;
@@ -170,25 +180,31 @@ void MyDlg3::OnBnClickedApplynow()
 		is_year = FALSE;
 	}
 	if (!apply_name.IsEmpty() && !apply_email.IsEmpty() && !apply_birth_y.IsEmpty() && !apply_birth_m.IsEmpty() && !apply_birth_d.IsEmpty() && !combo_animal.IsEmpty() && is_email != -1 && is_year && is_month && is_day) {
-		myconnectorclassDB MyConnection;
-		MyConnection.connect();
-		int apply_ID = _ttoi(MyConnection.LastUser()) + 1;
-		CString apply_ID_str;
-		apply_ID_str.Format(_T("%d"), apply_ID);
-		CString animalID_selected = MyConnection.CheckAnimalID(combo_animal);
-		CString today_date = MyConnection.ReturnCurrentDate();
-		CString apply_birth = apply_birth_y + _T("-") + apply_birth_m + _T("-") + apply_birth_d;
-		CString animals_birth = MyConnection.CheckBirth(MyConnection.CheckAnimalID(combo_animal));
-		CString age;
-		age.Format(_T("%d"), _ttoi(MyConnection.CalculateDateDiff(today_date, animals_birth)) / 365);
-		CString base_fee;
-		base_fee = MyConnection.CheckSpeciesFee(MyConnection.CheckSpecieID(MyConnection.CheckAnimalID(combo_animal)));
-		CString fee;
-		fee.Format(_T("%d"), 200 / (_ttoi(age) + 1) + _ttoi(base_fee));
-		MyConnection.ApplyGodfather(apply_ID_str, apply_name, apply_email, apply_birth, apply_password, animalID_selected, today_date, fee);
-		apply_msg.Format(_T("Application sent!"));
-		AfxMessageBox(apply_msg);
-		EndDialog(0);
+		CString selected_date = apply_birth_y + _T("-") + apply_birth_m + _T("-") + apply_birth_d;
+		int diff = _ttoi(MyConnection.CalculateDateDiff(today, selected_date));
+		if (diff >= 0) {
+			int apply_ID = _ttoi(MyConnection.LastUser()) + 1;
+			CString apply_ID_str;
+			apply_ID_str.Format(_T("%d"), apply_ID);
+			CString animalID_selected = MyConnection.CheckAnimalID(combo_animal);
+			CString today_date = MyConnection.ReturnCurrentDate();
+			CString apply_birth = apply_birth_y + _T("-") + apply_birth_m + _T("-") + apply_birth_d;
+			CString animals_birth = MyConnection.CheckBirth(MyConnection.CheckAnimalID(combo_animal));
+			CString age;
+			age.Format(_T("%d"), _ttoi(MyConnection.CalculateDateDiff(today_date, animals_birth)) / 365);
+			CString base_fee;
+			base_fee = MyConnection.CheckSpeciesFee(MyConnection.CheckSpecieID(MyConnection.CheckAnimalID(combo_animal)));
+			CString fee;
+			fee.Format(_T("%d"), 200 / (_ttoi(age) + 1) + _ttoi(base_fee));
+			MyConnection.ApplyGodfather(apply_ID_str, apply_name, apply_email, apply_birth, apply_password, animalID_selected, today_date, fee);
+			apply_msg.Format(_T("Application sent!"));
+			AfxMessageBox(apply_msg);
+			EndDialog(0);
+		}
+		else {
+			apply_msg.Format(_T("Birth date must be past date!"));
+			AfxMessageBox(apply_msg);
+		}
 	}
 	else {
 		apply_msg.Format(_T("Error! Please check that all fields are filled correctly."));

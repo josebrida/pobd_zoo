@@ -214,6 +214,19 @@ void MyDlg6::OnBnClickedWilddateButton()
 					_T(" | ") + MyConnection.CheckAnimalOrigin(animal_IDs[i]) + _T(" | ") + zone_ID +
 					_T(" | ") + MyConnection.SimpleQuery(_T("species_name"), _T("species"), _T("species_ID"), MyConnection.SimpleQuery(_T("species_ID"), _T("belongs"), _T("animal_ID"), animal_IDs[i])) + _T("\r\n");
 				animals_with_species_list = str_list;
+
+				wild_year = _T("");
+				wild_month = _T("");
+				wild_day = _T("");
+
+				vector<CString> available_animal_IDs = MyConnection.CheckAvailableAnimalIDs();
+				c_listbox_animal.ResetContent();
+				for (size_t i = 0; i < available_animal_IDs.size(); i++)
+				{
+					CString animals_names = MyConnection.CheckAnimalName(available_animal_IDs[i]);
+					c_listbox_animal.AddString(animals_names);
+				}
+
 				UpdateData(FALSE);
 			}
 		}
